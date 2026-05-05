@@ -131,7 +131,7 @@ const HeroVideo = () => {
             <span>Workday AMS, Support &amp; Optimisation Partner</span>
           </div>
 
-          <h1 className="font-display text-white text-[clamp(44px,6.6vw,98px)] leading-[1.0]" style={{ fontWeight: 300 }}>
+          <h1 className="font-display text-white text-[clamp(44px,6.6vw,98px)] leading-[1.12]" style={{ fontWeight: 300 }}>
             <span className="kinetic-line"><span>The real Workday</span></span>
             <span className="kinetic-line" style={{ transitionDelay: '120ms' }}><span>journey begins</span></span>
             <span className="kinetic-line" style={{ transitionDelay: '240ms' }}><span><em className="italic text-redorange not-italic" style={{ fontStyle: 'italic', color: '#E8472C' }}>after go-live.</em></span></span>

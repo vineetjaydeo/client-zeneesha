@@ -32,7 +32,7 @@ const ProblemSection = () => {
             <div className="reveal flex items-center gap-3 text-[11px] font-mono tracking-[0.22em] uppercase text-redorange mb-5">
               <span className="dash" /><span>After go-live</span>
             </div>
-            <h2 className="reveal delay-1 font-display text-navy text-[clamp(34px,4.4vw,62px)] leading-[1.05]" style={{ fontWeight: 300 }}>
+            <h2 className="reveal delay-1 font-display text-navy text-[clamp(34px,4.4vw,62px)] leading-[1.18]" style={{ fontWeight: 300 }}>
               Workday is live.<br/>
               <em className="italic text-navy/70">But is it delivering</em><br/>
               the value your business expected?
@@ -119,7 +119,7 @@ const OutcomeValue = () => {
             <div className="reveal flex items-center gap-3 text-[11px] font-mono tracking-[0.22em] uppercase text-redorange mb-5">
               <span className="dash" /><span>What Zeneesha helps you achieve</span>
             </div>
-            <h2 className="reveal delay-1 font-display text-navy text-[clamp(34px,4.2vw,58px)] leading-[1.05]" style={{ fontWeight: 300 }}>
+            <h2 className="reveal delay-1 font-display text-navy text-[clamp(34px,4.2vw,58px)] leading-[1.18]" style={{ fontWeight: 300 }}>
               A smoother Workday environment.<br/>
               <em className="italic text-redorange not-italic" style={{ fontStyle: 'italic', color: '#E8472C' }}>Faster support.</em>{' '}
               <em className="italic text-navy/70">Cleaner data.</em><br/>
@@ -140,7 +140,7 @@ const OutcomeValue = () => {
               className={`reveal delay-${i + 1} bg-white p-10 min-h-[260px] flex flex-col card-lift relative`}
             >
               <div className="font-mono text-[10.5px] tracking-[0.22em] uppercase text-redorange mb-6">0{i + 1}</div>
-              <h3 className="font-display text-navy text-[clamp(22px,2.4vw,30px)] leading-[1.18] mb-5" style={{ fontWeight: 400 }}>
+              <h3 className="font-display text-navy text-[clamp(22px,2.4vw,30px)] leading-[1.28] mb-5" style={{ fontWeight: 400 }}>
                 {o.title}<span className="text-redorange">.</span>
               </h3>
               <p className="text-[15px] leading-[1.65] text-slate2">{o.body}</p>
