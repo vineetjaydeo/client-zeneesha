@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeneesha Services — Wireframe v1</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #f5f5f0; color: #1a1a1a; }
+
+.wire-box { border: 2px dashed #c4c4c4; background: #fff; border-radius: 8px; }
+.wire-img { background: #e8e8e8; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; color: #999; font-size: 12px; border-radius: 6px; }
+.wire-btn { border: 2px solid #333; border-radius: 6px; padding: 10px 24px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: default; }
+.wire-btn-primary { background: #333; color: #fff; }
+.wire-btn-secondary { background: transparent; color: #333; }
+.wire-circle { width: 40px; height: 40px; border-radius: 50%; border: 2px dashed #ccc; background: #eee; }
+
+.annotation-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 3px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.tag-seo { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+.tag-cro { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.tag-ux { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+.tag-audit { background: #fce7f3; color: #9d174d; border: 1px solid #f9a8d4; }
+.tag-content { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+.tag-ia { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
+
+.section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.12em; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 16px; }
+.side-note { font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.6; color: #888; border-left: 2px solid #ddd; padding-left: 10px; }
+.side-note strong { color: #555; }
+
+.h-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; padding: 1px 5px; color: #888; display: inline-block; margin-right: 4px; }
+
+.wireframe-header { background: white; border-bottom: 2px solid #e5e5e5; position: sticky; top: 0; z-index: 50; }
+
+/* Tab styling for wireframe */
+.wf-tab { padding: 10px 24px; border: 2px solid #ddd; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; background: white; color: #888; transition: all 0.2s; }
+.wf-tab:hover { border-color: #999; color: #333; }
+.wf-tab.active { background: #333; color: white; border-color: #333; }
+
+.fold-line { border-top: 2px dashed #ef4444; position: relative; margin: 0 -24px; }
+.fold-line::after { content: '↑ ABOVE THE FOLD (desktop 1440×900) ↑'; position: absolute; top: -10px; right: 24px; background: #fef2f2; padding: 0 8px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #ef4444; letter-spacing: 0.05em; }
+
+/* URL bar */
+.url-bar { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 6px; padding: 6px 12px; color: #666; }
+</style>
+</head>
+<body>
+
+<!-- ====== WIREFRAME TITLE BAR ====== -->
+<div class="wireframe-header px-8 py-4 flex items-center justify-between">
+  <div>
+    <h1 class="text-lg font-bold">Zeneesha — Services Landing Page Wireframe</h1>
+    <p class="text-xs text-gray-400 mt-1" style="font-family: 'JetBrains Mono'">v1.0 · March 30, 2026 · Based on iKawn audit findings</p>
+  </div>
+  <div class="flex gap-2">
+    <span class="annotation-tag tag-seo">SEO</span>
+    <span class="annotation-tag tag-cro">CRO</span>
+    <span class="annotation-tag tag-ux">UX</span>
+    <span class="annotation-tag tag-audit">AUDIT FIX</span>
+    <span class="annotation-tag tag-ia">INFO ARCH</span>
+  </div>
+</div>
+
+<!-- ====== WIREFRAME CANVAS ====== -->
+<div class="max-w-6xl mx-auto px-8 py-12">
+
+  <!-- ============================================ -->
+  <!-- PAGE ARCHITECTURE NOTE                        -->
+  <!-- ============================================ -->
+  <div class="wire-box p-6 mb-12" style="background: #fff7ed; border-color: #fdba74;">
+    <h3 class="text-sm font-bold mb-3" style="font-family: 'JetBrains Mono'">📐 Page Architecture Decision</h3>
+    <div class="text-xs leading-relaxed" style="font-family: 'JetBrains Mono'; color: #555;">
+      <p class="mb-2"><strong>Structure:</strong> One services hub page + 3 dedicated service pages (Deploy, Consult, Elevate)</p>
+      <p class="mb-2"><strong>Why not tabs:</strong> Tabbed content = 1 URL = all three services share one page's SEO equity. Separate pages let each service rank independently for its own keyword cluster.</p>
+      <p class="mb-3"><strong>URL structure:</strong></p>
+      <div class="space-y-1 ml-4">
+        <p><span class="url-bar">/services/</span> → Hub page (this wireframe) — targets "workday consulting services"</p>
+        <p><span class="url-bar">/services/workday-implementation/</span> → Deploy — targets "workday implementation partner UK"</p>
+        <p><span class="url-bar">/services/workday-consulting/</span> → Consult — targets "workday consulting services"</p>
+        <p><span class="url-bar">/services/workday-optimization/</span> → Elevate — targets "workday optimization services"</p>
+      </div>
+      <p class="mt-3"><strong>Audit context:</strong> Current site uses blog-post redirects for services. No proper landing pages exist. This is the #1 structural fix.</p>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 01: BREADCRUMB + NAV                   -->
+  <!-- ============================================ -->
+  <div class="mb-6">
+    <div class="section-label">01 · Navigation + Breadcrumb</div>
+    <div class="flex gap-2 mb-3">
+      <span class="annotation-tag tag-seo">SEO: BreadcrumbList schema</span>
+      <span class="annotation-tag tag-ux">UX: wayfinding for deep pages</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-4 mb-2">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-500 font-bold">Z</div>
+        <span class="font-bold text-sm">Zeneesha</span>
+      </div>
+      <div class="flex items-center gap-6 text-xs text-gray-500">
+        <span>Home</span>
+        <span class="font-medium text-gray-800">Services ▾</span>
+        <span>Case Studies</span>
+        <span>Resources ▾</span>
+        <span>About</span>
+      </div>
+      <div class="wire-btn wire-btn-primary text-xs">Book a Consultation →</div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="wire-box p-3 px-4 flex items-center gap-2">
+    <span class="text-xs text-blue-600">Home</span>
+    <span class="text-xs text-gray-300">/</span>
+    <span class="text-xs text-gray-800 font-medium">Services</span>
+    <span class="ml-auto">
+      <span class="h-tag">BreadcrumbList</span>
+      <span class="text-xs text-blue-400" style="font-family: 'JetBrains Mono'">schema.org markup</span>
+    </span>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>SEO:</strong> Breadcrumbs get rich snippet treatment in SERPs. Must use BreadcrumbList structured data.<br>
+    <strong>Services dropdown:</strong> Hover reveals all 3 service pages with short descriptions — acts as mini-nav.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 02: SERVICES HUB HERO                  -->
+  <!-- ============================================ -->
+  <div class="mb-6">
+    <div class="section-label">02 · Services Hub Hero</div>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="annotation-tag tag-seo">SEO: H1 targets "workday services"</span>
+      <span class="annotation-tag tag-cro">CRO: service selector above fold</span>
+      <span class="annotation-tag tag-audit">Audit: replace blog-post service redirects</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-10" style="background: #1e293b; border-color: #334155;">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 bg-white bg-opacity-10 rounded-full px-3 py-1 mb-4">
+        <div class="w-3 h-3 rounded bg-yellow-400"></div>
+        <span class="text-xs text-gray-400">Workday Sales & Services Partner</span>
+      </div>
+
+      <div class="mb-2">
+        <span class="h-tag" style="background: #334155; border-color: #475569; color: #94a3b8;">H1</span>
+        <span class="text-xs text-blue-400 ml-1" style="font-family: 'JetBrains Mono'">target: "workday consulting services UK"</span>
+      </div>
+      <h2 class="text-3xl font-extrabold text-white leading-tight mb-4">
+        End-to-End Workday Services<br>
+        <span class="text-blue-400">Built Around Your Goals</span>
+      </h2>
+      <p class="text-sm text-gray-400 leading-relaxed max-w-xl mx-auto mb-8">
+        Whether you're deploying Workday for the first time, augmenting your team with certified experts, or maximizing an existing tenant — we have the right engagement model.
+      </p>
+
+      <!-- Service selector cards (above fold) -->
+      <div class="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+        <a href="#deploy" class="wire-box p-5 text-left" style="border-color: #3b82f6; background: rgba(59,130,246,0.1);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center mb-2" style="background: rgba(59,130,246,0.2);">
+            <span class="text-xs text-blue-400">◆</span>
+          </div>
+          <p class="text-xs font-bold text-white mb-1">Deploy & Implement</p>
+          <p class="text-xs text-gray-500">New Workday deployments</p>
+          <p class="text-xs text-blue-400 mt-2">Explore →</p>
+        </a>
+        <a href="#consult" class="wire-box p-5 text-left" style="border-color: #555; background: rgba(255,255,255,0.03);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center mb-2" style="background: rgba(234,88,12,0.15);">
+            <span class="text-xs text-orange-400">◆</span>
+          </div>
+          <p class="text-xs font-bold text-white mb-1">Consult & Advise</p>
+          <p class="text-xs text-gray-500">Expert consulting on demand</p>
+          <p class="text-xs text-orange-400 mt-2">Explore →</p>
+        </a>
+        <a href="#elevate" class="wire-box p-5 text-left" style="border-color: #555; background: rgba(255,255,255,0.03);">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center mb-2" style="background: rgba(22,163,74,0.15);">
+            <span class="text-xs text-green-400">◆</span>
+          </div>
+          <p class="text-xs font-bold text-white mb-1">Optimize & Elevate</p>
+          <p class="text-xs text-gray-500">Maximize existing Workday</p>
+          <p class="text-xs text-green-400 mt-2">Explore →</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="fold-line mt-4"></div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>SEO:</strong> Hub page H1 targets broad "workday services" keyword. Each child page targets its specific niche.<br>
+    <strong>CRO:</strong> Service cards above fold = immediate self-selection. Visitors identify their need in 3 seconds.<br>
+    <strong>IA:</strong> Cards anchor-link to sections below AND link to dedicated service pages. Two paths: skim here or go deep.<br>
+    <strong>Audit fix:</strong> Replaces current blog-post redirects. These are proper service entry points.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 03: SERVICE 1 — DEPLOY                 -->
+  <!-- ============================================ -->
+  <div class="mb-6" id="deploy">
+    <div class="section-label">03 · Service Section: Deploy & Implement</div>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="annotation-tag tag-audit">Audit: renamed from "ZAS"</span>
+      <span class="annotation-tag tag-seo">SEO: H2 + H3 for implementation keywords</span>
+      <span class="annotation-tag tag-cro">CRO: inline social proof + CTA</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-10" style="border-left: 4px solid #3b82f6;">
+    <div class="grid grid-cols-12 gap-10">
+      <!-- Left: Content (8 cols) -->
+      <div class="col-span-8">
+        <div class="inline-flex items-center gap-2 bg-blue-50 rounded-full px-3 py-1 mb-4">
+          <span class="text-xs font-semibold text-blue-700">Deploy & Implement</span>
+        </div>
+
+        <div class="mb-2">
+          <span class="h-tag">H2</span>
+          <span class="text-xs text-blue-400 ml-1" style="font-family: 'JetBrains Mono'">target: "workday implementation services"</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Full-Lifecycle Workday Deployments</h3>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6">
+          We manage every phase of your Workday implementation — from scoping and design to configuration, testing, and go-live. HCM, Payroll, and Financials, configured to your business, on your timeline.
+        </p>
+
+        <!-- Module chips -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="h-tag">H3</span>
+          <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">HCM</span>
+          <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Payroll</span>
+          <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Financials</span>
+          <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Integrations</span>
+          <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Data Migration</span>
+        </div>
+
+        <!-- Key outcomes -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="wire-box p-4 text-center" style="border-style: solid; border-color: #bfdbfe;">
+            <div class="text-lg font-bold text-blue-700">30%</div>
+            <div class="text-xs text-gray-500">Faster go-live</div>
+          </div>
+          <div class="wire-box p-4 text-center" style="border-style: solid; border-color: #bfdbfe;">
+            <div class="text-lg font-bold text-blue-700">100+</div>
+            <div class="text-xs text-gray-500">Implementations</div>
+          </div>
+          <div class="wire-box p-4 text-center" style="border-style: solid; border-color: #bfdbfe;">
+            <div class="text-lg font-bold text-blue-700">0</div>
+            <div class="text-xs text-gray-500">Overdue go-lives</div>
+          </div>
+        </div>
+
+        <!-- Process preview -->
+        <div class="mb-6">
+          <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Our approach</p>
+          <div class="flex gap-2 items-center text-xs text-gray-500">
+            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded font-medium">1. Discover</span>
+            <span class="text-gray-300">→</span>
+            <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded">2. Design</span>
+            <span class="text-gray-300">→</span>
+            <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded">3. Configure & Test</span>
+            <span class="text-gray-300">→</span>
+            <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded">4. Go-Live + Hypercare</span>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="wire-btn wire-btn-primary text-xs">Start Your Implementation →</div>
+          <div class="wire-btn wire-btn-secondary text-xs">View Implementation Details →</div>
+        </div>
+      </div>
+
+      <!-- Right: Sidebar proof (4 cols) -->
+      <div class="col-span-4">
+        <div class="wire-box p-5 mb-4" style="border-style: solid;">
+          <p class="text-xs text-gray-400 mb-3">Featured result</p>
+          <p class="text-sm font-bold mb-1">AQA</p>
+          <p class="text-xs text-gray-500 mb-3">6,000+ employees migrated in 5 months, 100% on budget</p>
+          <a href="#" class="text-xs text-blue-600 font-semibold">Read case study →</a>
+        </div>
+
+        <div class="wire-box p-5" style="border-style: solid;">
+          <p class="text-xs text-gray-400 italic leading-relaxed mb-2">"Smoothest enterprise deployment we've ever experienced."</p>
+          <div class="flex items-center gap-2 mt-2">
+            <div class="wire-circle w-6 h-6"></div>
+            <div>
+              <p class="text-xs font-medium">Sarah Mitchell</p>
+              <p class="text-xs text-gray-400">Head of People Ops, AQA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>Audit fix:</strong> "ZAS" renamed to "Deploy & Implement." No visitor knows what ZAS means.<br>
+    <strong>SEO:</strong> H2 targets "workday implementation services." Module chips seed keyword variations (HCM, Payroll, Financials).<br>
+    <strong>CRO:</strong> Inline testimonial + case study — proof sits next to the service description, not buried at the bottom.<br>
+    <strong>IA:</strong> "View Implementation Details" links to the dedicated <span class="url-bar">/services/workday-implementation/</span> deep page.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 04: SERVICE 2 — CONSULT                -->
+  <!-- ============================================ -->
+  <div class="mb-6" id="consult">
+    <div class="section-label">04 · Service Section: Consult & Advise</div>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="annotation-tag tag-audit">Audit: renamed from "ZCS"</span>
+      <span class="annotation-tag tag-seo">SEO: targets consulting-specific keywords</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-10" style="border-left: 4px solid #ea580c;">
+    <div class="grid grid-cols-12 gap-10">
+      <div class="col-span-8">
+        <div class="inline-flex items-center gap-2 bg-orange-50 rounded-full px-3 py-1 mb-4">
+          <span class="text-xs font-semibold text-orange-700">Consult & Advise</span>
+        </div>
+
+        <div class="mb-2">
+          <span class="h-tag">H2</span>
+          <span class="text-xs text-orange-400 ml-1" style="font-family: 'JetBrains Mono'">target: "workday consulting experts"</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Certified Workday Expertise, On Demand</h3>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6">
+          Need specialized Workday knowledge without a full implementation? Our consultants embed directly in your team — for sprints, staff augmentation, or strategic advisory.
+        </p>
+
+        <!-- Engagement models -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Staff Augmentation</h4>
+            <p class="text-xs text-gray-400">1 consultant to full squads. Your cadence, your projects.</p>
+          </div>
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Advisory & Strategy</h4>
+            <p class="text-xs text-gray-400">Workday roadmap, release mgmt, governance.</p>
+          </div>
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Sprint Projects</h4>
+            <p class="text-xs text-gray-400">2-6 week focused engagements for specific challenges.</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex gap-6 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-orange-600">50+</span>
+            <span class="text-xs text-gray-500">Certified consultants</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-orange-600">48h</span>
+            <span class="text-xs text-gray-500">Average ramp-up</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-orange-600">4.9★</span>
+            <span class="text-xs text-gray-500">Client rating</span>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="wire-btn wire-btn-primary text-xs" style="background: #ea580c; border-color: #ea580c; color: white;">Request a Consultant →</div>
+          <div class="wire-btn wire-btn-secondary text-xs">View Consulting Details →</div>
+        </div>
+      </div>
+
+      <div class="col-span-4">
+        <!-- Expertise areas -->
+        <div class="wire-box p-5" style="border-style: solid;">
+          <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Areas of Expertise</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> HCM Configuration
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> Integrations (EIB, Studio, REST)
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> Reporting & Prism Analytics
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> UK/EU Payroll & Compliance
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> Talent & Learning
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> Financials & Procurement
+            </div>
+            <div class="flex items-center gap-2 text-xs text-gray-600">
+              <span class="text-orange-500">✓</span> Data Migration
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>Audit fix:</strong> "ZCS" renamed to "Consult & Advise."<br>
+    <strong>SEO:</strong> Expertise list doubles as keyword seeding — "HCM Configuration," "Prism Analytics," "UK Payroll."<br>
+    <strong>CRO:</strong> "48h avg ramp-up" = urgency reducer. Shows they can start fast.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 05: SERVICE 3 — ELEVATE                -->
+  <!-- ============================================ -->
+  <div class="mb-6" id="elevate">
+    <div class="section-label">05 · Service Section: Optimize & Elevate</div>
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="annotation-tag tag-audit">Audit: renamed from "Zeneesha Elevate"</span>
+      <span class="annotation-tag tag-audit">Audit: Cyber Security page had wrong title</span>
+      <span class="annotation-tag tag-seo">SEO: targets optimization keywords</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-10" style="border-left: 4px solid #16a34a;">
+    <div class="grid grid-cols-12 gap-10">
+      <div class="col-span-8">
+        <div class="inline-flex items-center gap-2 bg-green-50 rounded-full px-3 py-1 mb-4">
+          <span class="text-xs font-semibold text-green-700">Optimize & Elevate</span>
+        </div>
+
+        <div class="mb-2">
+          <span class="h-tag">H2</span>
+          <span class="text-xs text-green-400 ml-1" style="font-family: 'JetBrains Mono'">target: "workday optimization services"</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Already on Workday? Unlock More Value.</h3>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6">
+          Most organizations use 40-60% of Workday's capabilities. We audit your tenant, identify untapped features, train your team, and build a roadmap to maximize your investment.
+        </p>
+
+        <!-- What's included -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Tenant Health Check</h4>
+            <p class="text-xs text-gray-400">Config, security, integrations, unused modules — audited against best practices.</p>
+          </div>
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Feature Adoption Roadmap</h4>
+            <p class="text-xs text-gray-400">Prioritized plan with projected ROI for each initiative.</p>
+          </div>
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Team Enablement</h4>
+            <p class="text-xs text-gray-400">Hands-on training so your team sustains improvements.</p>
+          </div>
+          <div class="wire-box p-4" style="border-style: solid;">
+            <span class="h-tag">H3</span>
+            <h4 class="text-xs font-bold mt-1 mb-1">Release Management</h4>
+            <p class="text-xs text-gray-400">Bi-annual releases tested and deployed without disruption.</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex gap-6 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-green-600">40%</span>
+            <span class="text-xs text-gray-500">Avg feature adoption lift</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-green-600">2x</span>
+            <span class="text-xs text-gray-500">ROI on Workday investment</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-bold text-green-600">8 wk</span>
+            <span class="text-xs text-gray-500">Typical engagement</span>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="wire-btn wire-btn-primary text-xs" style="background: #16a34a; border-color: #16a34a; color: white;">Get a Tenant Assessment →</div>
+          <div class="wire-btn wire-btn-secondary text-xs">View Optimization Details →</div>
+        </div>
+      </div>
+
+      <div class="col-span-4">
+        <div class="wire-box p-5" style="border-style: solid; background: #f0fdf4; border-color: #86efac;">
+          <p class="text-xs font-bold text-green-800 mb-3">Typical outcome</p>
+          <div class="space-y-3">
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="text-gray-600">Feature adoption</span>
+                <span class="font-bold text-green-700">45% → 82%</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-green-500 rounded-full" style="width: 82%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="text-gray-600">Process efficiency</span>
+                <span class="font-bold text-green-700">+35%</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-green-400 rounded-full" style="width: 70%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="text-gray-600">HR processing cost</span>
+                <span class="font-bold text-green-700">-40%</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-green-300 rounded-full" style="width: 60%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>Audit fix:</strong> "Zeneesha Elevate" renamed. Also fixes Cyber Security page that had Elevate's title copy-pasted.<br>
+    <strong>SEO:</strong> "40-60% of capabilities" stat = linkable claim. Drives backlinks from HR blogs.<br>
+    <strong>CRO:</strong> Progress bars on right = visual outcome preview. Makes the value tangible before scrolling.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 06: COMPARISON TABLE                   -->
+  <!-- ============================================ -->
+  <div class="mb-6">
+    <div class="section-label">06 · Service Comparison Table</div>
+    <div class="flex gap-2 mb-3">
+      <span class="annotation-tag tag-cro">CRO: helps self-selection</span>
+      <span class="annotation-tag tag-seo">SEO: Table schema for rich snippets</span>
+      <span class="annotation-tag tag-ux">UX: reduces decision paralysis</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-8">
+    <div class="text-center mb-6">
+      <span class="h-tag">H2</span>
+      <h3 class="text-lg font-bold mt-2 mb-1">Not Sure Which Service Fits?</h3>
+      <p class="text-xs text-gray-500">Quick comparison — or book a call and we'll help you decide.</p>
+    </div>
+
+    <table class="w-full text-xs">
+      <thead>
+        <tr class="border-b-2 border-gray-200">
+          <th class="text-left py-3 px-4 font-medium text-gray-400"></th>
+          <th class="text-center py-3 px-4 font-bold text-blue-700">Deploy</th>
+          <th class="text-center py-3 px-4 font-bold text-orange-700">Consult</th>
+          <th class="text-center py-3 px-4 font-bold text-green-700">Elevate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-100">
+          <td class="py-3 px-4 font-medium">Best for</td>
+          <td class="py-3 px-4 text-center text-gray-500">New to Workday</td>
+          <td class="py-3 px-4 text-center text-gray-500">Need extra expertise</td>
+          <td class="py-3 px-4 text-center text-gray-500">Already on Workday</td>
+        </tr>
+        <tr class="border-b border-gray-100">
+          <td class="py-3 px-4 font-medium">Duration</td>
+          <td class="py-3 px-4 text-center text-gray-500">3–12 months</td>
+          <td class="py-3 px-4 text-center text-gray-500">2 wk – 6 mo</td>
+          <td class="py-3 px-4 text-center text-gray-500">6–10 weeks</td>
+        </tr>
+        <tr class="border-b border-gray-100">
+          <td class="py-3 px-4 font-medium">Dedicated PM</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+        </tr>
+        <tr class="border-b border-gray-100">
+          <td class="py-3 px-4 font-medium">Tenant config</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+          <td class="py-3 px-4 text-center text-gray-400">As needed</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+        </tr>
+        <tr class="border-b border-gray-100">
+          <td class="py-3 px-4 font-medium">Training</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+          <td class="py-3 px-4 text-center text-gray-400">Optional</td>
+          <td class="py-3 px-4 text-center text-green-500">✓</td>
+        </tr>
+        <tr>
+          <td class="py-3 px-4 font-medium">Post-launch support</td>
+          <td class="py-3 px-4 text-center text-gray-500">30 days</td>
+          <td class="py-3 px-4 text-center text-gray-400">—</td>
+          <td class="py-3 px-4 text-center text-gray-500">60 days</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-6">
+      <div class="wire-btn wire-btn-primary text-xs">Help Me Choose → Book a Call</div>
+    </div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>CRO:</strong> Comparison tables reduce decision paralysis. "Help Me Choose" CTA catches the undecided.<br>
+    <strong>SEO:</strong> Can be marked up with Table schema. Also surfaces in AI search answer boxes.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 07: FAQ                                -->
+  <!-- ============================================ -->
+  <div class="mb-6">
+    <div class="section-label">07 · FAQ Section</div>
+    <div class="flex gap-2 mb-3">
+      <span class="annotation-tag tag-seo">SEO: FAQPage schema = rich snippets in SERP</span>
+      <span class="annotation-tag tag-seo">SEO: targets long-tail question keywords</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-8">
+    <div class="text-center mb-6">
+      <span class="h-tag">H2</span>
+      <h3 class="text-lg font-bold mt-2 mb-1">Frequently Asked Questions</h3>
+    </div>
+
+    <div class="max-w-2xl mx-auto space-y-0">
+      <div class="border-b border-gray-100 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="h-tag">H3</span>
+            <span class="text-sm font-semibold ml-1">How quickly can you start an engagement?</span>
+          </div>
+          <span class="text-gray-400">▾</span>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">Consulting: 1-2 weeks. Implementations: 1-2 week scoping phase, then kickoff. We can fast-track for urgent situations.</p>
+      </div>
+
+      <div class="border-b border-gray-100 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="h-tag">H3</span>
+            <span class="text-sm font-semibold ml-1">Are your consultants Workday-certified?</span>
+          </div>
+          <span class="text-gray-400">▾</span>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">[Collapsed — expands on click]</p>
+      </div>
+
+      <div class="border-b border-gray-100 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="h-tag">H3</span>
+            <span class="text-sm font-semibold ml-1">Can you work alongside our internal team?</span>
+          </div>
+          <span class="text-gray-400">▾</span>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">[Collapsed]</p>
+      </div>
+
+      <div class="border-b border-gray-100 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="h-tag">H3</span>
+            <span class="text-sm font-semibold ml-1">What industries do you work with?</span>
+          </div>
+          <span class="text-gray-400">▾</span>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">[Collapsed]</p>
+      </div>
+
+      <div class="py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="h-tag">H3</span>
+            <span class="text-sm font-semibold ml-1">What does the Tenant Health Check include?</span>
+          </div>
+          <span class="text-gray-400">▾</span>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">[Collapsed]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>SEO:</strong> FAQPage schema = expanded SERP listing. Takes up more real estate in Google results.<br>
+    <strong>SEO:</strong> Questions target long-tail queries: "how quickly can a workday consultant start," "workday certified consultants UK."<br>
+    <strong>CRO:</strong> Reduces anxiety for enterprise buyers who aren't ready to call yet.<br>
+    <strong>Content:</strong> Pull real questions from sales calls and support inbox.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- SECTION 08: CTA                                -->
+  <!-- ============================================ -->
+  <div class="mb-6">
+    <div class="section-label">08 · Bottom CTA</div>
+    <div class="flex gap-2 mb-3">
+      <span class="annotation-tag tag-cro">CRO: final conversion point</span>
+      <span class="annotation-tag tag-audit">Audit: Calendly integration needed</span>
+    </div>
+  </div>
+
+  <div class="wire-box p-10 text-center" style="background: #1e293b; border-color: #334155;">
+    <span class="h-tag" style="background: #334155; border-color: #475569; color: #94a3b8;">H2</span>
+    <h3 class="text-2xl font-bold text-white mt-2 mb-4">Let's Find the Right Fit</h3>
+    <p class="text-sm text-gray-400 max-w-lg mx-auto mb-6">
+      Every organization's Workday journey is different. Book a free 30-minute call and we'll recommend the right service for where you are today.
+    </p>
+    <div class="flex justify-center gap-3 mb-4">
+      <div class="wire-btn wire-btn-primary text-xs" style="background: #e5e5e5; color: #333; border-color: #e5e5e5;">
+        Book a Free Consultation →
+      </div>
+      <div class="wire-btn wire-btn-secondary text-xs" style="color: #94a3b8; border-color: #475569;">
+        Download Services Overview PDF
+      </div>
+    </div>
+    <div class="flex justify-center gap-4">
+      <span class="text-xs text-gray-500">✓ No obligation</span>
+      <span class="text-xs text-gray-500">✓ 30 min focused session</span>
+      <span class="text-xs text-gray-500">✓ Response within 24h</span>
+    </div>
+  </div>
+
+  <div class="side-note mt-3 ml-4">
+    <strong>CRO:</strong> Two paths — "Book" for high-intent, "Download PDF" for research-phase visitors (lead capture).<br>
+    <strong>Audit fix:</strong> Must actually integrate scheduling tool. "Book Consultation" should open Calendly or similar.
+  </div>
+
+  <div class="my-12"></div>
+
+  <!-- ============================================ -->
+  <!-- HEADING HIERARCHY + SEO SUMMARY                -->
+  <!-- ============================================ -->
+  <div class="wire-box p-8 mb-8" style="background: #fefce8; border-color: #fde68a;">
+    <h3 class="text-sm font-bold mb-4" style="font-family: 'JetBrains Mono'">📋 Heading Hierarchy — Services Hub Page</h3>
+    <div class="text-xs leading-loose" style="font-family: 'JetBrains Mono'; color: #555;">
+      <p><strong>H1:</strong> End-to-End Workday Services Built Around Your Goals</p>
+      <p class="ml-4">H2: Full-Lifecycle Workday Deployments</p>
+      <p class="ml-8">H3: HCM · Payroll · Financials · Integrations · Data Migration</p>
+      <p class="ml-4">H2: Certified Workday Expertise, On Demand</p>
+      <p class="ml-8">H3: Staff Augmentation / Advisory & Strategy / Sprint Projects</p>
+      <p class="ml-4">H2: Already on Workday? Unlock More Value.</p>
+      <p class="ml-8">H3: Tenant Health Check / Feature Adoption / Team Enablement / Release Mgmt</p>
+      <p class="ml-4">H2: Not Sure Which Service Fits?</p>
+      <p class="ml-4">H2: Frequently Asked Questions</p>
+      <p class="ml-8">H3: [5 question headings]</p>
+      <p class="ml-4">H2: Let's Find the Right Fit</p>
+    </div>
+    <p class="text-xs text-yellow-700 mt-4">✓ Single H1 · ✓ 6 H2s · ✓ Clean nesting · ✓ Keyword-rich · ✓ No skipped levels</p>
+  </div>
+
+  <div class="wire-box p-8 mb-8" style="background: #f0fdf4; border-color: #86efac;">
+    <h3 class="text-sm font-bold mb-4" style="font-family: 'JetBrains Mono'">🔧 Structured Data Plan — Services Page</h3>
+    <div class="text-xs leading-loose" style="font-family: 'JetBrains Mono'; color: #555;">
+      <p><strong>Service:</strong> 3x Service entries with serviceType, provider, areaServed</p>
+      <p><strong>FAQPage:</strong> 5 questions from FAQ section</p>
+      <p><strong>BreadcrumbList:</strong> Home > Services</p>
+      <p><strong>Organization:</strong> inherited from site-wide schema</p>
+    </div>
+  </div>
+
+  <div class="wire-box p-8" style="background: #faf5ff; border-color: #c4b5fd;">
+    <h3 class="text-sm font-bold mb-4" style="font-family: 'JetBrains Mono'">🔗 Internal Linking Map — From This Page</h3>
+    <div class="text-xs leading-loose" style="font-family: 'JetBrains Mono'; color: #555;">
+      <p><strong>Outbound to child pages:</strong></p>
+      <p class="ml-4">→ /services/workday-implementation/ (Deploy deep page)</p>
+      <p class="ml-4">→ /services/workday-consulting/ (Consult deep page)</p>
+      <p class="ml-4">→ /services/workday-optimization/ (Elevate deep page)</p>
+      <p class="mt-2"><strong>Outbound to related content:</strong></p>
+      <p class="ml-4">→ /case-studies/aqa/ (from Deploy section)</p>
+      <p class="ml-4">→ /contact/ or Calendly embed (from all CTAs)</p>
+      <p class="ml-4">→ /resources/workday-readiness-assessment/ (from Download CTA)</p>
+      <p class="mt-2"><strong>Inbound from:</strong></p>
+      <p class="ml-4">← Homepage (services section cards)</p>
+      <p class="ml-4">← Nav dropdown (all pages)</p>
+      <p class="ml-4">← Blog posts (internal links from 168 existing posts)</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

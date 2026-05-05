@@ -1,0 +1,215 @@
+# ----------------------------------------
+# Reports snapshot
+# Account: iKawn
+# Property: iKawn.com
+# ----------------------------------------
+#  
+# Start date: 20260302
+# End date: 20260329
+Active users,New users,Average engagement time per active user,Event count
+220,201,344.81363636363636,3755
+
+#  
+# Start date: 20260302
+# End date: 20260329
+Page title and screen class,Views,Active users,Event count,Bounce rate
+iKawn OS — The Commerce Operating System,1412,58,2473,0.3026315789473684
+iKawn | The Agentic Commerce OS for Fashion Brands,242,164,780,0.537117903930131
+iKawn Drafts: Thinking in Public | iKawn,12,7,30,0.25
+Generative Media Is Ready for Ecommerce. Here Is How iKawn Wins With It. | iKawn Drafts,7,4,15,0.5
+Contact us | iKawn OS,6,6,22,0.25
+404 Not Found | iKawn OS,5,5,13,0.4
+About Us | iKawn OS,5,5,16,0
+iKawn OS,5,3,18,0
+Privacy Policy | iKawn OS,4,3,7,0
+Photorealistic commercial shot of a woman with flawless make — Prism by iKawn,3,2,11,0.3333333333333333
+iKawn API Documentation,3,2,7,0.3333333333333333
+Intelligence OS: The End of Reactive Commerce | iKawn Drafts,2,2,5,0.5
+Privacy Policy | iKawn,2,1,5,0
+The Intelligent Commerce OS | iKawn,2,1,6,0
+Agentic Commerce OS: Why AI Panic is a Signal to Switch | iKawn,1,1,3,1
+Beyond the Lens: The Visual OS Revolutionizing D2C Fashion in 2026 | iKawn Drafts,1,1,3,1
+Case Studies | iKawn,1,1,2,0
+Contact - Let's Talk | iKawn,1,1,2,0
+"Create an ""Eid Mubarak"" social media image with a heartfelt — Prism by iKawn",1,1,3,0.5
+Personalization OS: Why Segments Are the New Batch-and-Blast | iKawn Drafts,1,1,3,1
+Programmatic Creative Generation for Agencies | iKawn,1,1,4,1
+Service-as-Software: Why We Automated Our Agency | iKawn,1,1,3,1
+Terms and Conditions | iKawn OS,1,1,2,0
+The Agentic Era for eCommerce: From Automation to Autonomy | iKawn Drafts,1,1,3,1
+The Agentic Swarm and the 100x Growth Gap | iKawn Drafts,1,1,3,1
+The Platform - Not a Tool. Infrastructure. | iKawn,1,1,2,0
+The Rule of 100: Daily Outbound as an Agentic Growth Engine | iKawn Drafts,1,1,3,1
+Visual Debt: The Hidden Cost Crushing Fashion eCommerce Economics | iKawn Drafts,1,1,3,1
+Visual OS: When Every Image Becomes a Decision Engine | iKawn Drafts,1,1,3,1
+Why iKawn Had to Exist | iKawn Drafts,1,1,3,1
+iKawn — AI Visual Creation,1,1,3,0
+Floral Bag: Style in Bloom — Muse by iKawn,0,1,2,0
+
+#  
+# Start date: 20260302
+# End date: 20260329
+First user source / medium,Active users
+(direct) / (none),167
+google / organic,35
+linkedin.com / referral,7
+lnkd.in / referral,3
+facebook.com / referral,2
+bing / organic,1
+kaegtcr.online / referral,1
+l.instagram.com / referral,1
+nvcrm.lightning.force.com / referral,1
+sanganzhu.com / referral,1
+web.outreach.io / referral,1
+youtube.com / referral,1
+
+#  
+# Start date: 20260302
+# End date: 20260329
+Session source/medium,Sessions
+(direct) / (none),309
+l.instagram.com / referral,58
+google / organic,54
+studio / web,20
+ikawn_home / pricing_cta,17
+linkedin.com / referral,8
+lnkd.in / referral,3
+facebook.com / referral,2
+localhost:8081 / referral,2
+web.outreach.io / referral,2
+youtube.com / referral,2
+bing / organic,1
+erisagent.com / referral,1
+kaegtcr.online / referral,1
+nvcrm.lightning.force.com / referral,1
+sanganzhu.com / referral,1
+
+#  
+# Start date: 20260302
+# End date: 20260329
+Nth day,new,returning
+0000,8,7
+0001,9,3
+0002,8,1
+0003,9,7
+0004,15,4
+0005,8,4
+0006,2,2
+0007,4,4
+0008,17,7
+0009,6,6
+0010,4,3
+0011,4,4
+0012,5,8
+0013,8,4
+0014,4,4
+0015,6,3
+0016,8,7
+0017,9,9
+0018,5,7
+0019,4,4
+0020,2,4
+0021,8,8
+0022,6,4
+0023,11,5
+0024,3,5
+0025,13,11
+0026,9,5
+0027,6,1
+
+# How does activity on your platforms compare?
+# Start date: 20260302
+# End date: 20260329
+Platform,Key events
+web,78
+
+#  
+# Start date: 20260302
+# End date: 20260329
+Town/City,Active users
+Mumbai,34
+Paris,16
+Warsaw,11
+Thane,10
+Amsterdam,9
+Hyderabad,7
+Auckland,6
+Bengaluru,5
+Delhi,5
+Dubai,5
+Ahmedabad,4
+Toronto,4
+Haarlem,3
+Los Angeles,3
+Abu Dhabi,2
+Ashburn,2
+Aspen,2
+Bhiwandi,2
+Brantford,2
+Butzbach,2
+Chennai,2
+Ghaziabad,2
+Helsinki,2
+Navi Mumbai,2
+Prineville,2
+Pune,2
+San Francisco,2
+Singapore,2
+Solapur,2
+Surat,2
+Adoor,1
+Alibag,1
+Ambala,1
+Asansol,1
+Bhopal,1
+Boardman,1
+Chakwal,1
+Chhatrapati Sambhajinagar,1
+Chicago,1
+Coimbatore,1
+Columbus,1
+Dombivli,1
+Dublin,1
+Ellicott City,1
+Flower Mound,1
+Forest City,1
+Fort Worth,1
+Gwalior,1
+Hednesford,1
+Hong Kong,1
+Isle of Palms,1
+Jabalpur,1
+Kajang,1
+Kalyan,1
+Kolhapur,1
+Kozhikode,1
+Kristiansand Municipality,1
+Kuala Lumpur,1
+Lagos,1
+Lahore,1
+Livorno,1
+London,1
+Meerut,1
+Mira Bhayandar,1
+Moses Lake,1
+Nagpur,1
+Nashik,1
+Panipat,1
+Pimpri-Chinchwad,1
+Rahim Yar Khan,1
+Rajapalayam,1
+Salem,1
+Santana do Paraiso,1
+Shimla,1
+The Dalles,1
+Tirupati,1
+Udupi,1
+Union,1
+Vienna,1
+
+#  
+# Start date: 20260302
+# End date: 20260329
+Audience name,Active users
+All Users,220
+High Intent Users,29

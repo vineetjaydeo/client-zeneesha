@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeneesha — Our Services</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --z-navy: #0a1628;
+  --z-blue: #1e40af;
+  --z-blue-light: #3b82f6;
+  --z-accent: #f97316;
+  --z-gray-50: #f8fafc;
+  --z-gray-100: #f1f5f9;
+  --z-gray-200: #e2e8f0;
+  --z-gray-400: #94a3b8;
+  --z-gray-600: #475569;
+  --z-gray-800: #1e293b;
+  --z-gray-900: #0f172a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; color: var(--z-gray-800); background: #fff; overflow-x: hidden; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; }
+
+#webgl-services {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.4s; }
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--z-accent);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--z-gray-800);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid var(--z-gray-200);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  border-color: var(--z-blue);
+  color: var(--z-blue);
+}
+
+/* Tabs */
+.tab-btn {
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: var(--z-gray-400);
+  white-space: nowrap;
+}
+.tab-btn:hover {
+  color: var(--z-gray-800);
+  background: var(--z-gray-50);
+}
+.tab-btn.active {
+  color: white;
+  border-color: transparent;
+}
+.tab-btn.active[data-tab="deploy"] { background: var(--z-blue); }
+.tab-btn.active[data-tab="consult"] { background: #ea580c; }
+.tab-btn.active[data-tab="elevate"] { background: #16a34a; }
+
+.tab-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Process step connector */
+.process-step {
+  position: relative;
+}
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 52px;
+  width: 2px;
+  height: calc(100% - 20px);
+  background: var(--z-gray-200);
+}
+
+/* Pulse dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease infinite;
+}
+
+/* Feature card hover line */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 0;
+  border-radius: 0 2px 2px 0;
+  transition: height 0.3s ease;
+}
+.feature-card:hover::before {
+  height: 100%;
+}
+.feature-card.blue::before { background: var(--z-blue); }
+.feature-card.orange::before { background: #ea580c; }
+.feature-card.green::before { background: #16a34a; }
+
+/* Accordion */
+.accordion-item {
+  border-bottom: 1px solid var(--z-gray-100);
+}
+.accordion-header {
+  padding: 20px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color 0.2s ease;
+}
+.accordion-header:hover { color: var(--z-blue); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+.accordion-body.open {
+  max-height: 300px;
+  padding-bottom: 20px;
+}
+.accordion-chevron {
+  transition: transform 0.3s ease;
+}
+.accordion-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Nav */
+nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Comparison grid hover */
+.compare-cell {
+  transition: background 0.2s ease;
+}
+.compare-cell:hover {
+  background: var(--z-gray-50);
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 border-b border-gray-100" id="navbar">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+          <span class="text-white font-bold text-sm">Z</span>
+        </div>
+        <span class="font-bold text-lg text-gray-900 tracking-tight" style="font-family: Inter">Zeneesha</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="homepage.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a>
+        <a href="#" class="text-sm font-medium text-gray-900">Services</a>
+        <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Results</a>
+        <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Resources</a>
+        <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 mr-2">
+          <div class="pulse-dot"></div>
+          <span class="text-xs font-medium text-gray-500">Accepting new clients</span>
+        </div>
+        <a href="#contact" class="btn-primary" style="padding: 10px 24px; font-size: 14px;">
+          Book a Consultation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="relative overflow-hidden pt-32 pb-24" style="background: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0f2040 100%); min-height: 520px;">
+  <canvas id="webgl-services"></canvas>
+  <div class="absolute inset-0 z-1" style="background: linear-gradient(180deg, rgba(10,22,40,0.7) 0%, rgba(10,22,40,0.9) 100%);"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+    <div class="inline-flex items-center gap-2 bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white border-opacity-10">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span class="text-sm font-medium text-white text-opacity-90">Workday Sales & Services Partner</span>
+    </div>
+
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6" style="font-family: Inter; letter-spacing: -0.02em;">
+      Services Built Around<br>
+      <span style="background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Your Workday Goals</span>
+    </h1>
+
+    <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
+      Whether you're deploying Workday for the first time, augmenting your team with certified experts, or optimizing an existing tenant — we have a service model that fits.
+    </p>
+
+    <!-- Tab switcher in hero -->
+    <div class="inline-flex gap-3 bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm rounded-full p-2 border border-white border-opacity-10" id="tab-nav">
+      <button class="tab-btn active" data-tab="deploy">Deploy & Implement</button>
+      <button class="tab-btn" data-tab="consult">Consult & Advise</button>
+      <button class="tab-btn" data-tab="elevate">Optimize & Elevate</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB CONTENT ============ -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <!-- ===== DEPLOY TAB ===== -->
+    <div class="tab-content active" id="tab-deploy">
+      <!-- Intro -->
+      <div class="grid lg:grid-cols-2 gap-16 items-start mb-20">
+        <div>
+          <div class="fade-up inline-flex items-center gap-2 bg-blue-50 rounded-full px-4 py-2 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span class="text-sm font-semibold text-blue-700">Deploy & Implement</span>
+          </div>
+          <h2 class="fade-up fade-up-delay-1 text-3xl md:text-4xl font-bold text-gray-900 mb-6" style="font-family: Inter; letter-spacing: -0.01em;">
+            Full-Lifecycle Workday Deployments
+          </h2>
+          <p class="fade-up fade-up-delay-2 text-gray-500 text-lg leading-relaxed mb-6">
+            We manage every phase of your Workday implementation — from scoping and design to configuration, testing, and go-live — so your team can focus on the business outcomes, not the technical complexity.
+          </p>
+          <div class="fade-up fade-up-delay-3 flex flex-wrap gap-6 mb-8">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                <span class="text-blue-700 font-bold text-sm">30%</span>
+              </div>
+              <span class="text-sm text-gray-600">Faster than<br>industry avg</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                <span class="text-blue-700 font-bold text-sm">100+</span>
+              </div>
+              <span class="text-sm text-gray-600">Implementations<br>delivered</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                <span class="text-blue-700 font-bold text-sm">0</span>
+              </div>
+              <span class="text-sm text-gray-600">Overdue<br>go-lives</span>
+            </div>
+          </div>
+          <a href="#contact" class="fade-up fade-up-delay-4 btn-primary">
+            Start Your Implementation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Process steps -->
+        <div class="fade-up fade-up-delay-2 space-y-0">
+          <p class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Our Process</p>
+
+          <div class="process-step flex gap-4 pb-8">
+            <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0 text-white font-bold text-sm">01</div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-1">Discovery & Scoping</h4>
+              <p class="text-gray-500 text-sm">We map your current processes, identify requirements, and build a detailed project plan with clear milestones.</p>
+            </div>
+          </div>
+
+          <div class="process-step flex gap-4 pb-8">
+            <div class="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center flex-shrink-0 text-white font-bold text-sm">02</div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-1">Design & Configure</h4>
+              <p class="text-gray-500 text-sm">Workday tenant configuration aligned to your business rules, org structure, and compliance requirements.</p>
+            </div>
+          </div>
+
+          <div class="process-step flex gap-4 pb-8">
+            <div class="w-12 h-12 rounded-xl bg-blue-400 flex items-center justify-center flex-shrink-0 text-white font-bold text-sm">03</div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-1">Test & Validate</h4>
+              <p class="text-gray-500 text-sm">Rigorous UAT cycles with your stakeholders. We don't go live until every scenario is validated.</p>
+            </div>
+          </div>
+
+          <div class="process-step flex gap-4 pb-8">
+            <div class="w-12 h-12 rounded-xl bg-blue-300 flex items-center justify-center flex-shrink-0 text-white font-bold text-sm">04</div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-1">Go-Live & Hypercare</h4>
+              <p class="text-gray-500 text-sm">Dedicated support through launch and 30-day hypercare to resolve issues before they become problems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modules -->
+      <div class="mb-16">
+        <h3 class="text-xl font-bold text-gray-900 mb-8">Implementation Modules</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="feature-card blue hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h4 class="font-bold text-gray-900 mb-2">Workday HCM</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">Core HR, absence management, compensation, talent management, and workforce planning — configured for your org.</p>
+          </div>
+          <div class="feature-card blue hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <h4 class="font-bold text-gray-900 mb-2">Workday Payroll</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">UK and multi-country payroll implementation with HMRC compliance, auto-enrolment, and real-time gross settlement.</p>
+          </div>
+          <div class="feature-card blue hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+            <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mb-4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h4 class="font-bold text-gray-900 mb-2">Workday Financials</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">General ledger, accounts payable/receivable, procurement, and expense management — all in one unified platform.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONSULT TAB ===== -->
+    <div class="tab-content" id="tab-consult">
+      <div class="grid lg:grid-cols-2 gap-16 items-start mb-20">
+        <div>
+          <div class="fade-up inline-flex items-center gap-2 bg-orange-50 rounded-full px-4 py-2 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <span class="text-sm font-semibold text-orange-700">Consult & Advise</span>
+          </div>
+          <h2 class="fade-up fade-up-delay-1 text-3xl md:text-4xl font-bold text-gray-900 mb-6" style="font-family: Inter; letter-spacing: -0.01em;">
+            Certified Workday Expertise,<br>On Demand
+          </h2>
+          <p class="fade-up fade-up-delay-2 text-gray-500 text-lg leading-relaxed mb-6">
+            Need specialized Workday knowledge without a full implementation engagement? Our consulting services embed certified experts directly in your team — whether that's a two-week sprint or a six-month partnership.
+          </p>
+          <div class="fade-up fade-up-delay-3 flex flex-wrap gap-6 mb-8">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
+                <span class="text-orange-700 font-bold text-sm">50+</span>
+              </div>
+              <span class="text-sm text-gray-600">Certified<br>consultants</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
+                <span class="text-orange-700 font-bold text-sm">48h</span>
+              </div>
+              <span class="text-sm text-gray-600">Average<br>ramp-up time</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
+                <span class="text-orange-700 font-bold text-sm">4.9</span>
+              </div>
+              <span class="text-sm text-gray-600">Client<br>rating</span>
+            </div>
+          </div>
+          <a href="#contact" class="fade-up fade-up-delay-4 btn-primary" style="background: #ea580c;">
+            Request a Consultant
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Engagement models -->
+        <div class="fade-up fade-up-delay-2 space-y-4">
+          <p class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Engagement Models</p>
+
+          <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 mb-1">Staff Augmentation</h4>
+                <p class="text-gray-500 text-sm">Certified consultants embedded in your team, working your cadence, on your projects. From 1 specialist to entire squads.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 mb-1">Advisory & Strategy</h4>
+                <p class="text-gray-500 text-sm">Strategic guidance for Workday roadmap planning, release management, and technology governance at the leadership level.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 mb-1">Sprint Projects</h4>
+                <p class="text-gray-500 text-sm">Focused 2-6 week engagements to solve specific challenges — integrations, reporting, data migrations, or process redesign.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expertise areas -->
+      <div>
+        <h3 class="text-xl font-bold text-gray-900 mb-8">Areas of Expertise</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">HCM Configuration</h5>
+            <p class="text-gray-400 text-xs">Business processes, security, org design</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Integrations</h5>
+            <p class="text-gray-400 text-xs">EIB, Core Connectors, Studio, REST</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Reporting & Analytics</h5>
+            <p class="text-gray-400 text-xs">Custom reports, dashboards, Prism</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Payroll (UK/EU)</h5>
+            <p class="text-gray-400 text-xs">HMRC, GDPR, multi-country</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Talent & Learning</h5>
+            <p class="text-gray-400 text-xs">Performance, succession, LMS</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Compensation</h5>
+            <p class="text-gray-400 text-xs">Advanced comp, bonus, equity</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Financials</h5>
+            <p class="text-gray-400 text-xs">GL, AP, AR, procurement, expenses</p>
+          </div>
+          <div class="feature-card orange hover-lift bg-white border border-gray-100 rounded-xl p-5">
+            <h5 class="font-bold text-gray-900 text-sm mb-1">Data Migration</h5>
+            <p class="text-gray-400 text-xs">Legacy to Workday, data cleansing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ELEVATE TAB ===== -->
+    <div class="tab-content" id="tab-elevate">
+      <div class="grid lg:grid-cols-2 gap-16 items-start mb-20">
+        <div>
+          <div class="fade-up inline-flex items-center gap-2 bg-green-50 rounded-full px-4 py-2 mb-6">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span class="text-sm font-semibold text-green-700">Optimize & Elevate</span>
+          </div>
+          <h2 class="fade-up fade-up-delay-1 text-3xl md:text-4xl font-bold text-gray-900 mb-6" style="font-family: Inter; letter-spacing: -0.01em;">
+            Already on Workday?<br>Let's Unlock More Value
+          </h2>
+          <p class="fade-up fade-up-delay-2 text-gray-500 text-lg leading-relaxed mb-6">
+            Most organizations only use 40-60% of Workday's capabilities. Our optimization service audits your current tenant, identifies untapped features, and builds a roadmap to maximize your investment.
+          </p>
+          <div class="fade-up fade-up-delay-3 flex flex-wrap gap-6 mb-8">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                <span class="text-green-700 font-bold text-sm">40%</span>
+              </div>
+              <span class="text-sm text-gray-600">Avg feature<br>adoption lift</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                <span class="text-green-700 font-bold text-sm">2x</span>
+              </div>
+              <span class="text-sm text-gray-600">ROI on Workday<br>investment</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                <span class="text-green-700 font-bold text-sm">8wk</span>
+              </div>
+              <span class="text-sm text-gray-600">Typical<br>engagement</span>
+            </div>
+          </div>
+          <a href="#contact" class="fade-up fade-up-delay-4 btn-primary" style="background: #16a34a;">
+            Get a Tenant Assessment
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- What's included -->
+        <div class="fade-up fade-up-delay-2">
+          <p class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">What's Included</p>
+          <div class="space-y-4">
+            <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-1">Tenant Health Check</h4>
+                  <p class="text-gray-500 text-sm">Comprehensive audit of your configuration, security model, integrations, and unused modules against Workday best practices.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-1">Feature Adoption Roadmap</h4>
+                  <p class="text-gray-500 text-sm">Prioritized plan to activate features you're paying for but not using — with projected ROI for each initiative.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-1">Team Enablement</h4>
+                  <p class="text-gray-500 text-sm">Hands-on training for your internal Workday team so they can sustain improvements long after we leave.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hover-lift bg-white border border-gray-100 rounded-2xl p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-1">Release Management</h4>
+                  <p class="text-gray-500 text-sm">Bi-annual Workday releases tested and deployed without disruption — we handle regression testing and change management.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ COMPARISON TABLE ============ -->
+<section class="py-24 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="fade-up text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">Compare Services</p>
+      <h2 class="fade-up fade-up-delay-1 text-3xl font-bold text-gray-900" style="font-family: Inter;">Not Sure Which Service Fits?</h2>
+      <p class="fade-up fade-up-delay-2 text-gray-500 mt-3">Here's a quick comparison to help you decide — or just book a call and we'll guide you.</p>
+    </div>
+
+    <div class="fade-up fade-up-delay-2 bg-white rounded-2xl border border-gray-100 overflow-hidden">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-gray-100">
+            <th class="text-left px-6 py-4 font-medium text-gray-500"></th>
+            <th class="text-center px-6 py-4 font-bold text-blue-700">Deploy</th>
+            <th class="text-center px-6 py-4 font-bold text-orange-700">Consult</th>
+            <th class="text-center px-6 py-4 font-bold text-green-700">Elevate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-50">
+            <td class="px-6 py-4 text-gray-700 font-medium compare-cell">Best for</td>
+            <td class="px-6 py-4 text-center text-gray-500 compare-cell">New to Workday</td>
+            <td class="px-6 py-4 text-center text-gray-500 compare-cell">Need extra hands</td>
+            <td class="px-6 py-4 text-center text-gray-500 compare-cell">Already on Workday</td>
+          </tr>
+          <tr class="border-b border-gray-50">
+            <td class="px-6 py-4 text-gray-700 font-medium compare-cell">Typical duration</td>
+            <td class="px-6 py-4 text-center text-gray-500 compare-cell">3–12 months</td>
+            <td class="px-6 py-4 text-center text-gray-500 compare-cell">2 weeks – 6 months</td>
+            <td class="px-6 py-4 text-center text-gray-500 compare-cell">6–10 weeks</td>
+          </tr>
+          <tr class="border-b border-gray-50">
+            <td class="px-6 py-4 text-gray-700 font-medium compare-cell">Dedicated PM</td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+          </tr>
+          <tr class="border-b border-gray-50">
+            <td class="px-6 py-4 text-gray-700 font-medium compare-cell">Tenant configuration</td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td class="px-6 py-4 text-center compare-cell"><span class="text-gray-400">As needed</span></td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+          </tr>
+          <tr class="border-b border-gray-50">
+            <td class="px-6 py-4 text-gray-700 font-medium compare-cell">Team training</td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+            <td class="px-6 py-4 text-center compare-cell"><span class="text-gray-400">Optional</span></td>
+            <td class="px-6 py-4 text-center compare-cell"><svg class="inline" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 text-gray-700 font-medium compare-cell">Hypercare support</td>
+            <td class="px-6 py-4 text-center compare-cell">30 days</td>
+            <td class="px-6 py-4 text-center compare-cell"><span class="text-gray-400">—</span></td>
+            <td class="px-6 py-4 text-center compare-cell">60 days</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="fade-up text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">FAQ</p>
+      <h2 class="fade-up fade-up-delay-1 text-3xl font-bold text-gray-900" style="font-family: Inter;">Common Questions</h2>
+    </div>
+
+    <div class="fade-up fade-up-delay-2">
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="font-semibold text-gray-900">How quickly can you start an engagement?</span>
+          <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p class="text-gray-500 text-sm leading-relaxed">For consulting engagements, we typically have consultants available within 1-2 weeks. Full implementations go through a brief scoping phase (1-2 weeks) before kickoff. In urgent situations, we can fast-track.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="font-semibold text-gray-900">Are your consultants Workday-certified?</span>
+          <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p class="text-gray-500 text-sm leading-relaxed">Yes, every consultant holds at minimum one Workday Pro certification, with most holding 3+. We are a Workday Sales & Services Partner with access to the latest certification programs.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="font-semibold text-gray-900">Can you work alongside our internal team or other partners?</span>
+          <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p class="text-gray-500 text-sm leading-relaxed">Absolutely. Many of our engagements are collaborative — we augment your existing team or work alongside other Workday partners. We're flexible on governance models and communication structures.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span class="font-semibold text-gray-900">What does the Tenant Health Check include?</span>
+          <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="accordion-body">
+          <p class="text-gray-500 text-sm leading-relaxed">We review your security model, business process configurations, integration architecture, custom reports, and feature utilization against Workday best practices. You get a prioritized improvement plan with estimated effort and impact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="contact" class="py-24" style="background: linear-gradient(135deg, #0a1628 0%, #1a2744 100%);">
+  <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+    <h2 class="fade-up text-3xl md:text-4xl font-bold text-white mb-6" style="font-family: Inter; letter-spacing: -0.01em;">
+      Let's Find the Right Fit
+    </h2>
+    <p class="fade-up fade-up-delay-1 text-gray-300 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+      Every organization's Workday journey is different. Book a free 30-minute call and we'll help you figure out which service — or combination — makes the most sense for where you are today.
+    </p>
+    <div class="fade-up fade-up-delay-2 flex flex-wrap justify-center gap-4">
+      <a href="#" class="btn-primary" style="padding: 16px 40px; font-size: 16px;">
+        Book a Free Consultation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="btn-outline" style="color: white; border-color: rgba(255,255,255,0.3); padding: 16px 40px; font-size: 16px;">
+        Download Services Overview
+      </a>
+    </div>
+    <div class="fade-up fade-up-delay-3 flex justify-center items-center gap-6 mt-8">
+      <div class="flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="text-gray-400 text-sm">No obligation</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="text-gray-400 text-sm">Response within 24h</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-gray-900 py-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+            <span class="text-white font-bold text-sm">Z</span>
+          </div>
+          <span class="font-bold text-lg text-white tracking-tight" style="font-family: Inter">Zeneesha</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">Your strategic partner for transforming HCM and Finance operations with Workday.</p>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white mb-4 text-sm">Services</h5>
+        <div class="space-y-3">
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Deploy & Implement</a>
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Consult & Advise</a>
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Optimize & Elevate</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white mb-4 text-sm">Resources</h5>
+        <div class="space-y-3">
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Case Studies</a>
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Blog</a>
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">eBooks & Guides</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="font-semibold text-white mb-4 text-sm">Company</h5>
+        <div class="space-y-3">
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">About Us</a>
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Careers</a>
+          <a href="#" class="block text-gray-400 text-sm hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-gray-500 text-sm">&copy; 2026 Zeneesha. All rights reserved.</p>
+      <span class="text-gray-500 text-xs">Workday Sales & Services Partner</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+// === WebGL Hero — Abstract flowing mesh ===
+(function() {
+  const canvas = document.getElementById('webgl-services');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.z = 25;
+
+  function resize() {
+    const section = canvas.parentElement;
+    const w = section.clientWidth;
+    const h = section.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Flowing grid of points
+  const gridSize = 40;
+  const spacing = 1.2;
+  const particleCount = gridSize * gridSize;
+  const geo = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const idx = (i * gridSize + j) * 3;
+      positions[idx] = (i - gridSize / 2) * spacing;
+      positions[idx + 1] = (j - gridSize / 2) * spacing;
+      positions[idx + 2] = 0;
+      colors[idx] = 0.23;
+      colors[idx + 1] = 0.35 + Math.random() * 0.15;
+      colors[idx + 2] = 0.9 + Math.random() * 0.1;
+    }
+  }
+
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const mat = new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    vertexColors: true,
+    uniforms: {
+      uTime: { value: 0 },
+      uMouse: { value: new THREE.Vector2(0, 0) }
+    },
+    vertexShader: `
+      attribute vec3 color;
+      uniform float uTime;
+      uniform vec2 uMouse;
+      varying float vAlpha;
+      varying vec3 vColor;
+      void main() {
+        vec3 pos = position;
+        float wave1 = sin(pos.x * 0.15 + uTime * 0.5) * 2.0;
+        float wave2 = cos(pos.y * 0.12 + uTime * 0.3) * 2.0;
+        float wave3 = sin((pos.x + pos.y) * 0.1 + uTime * 0.4) * 1.5;
+        pos.z = wave1 + wave2 + wave3;
+
+        // Mouse influence
+        float mouseInfluence = smoothstep(15.0, 0.0, length(pos.xy - uMouse * 20.0));
+        pos.z += mouseInfluence * 3.0;
+
+        vAlpha = 0.12 + 0.12 * sin(uTime * 0.5 + pos.x * 0.2) + mouseInfluence * 0.3;
+        vColor = color;
+        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+        gl_PointSize = (2.0 + mouseInfluence * 3.0) * (15.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: `
+      varying float vAlpha;
+      varying vec3 vColor;
+      void main() {
+        float dist = length(gl_PointCoord - vec2(0.5));
+        if (dist > 0.5) discard;
+        float alpha = vAlpha * (1.0 - dist * 2.0);
+        gl_FragColor = vec4(vColor, alpha);
+      }
+    `
+  });
+
+  const points = new THREE.Points(geo, mat);
+  points.rotation.x = -0.6;
+  points.rotation.z = 0.2;
+  scene.add(points);
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+    mat.uniforms.uTime.value = time;
+    mat.uniforms.uMouse.value.set(mouseX, -mouseY);
+
+    camera.position.x += (mouseX * 2 - camera.position.x) * 0.02;
+    camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.02;
+    camera.lookAt(0, 0, 0);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+// === Tab switching ===
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    tabContents.forEach(content => {
+      content.classList.remove('active');
+      content.style.opacity = '0';
+      content.style.transform = 'translateY(16px)';
+    });
+
+    const target = document.getElementById('tab-' + tab);
+    target.classList.add('active');
+
+    // Animate in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.style.opacity = '1';
+        target.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Re-trigger fade-up animations inside new tab
+    target.querySelectorAll('.fade-up').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => el.classList.add('visible'), 100);
+    });
+  });
+});
+
+// Hash-based tab switching
+function checkHash() {
+  const hash = window.location.hash.replace('#', '');
+  if (['deploy', 'consult', 'elevate'].includes(hash)) {
+    const btn = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
+    if (btn) btn.click();
+  }
+}
+checkHash();
+window.addEventListener('hashchange', checkHash);
+
+// === Scroll animations ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// === Accordion ===
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.accordion-chevron');
+  const isOpen = body.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.accordion-chevron').forEach(c => c.classList.remove('open'));
+
+  if (!isOpen) {
+    body.classList.add('open');
+    chevron.classList.add('open');
+  }
+}
+
+// === Navbar scroll ===
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(255,255,255,0.97)';
+    nav.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+  } else {
+    nav.style.background = 'rgba(255,255,255,0.9)';
+    nav.style.boxShadow = 'none';
+  }
+});
+
+// === Smooth scroll ===
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>

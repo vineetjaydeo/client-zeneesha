@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/Zeneesha.html", "destination": "/", "permanent": false },
+    { "source": "/Zeneesha%20Outcomes.html", "destination": "/outcomes", "permanent": false }
+  ]
+}
