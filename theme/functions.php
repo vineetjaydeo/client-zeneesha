@@ -58,7 +58,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 // ── Enqueue Assets ─────────────────────────────────────────────
 function zeneesha_enqueue_assets() {
-    $v   = '1.8.7';
+    $v   = '1.8.8';
     $uri = get_template_directory_uri();
 
     // Main CSS — preload / deferred

@@ -326,7 +326,7 @@ label.field-label span{color:var(--redorange)}
 /* ── FOOTER ── */
 .site-footer{background:var(--navy-ink);color:rgba(255,255,255,.7)}
 .footer-inner{max-width:var(--container);margin:0 auto;padding:6rem 2rem 3rem;display:grid;grid-template-columns:4fr 2fr 2fr 2fr 2fr;gap:3rem}
-.footer-brand p{margin-top:2rem;font-size:16px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.7;max-width:320px}
+.footer-brand p{margin-top:2rem;font-size:16px;font-weight:500;color:rgba(255,255,255,.55);line-height:1.7;max-width:320px}
 .footer-contact-details{margin-top:2rem;display:flex;flex-direction:column;gap:.375rem;font-size:16px;font-weight:300;color:rgba(255,255,255,.65)}
 .footer-contact-details .contact-type{color:rgba(255,255,255,.4)}
 .footer-col-title{font-family:'Jost',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.25rem}
@@ -340,7 +340,7 @@ label.field-label span{color:var(--redorange)}
   color:rgba(255,255,255,.7);transition:border-color .3s,color .3s;
 }
 .footer-social a:hover{border-color:var(--redorange);color:var(--redorange)}
-.footer-hours{margin-top:1.25rem;font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.65}
+.footer-hours{margin-top:1.25rem;font-size:14px;font-weight:500;color:rgba(255,255,255,.55);line-height:1.65}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.1)}
 .footer-bottom-inner{
   max-width:var(--container);margin:0 auto;padding:1.25rem 2rem;
