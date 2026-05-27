@@ -489,14 +489,10 @@
             <span class="cs-tile-value">2&#8594;16</span>
             <span class="cs-tile-label">Tickets per sprint</span>
           </div>
-          <div class="cs-arc-wrap" aria-hidden="true">
-            <svg class="cs-arc-svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="28" cy="28" r="22" stroke="#1E3A8A14" stroke-width="5"/>
-              <circle cx="28" cy="28" r="22" stroke="#1E3A8A" stroke-width="5" stroke-linecap="round"
-                      stroke-dasharray="138.2" stroke-dashoffset="138.2"
-                      class="cs-arc-fill" data-pct="100" transform="rotate(-90 28 28)"/>
-            </svg>
-            <span class="cs-arc-label">7×</span>
+          <div class="cs-bar-viz" aria-hidden="true">
+            <div class="cs-bar-track">
+              <div class="cs-bar-fill" style="--bar-pct:100%;background:#1E3A8A" data-pct="100"></div>
+            </div>
           </div>
         </div>
         <p class="cs-tile-summary">
@@ -521,14 +517,10 @@
             <span class="cs-tile-value">Multi-country</span>
             <span class="cs-tile-label">Deployment supported</span>
           </div>
-          <div class="cs-arc-wrap" aria-hidden="true">
-            <svg class="cs-arc-svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="28" cy="28" r="22" stroke="#3B9EDB14" stroke-width="5"/>
-              <circle cx="28" cy="28" r="22" stroke="#3B9EDB" stroke-width="5" stroke-linecap="round"
-                      stroke-dasharray="138.2" stroke-dashoffset="138.2"
-                      class="cs-arc-fill" data-pct="40" transform="rotate(-90 28 28)"/>
-            </svg>
-            <span class="cs-arc-label">40%</span>
+          <div class="cs-bar-viz" aria-hidden="true">
+            <div class="cs-bar-track">
+              <div class="cs-bar-fill" style="--bar-pct:40%;background:#3B9EDB" data-pct="40"></div>
+            </div>
           </div>
         </div>
         <p class="cs-tile-summary">
@@ -553,14 +545,10 @@
             <span class="cs-tile-value">AMS</span>
             <span class="cs-tile-label">Ongoing managed support</span>
           </div>
-          <div class="cs-arc-wrap" aria-hidden="true">
-            <svg class="cs-arc-svg" viewBox="0 0 56 56" fill="none">
-              <circle cx="28" cy="28" r="22" stroke="#F57C1F14" stroke-width="5"/>
-              <circle cx="28" cy="28" r="22" stroke="#F57C1F" stroke-width="5" stroke-linecap="round"
-                      stroke-dasharray="138.2" stroke-dashoffset="138.2"
-                      class="cs-arc-fill" data-pct="60" transform="rotate(-90 28 28)"/>
-            </svg>
-            <span class="cs-arc-label">60%</span>
+          <div class="cs-bar-viz" aria-hidden="true">
+            <div class="cs-bar-track">
+              <div class="cs-bar-fill" style="--bar-pct:60%;background:#F57C1F" data-pct="60"></div>
+            </div>
           </div>
         </div>
         <p class="cs-tile-summary">
@@ -827,21 +815,18 @@
   },{threshold:0.4});
   document.querySelectorAll('.stats-grid').forEach(function(g){ obs.observe(g); });
 
-  // Arc animations
-  var circum = 138.2;
-  var arcObs = new IntersectionObserver(function(entries){
+  // Bar chart animations
+  var barObs = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
       if(!en.isIntersecting) return;
-      en.target.querySelectorAll('.cs-arc-fill').forEach(function(arc){
-        var pct = parseFloat(arc.dataset.pct)||0;
-        var offset = circum - (pct/100)*circum;
-        arc.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.22,1,0.36,1)';
-        arc.style.strokeDashoffset = offset;
+      en.target.querySelectorAll('.cs-bar-fill').forEach(function(bar){
+        var pct = parseFloat(bar.dataset.pct)||0;
+        bar.style.height = pct + '%';
       });
-      arcObs.unobserve(en.target);
+      barObs.unobserve(en.target);
     });
   },{threshold:0.3});
-  document.querySelectorAll('.cs-tiles-grid').forEach(function(g){ arcObs.observe(g); });
+  document.querySelectorAll('.cs-tiles-grid').forEach(function(g){ barObs.observe(g); });
 
 })();
 </script>

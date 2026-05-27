@@ -92,7 +92,7 @@ $_nav_solid = in_array( $_tmpl, $_secondary_templates );
 
     <!-- Right cluster -->
     <div class="nav-right">
-      <div class="booking-status hidden-mobile">
+      <div class="booking-status">
         <span class="status-dot"></span>
         Booking Q3 engagements
       </div>
