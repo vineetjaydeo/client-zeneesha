@@ -108,7 +108,7 @@
     '<svg height="36" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Warner Music Group"><text x="0" y="14" font-family="Jost,sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="currentColor">WARNER</text><text x="0" y="26" font-family="Jost,sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="currentColor">MUSIC GROUP</text></svg>',
     '<svg height="28" viewBox="0 0 150 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="HelloFresh"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="500" fill="currentColor">HelloFresh</text></svg>',
     '<svg height="28" viewBox="0 0 160 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Howdens"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="600" letter-spacing="1" fill="currentColor">HOWDENS</text></svg>',
-    '<svg height="36" viewBox="0 0 100 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AQA"><text x="0" y="28" font-family="Jost,sans-serif" font-size="30" font-weight="700" fill="currentColor">AQA</text></svg>',
+    '<img src="' . $ldir . 'aqa.svg" alt="AQA" style="height:32px;width:auto;object-fit:contain">',
     '<svg height="28" viewBox="0 0 140 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Quadient"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="300" fill="currentColor">quadient</text></svg>',
     '<svg height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Slaughter and May"><text x="0" y="14" font-family="Jost,sans-serif" font-size="12" font-weight="600" letter-spacing="1.5" fill="currentColor">SLAUGHTER</text><text x="0" y="30" font-family="Jost,sans-serif" font-size="12" font-weight="300" letter-spacing="1.5" fill="currentColor">AND MAY</text></svg>',
     '<svg height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="UK Research and Innovation"><rect x="0" y="2" width="30" height="30" rx="2" fill="currentColor"/><text x="3" y="14" font-family="Jost,sans-serif" font-size="9" font-weight="700" fill="white">UK</text><text x="3" y="28" font-family="Jost,sans-serif" font-size="7" font-weight="400" fill="white">RI</text><text x="36" y="14" font-family="Jost,sans-serif" font-size="10" font-weight="500" fill="currentColor">UK Research</text><text x="36" y="28" font-family="Jost,sans-serif" font-size="10" font-weight="300" fill="currentColor">and Innovation</text></svg>',
@@ -422,24 +422,8 @@
       </div>
     </div>
 
-    <!-- Right: module panels + foundations diagram -->
+    <!-- Right: module panels -->
     <div class="reveal delay-2">
-      <div class="ai-foundations-diagram" aria-label="AI readiness pyramid: Clean Data, Configuration, Process Adoption, AI Features">
-        <div class="ai-layer ai-layer-4 reveal-layer">
-          <span class="ai-layer-icon">✦</span>
-          <span class="ai-layer-text">AI Features</span>
-        </div>
-        <div class="ai-layer ai-layer-3 reveal-layer">
-          <span class="ai-layer-text">Process Adoption</span>
-        </div>
-        <div class="ai-layer ai-layer-2 reveal-layer">
-          <span class="ai-layer-text">Configuration</span>
-        </div>
-        <div class="ai-layer ai-layer-1 reveal-layer">
-          <span class="ai-layer-text">Clean Data</span>
-        </div>
-        <p class="ai-foundations-caption">The four foundations Zeneesha builds before AI can deliver value</p>
-      </div>
       <div class="ai-modules">
         <?php
         $modules = [
@@ -492,7 +476,7 @@
       <!-- Tile 1: AQA -->
       <div class="cs-tile" style="border-top:4px solid #1E3A8A">
         <div class="cs-tile-client">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/aqa.png" alt="AQA" class="cs-tile-logo">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/aqa.svg" alt="AQA" class="cs-tile-logo">
           <div class="cs-tile-name">AQA Education</div>
           <div class="cs-tile-type">Education &middot; Non-profit</div>
         </div>
@@ -618,7 +602,7 @@
         <div class="testimonial-divider">
           <div class="testimonial-name">Georgina Taitt</div>
           <div class="testimonial-role">Head of Enterprise Applications &middot; AQA Education</div>
-          <div class="testimonial-logo"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/aqa.png" alt="AQA Education" loading="lazy"></div>
+          <div class="testimonial-logo"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/aqa.svg" alt="AQA Education" loading="lazy"></div>
         </div>
       </div>
 
@@ -859,18 +843,6 @@
   },{threshold:0.3});
   document.querySelectorAll('.cs-tiles-grid').forEach(function(g){ arcObs.observe(g); });
 
-  // AI foundations layer stagger
-  var layerObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(!en.isIntersecting) return;
-      var layers = en.target.querySelectorAll('.reveal-layer');
-      layers.forEach(function(l,i){
-        setTimeout(function(){ l.classList.add('layer-visible'); }, i*120);
-      });
-      layerObs.unobserve(en.target);
-    });
-  },{threshold:0.2});
-  document.querySelectorAll('.ai-foundations-diagram').forEach(function(d){ layerObs.observe(d); });
 })();
 </script>
 
