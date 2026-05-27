@@ -11,6 +11,7 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
   </div>
+  <div class="hero-dotgrid" aria-hidden="true"></div>
 
   <div class="container hero-relative">
     <div class="hero-grid">
@@ -421,8 +422,24 @@
       </div>
     </div>
 
-    <!-- Right: module panels -->
+    <!-- Right: module panels + foundations diagram -->
     <div class="reveal delay-2">
+      <div class="ai-foundations-diagram" aria-label="AI readiness pyramid: Clean Data, Configuration, Process Adoption, AI Features">
+        <div class="ai-layer ai-layer-4 reveal-layer">
+          <span class="ai-layer-icon">✦</span>
+          <span class="ai-layer-text">AI Features</span>
+        </div>
+        <div class="ai-layer ai-layer-3 reveal-layer">
+          <span class="ai-layer-text">Process Adoption</span>
+        </div>
+        <div class="ai-layer ai-layer-2 reveal-layer">
+          <span class="ai-layer-text">Configuration</span>
+        </div>
+        <div class="ai-layer ai-layer-1 reveal-layer">
+          <span class="ai-layer-text">Clean Data</span>
+        </div>
+        <p class="ai-foundations-caption">The four foundations Zeneesha builds before AI can deliver value</p>
+      </div>
       <div class="ai-modules">
         <?php
         $modules = [
@@ -488,6 +505,15 @@
             <span class="cs-tile-value">2&#8594;16</span>
             <span class="cs-tile-label">Tickets per sprint</span>
           </div>
+          <div class="cs-arc-wrap" aria-hidden="true">
+            <svg class="cs-arc-svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="22" stroke="#1E3A8A14" stroke-width="5"/>
+              <circle cx="28" cy="28" r="22" stroke="#1E3A8A" stroke-width="5" stroke-linecap="round"
+                      stroke-dasharray="138.2" stroke-dashoffset="138.2"
+                      class="cs-arc-fill" data-pct="100" transform="rotate(-90 28 28)"/>
+            </svg>
+            <span class="cs-arc-label">7×</span>
+          </div>
         </div>
         <p class="cs-tile-summary">
           AQA's Workday HCM support model was overwhelmed with unstructured change requests. Zeneesha introduced a sprint-based intake model. Sprint capacity jumped from 2 to 16 tickets, and platform adoption reached 95%.
@@ -511,6 +537,15 @@
             <span class="cs-tile-value">Multi-country</span>
             <span class="cs-tile-label">Deployment supported</span>
           </div>
+          <div class="cs-arc-wrap" aria-hidden="true">
+            <svg class="cs-arc-svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="22" stroke="#3B9EDB14" stroke-width="5"/>
+              <circle cx="28" cy="28" r="22" stroke="#3B9EDB" stroke-width="5" stroke-linecap="round"
+                      stroke-dasharray="138.2" stroke-dashoffset="138.2"
+                      class="cs-arc-fill" data-pct="40" transform="rotate(-90 28 28)"/>
+            </svg>
+            <span class="cs-arc-label">40%</span>
+          </div>
         </div>
         <p class="cs-tile-summary">
           Zeneesha supported KION's Workday HCM rollout across multiple European markets, delivering configuration, data migration, and localisation to keep a complex programme on track and on time.
@@ -533,6 +568,15 @@
           <div class="cs-tile-metric">
             <span class="cs-tile-value">AMS</span>
             <span class="cs-tile-label">Ongoing managed support</span>
+          </div>
+          <div class="cs-arc-wrap" aria-hidden="true">
+            <svg class="cs-arc-svg" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="22" stroke="#F57C1F14" stroke-width="5"/>
+              <circle cx="28" cy="28" r="22" stroke="#F57C1F" stroke-width="5" stroke-linecap="round"
+                      stroke-dasharray="138.2" stroke-dashoffset="138.2"
+                      class="cs-arc-fill" data-pct="60" transform="rotate(-90 28 28)"/>
+            </svg>
+            <span class="cs-arc-label">60%</span>
           </div>
         </div>
         <p class="cs-tile-summary">
@@ -798,6 +842,35 @@
     });
   },{threshold:0.4});
   document.querySelectorAll('.stats-grid').forEach(function(g){ obs.observe(g); });
+
+  // Arc animations
+  var circum = 138.2;
+  var arcObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      en.target.querySelectorAll('.cs-arc-fill').forEach(function(arc){
+        var pct = parseFloat(arc.dataset.pct)||0;
+        var offset = circum - (pct/100)*circum;
+        arc.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.22,1,0.36,1)';
+        arc.style.strokeDashoffset = offset;
+      });
+      arcObs.unobserve(en.target);
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('.cs-tiles-grid').forEach(function(g){ arcObs.observe(g); });
+
+  // AI foundations layer stagger
+  var layerObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var layers = en.target.querySelectorAll('.reveal-layer');
+      layers.forEach(function(l,i){
+        setTimeout(function(){ l.classList.add('layer-visible'); }, i*120);
+      });
+      layerObs.unobserve(en.target);
+    });
+  },{threshold:0.2});
+  document.querySelectorAll('.ai-foundations-diagram').forEach(function(d){ layerObs.observe(d); });
 })();
 </script>
 

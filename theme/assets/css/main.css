@@ -24,6 +24,52 @@
 .testimonial-logo img,.testimonial-logo svg{height:20px;width:auto;object-fit:contain;opacity:.45;filter:grayscale(100%)}
 .testimonial-logo svg text{fill:var(--slate2)}
 
+/* ══════════════════════════════════════════════════════════════
+   MEDIUM/BIG VISUALS — arcs, AI diagram, hero dotgrid
+══════════════════════════════════════════════════════════════ */
+
+/* ── Hero dot-grid ── */
+.hero-dotgrid{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle,rgba(59,158,219,.18) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+
+/* ── CS tile progress arcs ── */
+.cs-tile-metric-row{display:flex;gap:1.25rem;align-items:flex-end;flex-wrap:wrap}
+.cs-arc-wrap{position:relative;width:56px;height:56px;flex-shrink:0;margin-left:auto}
+.cs-arc-svg{width:56px;height:56px}
+.cs-arc-label{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;font-family:'Jost',sans-serif;color:var(--navy);
+  line-height:1;letter-spacing:-.02em
+}
+
+/* ── AI foundations pyramid ── */
+.ai-foundations-diagram{
+  margin-bottom:1.75rem;
+  display:flex;flex-direction:column;gap:4px;
+}
+.ai-layer{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  border-radius:8px;padding:.625rem 1rem;
+  font-size:13px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.ai-layer.layer-visible{opacity:1;transform:none}
+.ai-layer-1{background:rgba(59,158,219,.12);color:#3B9EDB;width:100%}
+.ai-layer-2{background:rgba(30,58,138,.12);color:#7B9EDB;width:88%;align-self:center}
+.ai-layer-3{background:rgba(245,124,31,.12);color:#F57C1F;width:75%;align-self:center}
+.ai-layer-4{background:rgba(232,71,44,.15);color:#E8472C;width:60%;align-self:center}
+.ai-layer-icon{font-size:14px}
+.ai-foundations-caption{
+  font-size:12px;color:rgba(255,255,255,.35);text-align:center;
+  margin-top:.5rem;font-style:italic;font-weight:300
+}
+
 /* ── Section base ── */
 .section-trust,.section-challenges,.section-solutions,
 .section-results,.section-faq,.section-certs{overflow:hidden}
