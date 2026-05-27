@@ -17,7 +17,7 @@
 .ms-step-icon{margin-bottom:.75rem;line-height:0}
 
 /* ── Case study tile logos ── */
-.cs-tile-logo{display:block;height:26px;width:auto;object-fit:contain;opacity:.6;margin-bottom:.625rem;filter:grayscale(100%)}
+.cs-tile-logo{display:block;height:39px;width:auto;object-fit:contain;opacity:.6;margin-bottom:.625rem;filter:grayscale(100%)}
 
 /* ── Testimonial logos ── */
 .testimonial-logo{margin-top:.875rem;padding-top:.875rem;border-top:1px solid rgba(30,58,138,.08)}
