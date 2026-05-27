@@ -489,11 +489,6 @@
             <span class="cs-tile-value">2&#8594;16</span>
             <span class="cs-tile-label">Tickets per sprint</span>
           </div>
-          <div class="cs-bar-viz" aria-hidden="true">
-            <div class="cs-bar-track">
-              <div class="cs-bar-fill" style="--bar-pct:100%;background:#1E3A8A" data-pct="100"></div>
-            </div>
-          </div>
         </div>
         <p class="cs-tile-summary">
           AQA's Workday HCM support model was overwhelmed with unstructured change requests. Zeneesha introduced a sprint-based intake model. Sprint capacity jumped from 2 to 16 tickets, and platform adoption reached 95%.
@@ -514,13 +509,8 @@
             <span class="cs-tile-label">Reduction in manual HR tasks</span>
           </div>
           <div class="cs-tile-metric">
-            <span class="cs-tile-value">Multi-country</span>
+            <span class="cs-tile-value cs-tile-value--nowrap">Multi-country</span>
             <span class="cs-tile-label">Deployment supported</span>
-          </div>
-          <div class="cs-bar-viz" aria-hidden="true">
-            <div class="cs-bar-track">
-              <div class="cs-bar-fill" style="--bar-pct:40%;background:#3B9EDB" data-pct="40"></div>
-            </div>
           </div>
         </div>
         <p class="cs-tile-summary">
@@ -544,11 +534,6 @@
           <div class="cs-tile-metric">
             <span class="cs-tile-value">AMS</span>
             <span class="cs-tile-label">Ongoing managed support</span>
-          </div>
-          <div class="cs-bar-viz" aria-hidden="true">
-            <div class="cs-bar-track">
-              <div class="cs-bar-fill" style="--bar-pct:60%;background:#F57C1F" data-pct="60"></div>
-            </div>
           </div>
         </div>
         <p class="cs-tile-summary">
@@ -815,18 +800,6 @@
   },{threshold:0.4});
   document.querySelectorAll('.stats-grid').forEach(function(g){ obs.observe(g); });
 
-  // Bar chart animations
-  var barObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(!en.isIntersecting) return;
-      en.target.querySelectorAll('.cs-bar-fill').forEach(function(bar){
-        var pct = parseFloat(bar.dataset.pct)||0;
-        bar.style.height = pct + '%';
-      });
-      barObs.unobserve(en.target);
-    });
-  },{threshold:0.3});
-  document.querySelectorAll('.cs-tiles-grid').forEach(function(g){ barObs.observe(g); });
 
 })();
 </script>
