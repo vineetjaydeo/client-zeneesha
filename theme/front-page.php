@@ -143,7 +143,7 @@
     ];
     foreach ( $stats as $i => $s ) : ?>
       <div class="stat-item reveal" style="transition-delay:<?php echo $i * 60; ?>ms">
-        <div class="stat-icon"><?php echo $stat_icons[$i]; ?></div>
+        <div class="stat-icon site-icon"><?php echo $stat_icons[$i]; ?></div>
         <div class="stat-value count-up"><?php echo esc_html( $s[0] ); ?></div>
         <div class="stat-label"><?php echo esc_html( $s[1] ); ?></div>
       </div>
@@ -196,7 +196,7 @@
       foreach ( $cards as $i => $c ) : ?>
         <div class="reveal" style="transition-delay:<?php echo $i * 60; ?>ms">
           <div class="signal-card" style="border-top:3px solid <?php echo esc_attr( $c['color'] ); ?>">
-            <div class="signal-card-icon" style="color:<?php echo esc_attr( $c['color'] ); ?>"><?php echo $card_icons[$i]; ?></div>
+            <div class="signal-card-icon site-icon" style="color:<?php echo esc_attr( $c['color'] ); ?>"><?php echo $card_icons[$i]; ?></div>
             <span class="signal-card-tag" style="color:<?php echo esc_attr( $c['color'] ); ?>;background:<?php echo esc_attr( $c['color'] ); ?>18"><?php echo esc_html( $c['tag'] ); ?></span>
             <p class="signal-card-headline"><?php echo esc_html( $c['headline'] ); ?></p>
             <?php if ( $c['desc'] ) : ?><p class="signal-card-desc"><?php echo esc_html( $c['desc'] ); ?></p><?php endif; ?>
@@ -240,7 +240,7 @@
       ];
       foreach ( $steps as $i => $s ) : ?>
         <div class="methodology-step reveal" style="transition-delay:<?php echo $i * 80; ?>ms">
-          <div class="ms-step-icon" style="color:<?php echo esc_attr( $s['color'] ); ?>"><?php echo $s['icon']; ?></div>
+          <div class="ms-step-icon site-icon" style="color:<?php echo esc_attr( $s['color'] ); ?>"><?php echo $s['icon']; ?></div>
           <div class="ms-num" style="color:<?php echo esc_attr( $s['color'] ); ?>"><?php echo esc_html( $s['num'] ); ?></div>
           <div class="ms-connector" style="background:<?php echo esc_attr( $s['color'] ); ?>22" aria-hidden="true">
             <div class="ms-connector-fill" style="background:<?php echo esc_attr( $s['color'] ); ?>"></div>
