@@ -105,7 +105,7 @@
   $ldir = get_template_directory_uri() . '/assets/img/logos/';
   $logo_items = [
     '<img src="' . $ldir . 'kion.png" alt="KION Group" style="height:30px;width:auto;object-fit:contain">',
-    '<svg height="36" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Warner Music Group"><text x="0" y="14" font-family="Jost,sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="currentColor">WARNER</text><text x="0" y="26" font-family="Jost,sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="currentColor">MUSIC GROUP</text></svg>',
+    '<img src="' . $ldir . 'warner.svg" alt="Warner Music Group" style="height:30px;width:auto;object-fit:contain">',
     '<svg height="28" viewBox="0 0 150 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="HelloFresh"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="500" fill="currentColor">HelloFresh</text></svg>',
     '<svg height="28" viewBox="0 0 160 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Howdens"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="600" letter-spacing="1" fill="currentColor">HOWDENS</text></svg>',
     '<img src="' . $ldir . 'aqa.svg" alt="AQA" style="height:32px;width:auto;object-fit:contain">',
@@ -612,7 +612,7 @@
         <div class="testimonial-divider">
           <div class="testimonial-name">Senior HRIS Manager</div>
           <div class="testimonial-role">Warner Music Group</div>
-          <div class="testimonial-logo"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/warner.png" alt="Warner Music Group" loading="lazy"></div>
+          <div class="testimonial-logo"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/warner.svg" alt="Warner Music Group" loading="lazy"></div>
         </div>
       </div>
 
