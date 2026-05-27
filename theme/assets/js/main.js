@@ -268,4 +268,115 @@
     revealObs.observe(rhythmWrap);
   }
 
+  /* ── Careers: role JD expand/collapse ───────────────────────── */
+  document.querySelectorAll('.careers-jd-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var targetId = btn.getAttribute('aria-controls');
+      var panel = document.getElementById(targetId);
+      if (!panel) return;
+      if (expanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('.careers-jd-btn-label').textContent = 'View full role details';
+        panel.hidden = true;
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.querySelector('.careers-jd-btn-label').textContent = 'Hide role details';
+        panel.hidden = false;
+      }
+    });
+  });
+
+  /* ── Careers: Apply now — pre-fill role interest field ──────── */
+  document.querySelectorAll('.careers-apply-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var roleTitle = btn.getAttribute('data-role');
+      var roleInput = document.getElementById('careers_role_interest');
+      if (roleTitle && roleInput) {
+        roleInput.value = roleTitle;
+      }
+    });
+  });
+
+  /* ── Careers: file input display filename ───────────────────── */
+  var cvInput = document.getElementById('careers_cv');
+  var cvFileName = document.getElementById('careers-file-name');
+  var cvFileLabel = document.querySelector('.careers-file-label');
+  if (cvInput) {
+    cvInput.addEventListener('change', function () {
+      if (cvInput.files && cvInput.files[0]) {
+        var name = cvInput.files[0].name;
+        if (cvFileName) cvFileName.textContent = name;
+        if (cvFileLabel) cvFileLabel.textContent = 'File selected';
+      } else {
+        if (cvFileName) cvFileName.textContent = '';
+        if (cvFileLabel) cvFileLabel.textContent = 'Choose file';
+      }
+    });
+  }
+
+  /* ── Careers form AJAX (multipart — supports file upload) ────── */
+  var careersForm = document.getElementById('careers-contact-form');
+  if (careersForm) {
+    careersForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn    = document.getElementById('careers-submit-btn');
+      var msgEl  = document.getElementById('careers-form-message');
+      var name   = careersForm.querySelector('[name="careers_name"]').value.trim();
+      var email  = careersForm.querySelector('[name="careers_email"]').value.trim();
+
+      // Client-side validation
+      if (!name || !email) {
+        msgEl.className = 'form-msg error';
+        msgEl.textContent = 'Please fill in your name and email address.';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msgEl.className = 'form-msg error';
+        msgEl.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      msgEl.className = 'form-msg';
+      msgEl.textContent = '';
+
+      var data = new FormData(careersForm);
+      // Nonce is already in the form via wp_nonce_field — action field too
+      // zeneesha_ajax is localised from functions.php
+      if (typeof zeneesha_ajax !== 'undefined') {
+        data.set('action', 'zeneesha_careers');
+      }
+
+      fetch(
+        typeof zeneesha_ajax !== 'undefined' ? zeneesha_ajax.url : '/wp-admin/admin-ajax.php',
+        { method: 'POST', body: data }
+      )
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.success) {
+            careersForm.reset();
+            if (cvFileName) cvFileName.textContent = '';
+            if (cvFileLabel) cvFileLabel.textContent = 'Choose file';
+            msgEl.className = 'form-msg success';
+            msgEl.textContent = 'Thank you — we\'ll be in touch within 5 working days.';
+          } else {
+            msgEl.className = 'form-msg error';
+            msgEl.textContent = (res.data && res.data.message)
+              ? res.data.message
+              : 'Something went wrong. Please email us at hello@zeneesha.co.uk';
+          }
+        })
+        .catch(function () {
+          msgEl.className = 'form-msg error';
+          msgEl.textContent = 'Network error. Please try again or email hello@zeneesha.co.uk';
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send Application →';
+        });
+    });
+  }
+
 })();

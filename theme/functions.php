@@ -58,7 +58,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 // ── Enqueue Assets ─────────────────────────────────────────────
 function zeneesha_enqueue_assets() {
-    $v   = '1.9.1';
+    $v   = '1.9.3';
     $uri = get_template_directory_uri();
 
     // Main CSS — preload / deferred
@@ -152,13 +152,13 @@ add_action( 'wp_ajax_nopriv_zeneesha_contact', 'zeneesha_handle_contact' );
 
 // ── Careers CV Upload AJAX ─────────────────────────────────────
 function zeneesha_handle_careers() {
-    check_ajax_referer( 'zeneesha_careers_nonce', 'careers_nonce' );
+    check_ajax_referer( 'zeneesha_careers_nonce', 'zeneesha_careers_nonce' );
 
-    $name     = sanitize_text_field( $_POST['careers_name']    ?? '' );
-    $email    = sanitize_email( $_POST['careers_email']        ?? '' );
-    $phone    = sanitize_text_field( $_POST['careers_phone']   ?? '' );
-    $role     = sanitize_text_field( $_POST['careers_role']    ?? '' );
-    $message  = sanitize_textarea_field( $_POST['careers_message'] ?? '' );
+    $name     = sanitize_text_field( $_POST['careers_name']          ?? '' );
+    $email    = sanitize_email( $_POST['careers_email']              ?? '' );
+    $phone    = sanitize_text_field( $_POST['careers_phone']         ?? '' );
+    $role     = sanitize_text_field( $_POST['careers_role_interest'] ?? '' );
+    $message  = sanitize_textarea_field( $_POST['careers_message']   ?? '' );
 
     if ( empty( $name ) || ! is_email( $email ) ) {
         wp_send_json_error( 'Please provide your name and a valid email address.' );
@@ -344,11 +344,20 @@ add_action( 'acf/init', function () {
                 'button_label' => 'Add role',
                 'instructions' => 'Leave empty if no current openings — the template shows a "no openings" state with CV upload form.',
                 'sub_fields'   => [
-                    [ 'key'=>'field_careers_role_title',    'label'=>'Role title',    'name'=>'role_title',    'type'=>'text' ],
+                    [ 'key'=>'field_careers_role_title',    'label'=>'Role title',    'name'=>'role_title',    'type'=>'text',
+                      'instructions'=>'e.g. Workday HCM Consultant' ],
                     [ 'key'=>'field_careers_role_type',     'label'=>'Type',          'name'=>'role_type',     'type'=>'select',
                       'choices'=>['Full-time'=>'Full-time','Contract'=>'Contract','Part-time'=>'Part-time'], 'default_value'=>'Full-time' ],
                     [ 'key'=>'field_careers_role_location', 'label'=>'Location',      'name'=>'role_location', 'type'=>'text', 'default_value'=>'Remote / London' ],
-                    [ 'key'=>'field_careers_role_desc',     'label'=>'Description',   'name'=>'role_desc',     'type'=>'textarea', 'rows'=>3 ],
+                    [ 'key'=>'field_careers_role_desc',     'label'=>'Short description (shown on card)',
+                      'name'=>'role_desc',     'type'=>'textarea', 'rows'=>3,
+                      'instructions'=>'1–2 sentences summarising the role. Shown beneath the title on the listing.' ],
+                    [ 'key'=>'field_careers_role_jd',       'label'=>'Full job description (expandable)',
+                      'name'=>'role_jd',       'type'=>'wysiwyg',   'tabs'=>'all', 'toolbar'=>'basic', 'media_upload'=>0,
+                      'instructions'=>'Full JD shown when candidate clicks "View full role details". Use headings and bullet points.' ],
+                    [ 'key'=>'field_careers_role_url',      'label'=>'Apply URL (optional)',
+                      'name'=>'role_url',      'type'=>'url',
+                      'instructions'=>'Leave blank to default to the CV form on this page (#careers-form).' ],
                 ],
             ],
         ],
