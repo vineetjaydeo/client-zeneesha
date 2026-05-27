@@ -126,6 +126,13 @@
   <!-- Stats -->
   <div class="stats-grid">
     <?php
+    $stat_icons = [
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 8 14"/></svg>',
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>',
+    ];
     $stats = [
       [ '15+',   "Years Workday\nexperience" ],
       [ '100%',  "Certified\nconsultants"   ],
@@ -135,7 +142,8 @@
     ];
     foreach ( $stats as $i => $s ) : ?>
       <div class="stat-item reveal" style="transition-delay:<?php echo $i * 60; ?>ms">
-        <div class="stat-value"><?php echo esc_html( $s[0] ); ?></div>
+        <div class="stat-icon"><?php echo $stat_icons[$i]; ?></div>
+        <div class="stat-value count-up"><?php echo esc_html( $s[0] ); ?></div>
         <div class="stat-label"><?php echo esc_html( $s[1] ); ?></div>
       </div>
     <?php endforeach; ?>
@@ -176,9 +184,18 @@
         [ 'tag'=>'Release Fatigue',         'headline'=>'Workday releases arrive faster than you can evaluate them.',                             'desc'=>'We manage the release cycle: triaging what matters, testing what affects you, and deploying what adds value.',                            'color'=>'#E8472C' ],
         [ 'tag'=>'Underutilised Features',  'headline'=>"Features you already own are sitting dormant while you consider buying point solutions.", 'desc'=>'Before you buy, we audit. More often than not, the capability you need is already in your tenant, just not switched on.',                    'color'=>'#3B9EDB' ],
       ];
+      $card_icons = [
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>',
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="17" y1="8" x2="23" y2="14"/><line x1="23" y1="8" x2="17" y2="14"/></svg>',
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+      ];
       foreach ( $cards as $i => $c ) : ?>
         <div class="reveal" style="transition-delay:<?php echo $i * 60; ?>ms">
           <div class="signal-card" style="border-top:3px solid <?php echo esc_attr( $c['color'] ); ?>">
+            <div class="signal-card-icon" style="color:<?php echo esc_attr( $c['color'] ); ?>"><?php echo $card_icons[$i]; ?></div>
             <span class="signal-card-tag" style="color:<?php echo esc_attr( $c['color'] ); ?>;background:<?php echo esc_attr( $c['color'] ); ?>18"><?php echo esc_html( $c['tag'] ); ?></span>
             <p class="signal-card-headline"><?php echo esc_html( $c['headline'] ); ?></p>
             <?php if ( $c['desc'] ) : ?><p class="signal-card-desc"><?php echo esc_html( $c['desc'] ); ?></p><?php endif; ?>
@@ -215,13 +232,14 @@
     <div class="methodology-strip reveal delay-2">
       <?php
       $steps = [
-        [ 'num'=>'01', 'label'=>'Review',     'desc'=>'Audit your current Workday environment: config, data, adoption, and reporting.',      'color'=>'#1E3A8A' ],
-        [ 'num'=>'02', 'label'=>'Reveal',     'desc'=>'Surface what\'s holding you back: gaps, inefficiencies, unused capability.',           'color'=>'#3B9EDB' ],
-        [ 'num'=>'03', 'label'=>'Recommend',  'desc'=>'A prioritised, actionable roadmap tailored to your business, not a template.',       'color'=>'#F57C1F' ],
-        [ 'num'=>'04', 'label'=>'Refine',     'desc'=>'Implement, measure, and continuously improve. Workday should get better over time.',   'color'=>'#E8472C' ],
+        [ 'num'=>'01', 'label'=>'Review',    'desc'=>'Audit your current Workday environment: config, data, adoption, and reporting.',   'color'=>'#1E3A8A', 'icon'=>'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' ],
+        [ 'num'=>'02', 'label'=>'Reveal',    'desc'=>'Surface what\'s holding you back: gaps, inefficiencies, unused capability.',          'color'=>'#3B9EDB', 'icon'=>'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>' ],
+        [ 'num'=>'03', 'label'=>'Recommend', 'desc'=>'A prioritised, actionable roadmap tailored to your business, not a template.',        'color'=>'#F57C1F', 'icon'=>'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>' ],
+        [ 'num'=>'04', 'label'=>'Refine',    'desc'=>'Implement, measure, and continuously improve. Workday should get better over time.',  'color'=>'#E8472C', 'icon'=>'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>' ],
       ];
       foreach ( $steps as $i => $s ) : ?>
         <div class="methodology-step reveal" style="transition-delay:<?php echo $i * 80; ?>ms">
+          <div class="ms-step-icon" style="color:<?php echo esc_attr( $s['color'] ); ?>"><?php echo $s['icon']; ?></div>
           <div class="ms-num" style="color:<?php echo esc_attr( $s['color'] ); ?>"><?php echo esc_html( $s['num'] ); ?></div>
           <div class="ms-connector" style="background:<?php echo esc_attr( $s['color'] ); ?>22" aria-hidden="true">
             <div class="ms-connector-fill" style="background:<?php echo esc_attr( $s['color'] ); ?>"></div>
@@ -457,6 +475,7 @@
       <!-- Tile 1: AQA -->
       <div class="cs-tile" style="border-top:4px solid #1E3A8A">
         <div class="cs-tile-client">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/aqa.png" alt="AQA" class="cs-tile-logo">
           <div class="cs-tile-name">AQA Education</div>
           <div class="cs-tile-type">Education &middot; Non-profit</div>
         </div>
@@ -479,6 +498,7 @@
       <!-- Tile 2: KION Group -->
       <div class="cs-tile" style="border-top:4px solid #3B9EDB">
         <div class="cs-tile-client">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/kion.png" alt="KION Group" class="cs-tile-logo">
           <div class="cs-tile-name">KION Group</div>
           <div class="cs-tile-type">Industrial &middot; Global Manufacturing</div>
         </div>
@@ -501,6 +521,7 @@
       <!-- Tile 3: Slaughter and May -->
       <div class="cs-tile" style="border-top:4px solid #F57C1F">
         <div class="cs-tile-client">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/slaughter.png" alt="Slaughter and May" class="cs-tile-logo">
           <div class="cs-tile-name">Slaughter and May</div>
           <div class="cs-tile-type">Professional Services &middot; Legal</div>
         </div>
@@ -553,6 +574,7 @@
         <div class="testimonial-divider">
           <div class="testimonial-name">Georgina Taitt</div>
           <div class="testimonial-role">Head of Enterprise Applications &middot; AQA Education</div>
+          <div class="testimonial-logo"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/aqa.png" alt="AQA Education" loading="lazy"></div>
         </div>
       </div>
 
@@ -562,6 +584,7 @@
         <div class="testimonial-divider">
           <div class="testimonial-name">Senior HRIS Manager</div>
           <div class="testimonial-role">Warner Music Group</div>
+          <div class="testimonial-logo"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/logos/warner.png" alt="Warner Music Group" loading="lazy"></div>
         </div>
       </div>
 
@@ -571,6 +594,7 @@
         <div class="testimonial-divider">
           <div class="testimonial-name">Global Workday Programme Lead</div>
           <div class="testimonial-role">Booking.com</div>
+          <div class="testimonial-logo"><svg height="18" viewBox="0 0 160 18" xmlns="http://www.w3.org/2000/svg" aria-label="Booking.com"><text y="14" font-family="Jost,BlinkMacSystemFont,sans-serif" font-size="14" font-weight="700" fill="currentColor">Booking.com</text></svg></div>
         </div>
       </div>
 
@@ -580,6 +604,7 @@
         <div class="testimonial-divider">
           <div class="testimonial-name">Director of People Technology</div>
           <div class="testimonial-role">LEGO Group</div>
+          <div class="testimonial-logo"><svg height="18" viewBox="0 0 70 18" xmlns="http://www.w3.org/2000/svg" aria-label="LEGO Group"><text y="14" font-family="Jost,BlinkMacSystemFont,sans-serif" font-size="14" font-weight="800" letter-spacing="2" fill="currentColor">LEGO</text></svg></div>
         </div>
       </div>
 
@@ -751,6 +776,30 @@
 
   </div>
 </section>
+
+<script>
+(function(){
+  function animateCount(el){
+    var orig = el.textContent, num = parseInt(orig);
+    if(isNaN(num)||num<5) return;
+    var suffix = orig.replace(/^\d+/,''), dur = 1100, t0 = performance.now();
+    (function step(t){
+      var p = Math.min((t-t0)/dur,1), e = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(e*num)+suffix;
+      if(p<1) requestAnimationFrame(step); else el.textContent = orig;
+    })(performance.now());
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.querySelectorAll('.count-up').forEach(animateCount);
+        obs.unobserve(en.target);
+      }
+    });
+  },{threshold:0.4});
+  document.querySelectorAll('.stats-grid').forEach(function(g){ obs.observe(g); });
+})();
+</script>
 
 </main>
 <?php get_footer(); ?>

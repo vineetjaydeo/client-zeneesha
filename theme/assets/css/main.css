@@ -1,5 +1,29 @@
 /* ─── Zeneesha V5 — main.css (deferred) ─── */
 
+/* ══════════════════════════════════════════════════════════════
+   QUICK-WIN VISUALS — icons, logos, count-up
+══════════════════════════════════════════════════════════════ */
+
+/* ── Stat icons ── */
+.stat-icon{display:flex;justify-content:center;margin-bottom:.625rem;color:var(--navy);opacity:.55}
+.stat-icon svg{width:22px;height:22px}
+
+/* ── Signal card icons ── */
+.signal-card-icon{margin-bottom:.875rem;line-height:0}
+.signal-card-icon svg{width:28px;height:28px}
+
+/* ── Methodology step icons ── */
+.ms-step-icon{margin-bottom:.75rem;line-height:0}
+.ms-step-icon svg{width:26px;height:26px}
+
+/* ── Case study tile logos ── */
+.cs-tile-logo{display:block;height:26px;width:auto;object-fit:contain;opacity:.6;margin-bottom:.625rem;filter:grayscale(100%)}
+
+/* ── Testimonial logos ── */
+.testimonial-logo{margin-top:.875rem;padding-top:.875rem;border-top:1px solid rgba(30,58,138,.08)}
+.testimonial-logo img,.testimonial-logo svg{height:20px;width:auto;object-fit:contain;opacity:.45;filter:grayscale(100%)}
+.testimonial-logo svg text{fill:var(--slate2)}
+
 /* ── Section base ── */
 .section-trust,.section-challenges,.section-solutions,
 .section-results,.section-faq,.section-certs{overflow:hidden}
