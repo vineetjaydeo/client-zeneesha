@@ -1,0 +1,76 @@
+# robots.txt — erisagent.com
+# Last updated: 2026-05-27
+# Zeneesha (Workday Consultancy) lives at /zeneesha/
+
+# ── Default: allow all crawlers, block WP internals ──────────────
+User-agent: *
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+Disallow: /zeneesha/wp-content/plugins/
+Disallow: /zeneesha/wp-content/themes/
+Disallow: /zeneesha/feed/
+Disallow: /zeneesha/xmlrpc.php
+Disallow: /zeneesha/wp-login.php
+Disallow: /zeneesha/wp-cron.php
+Disallow: /zeneesha/?s=
+Disallow: /zeneesha/?p=
+Allow: /zeneesha/wp-content/uploads/
+
+# ── AEO: Explicitly allow AI retrieval bots ──────────────────────
+# These bots power AI answer engines (ChatGPT, Perplexity, Claude,
+# Gemini). Allowing them maximises citation coverage in AI search.
+
+User-agent: GPTBot
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+
+User-agent: OAI-SearchBot
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+
+User-agent: PerplexityBot
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+
+User-agent: ClaudeBot
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+
+User-agent: anthropic-ai
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+
+User-agent: Google-Extended
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+Disallow: /zeneesha/wp-includes/
+
+User-agent: YouBot
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+
+User-agent: Applebot
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+
+User-agent: Bytespider
+Allow: /zeneesha/
+Disallow: /zeneesha/wp-admin/
+
+# ── Block training-only crawlers ─────────────────────────────────
+# CCBot feeds Common Crawl datasets used for model training.
+# No citation value — pure scraping.
+
+User-agent: CCBot
+Disallow: /zeneesha/
+
+User-agent: DataForSeoBot
+Disallow: /zeneesha/
+
+# ── Sitemaps ─────────────────────────────────────────────────────
+Sitemap: https://erisagent.com/zeneesha/sitemap_index.xml

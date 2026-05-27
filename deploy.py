@@ -79,6 +79,22 @@ print(f'\nUploading theme to {THEME_REMOTE}… [{mode}]')
 upload_tree(LOCAL_THEME, THEME_REMOTE, LOCAL_THEME)
 print('Upload complete.')
 
+# ── SEO / AEO files ──────────────────────────────────────
+DOMAIN_ROOT = '/home/u552605462/domains/erisagent.com/public_html'
+SEO_LOCAL   = os.path.dirname(LOCAL_THEME)   # outputs/ directory
+seo_uploads = [
+    (os.path.join(SEO_LOCAL, 'robots.txt'),    DOMAIN_ROOT + '/robots.txt'),
+    (os.path.join(SEO_LOCAL, 'llms.txt'),      WP_PATH + '/llms.txt'),
+    (os.path.join(SEO_LOCAL, 'llms-full.txt'), WP_PATH + '/llms-full.txt'),
+]
+print('\nUploading SEO/AEO files...')
+for local_path, remote_path in seo_uploads:
+    if os.path.exists(local_path):
+        sftp.put(local_path, remote_path)
+        print(f'  ↑  {remote_path}')
+    else:
+        print(f'  ✗ not found locally: {local_path}')
+
 sftp.close()
 
 # ── WP-CLI Helpers ───────────────────────────────────────

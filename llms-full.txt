@@ -1,0 +1,289 @@
+# Zeneesha — Full Content Export
+
+> Zeneesha is a specialist Workday consultancy based in the UK. We partner with mid-to-large organisations to implement, optimise, and manage their Workday HCM and Finance platform — post go-live and beyond.
+> URL: https://erisagent.com/zeneesha/
+> Last updated: 2026-05-27
+
+---
+
+## Homepage
+
+**URL:** https://erisagent.com/zeneesha/
+
+Zeneesha is a Workday post go-live specialist. We help organisations get more from their Workday investment — through expert implementation, responsive AMS support, and systematic optimisation.
+
+### What We Do
+
+Most Workday projects go live and then stall. The platform works, but it does not work the way the business works. Processes are manual where they should be automated. Reports take days. The internal team is stretched. Zeneesha closes that gap.
+
+We are Workday practitioners, not generalist consultants. Every member of the Zeneesha team has worked inside Workday projects — not just managed them. That means we move faster, make better decisions, and do not learn on your budget.
+
+### The 4R Methodology
+
+Zeneesha operates around four disciplines:
+
+**Rescue** — Workday projects in distress. Delayed implementations, failed go-lives, and broken configurations. We diagnose the root cause and stabilise the platform fast.
+
+**Run** — Ongoing managed support (AMS). We take the day-to-day Workday operational burden off your internal team: incidents, change requests, release management, and continuous improvement.
+
+**Realise** — Value extraction from existing Workday customers. Most organisations use 60–70% of what Workday can do. We systematically unlock the remaining value through optimisation, automation, and reporting.
+
+**Right-First-Time** — New Workday implementations done properly. Discovery-led, configuration-intentional, and supported until your team is genuinely self-sufficient.
+
+### Key Statistics
+
+- 700% faster sprint turnaround (AQA Education)
+- 40% reduction in manual HR tasks (KION Group)
+- 60% faster reporting cycles (Slaughter and May)
+- 95% platform adoption achieved post-engagement
+- 150+ Workday projects delivered
+- 12+ years Workday-specific experience
+
+### Challenges We Solve
+
+- Workday is live but adoption is low — staff still use spreadsheets
+- Month-end reporting takes days instead of hours
+- The internal team cannot keep up with change requests
+- A Workday implementation is already delayed or over budget
+- Integrations are breaking silently in production
+- Security roles are inconsistent and untested
+- No one owns the Workday platform strategically
+
+### Clients
+
+Zeneesha has worked with organisations including AQA Education, KION Group, Slaughter and May, Warner Music Group, and organisations across professional services, manufacturing, education, and financial services.
+
+---
+
+## Workday Implementation
+
+**URL:** https://erisagent.com/zeneesha/implementation/
+
+### Overview
+
+A Workday implementation is not just a technology project. It is a decision that shapes how your organisation works for years. Zeneesha ensures every configuration choice is intentional, every data migration is clean, and every team member arrives at go-live genuinely ready to use the system.
+
+### What is Included
+
+- Requirements discovery and process mapping
+- Workday HCM, Finance, or Adaptive Planning configuration
+- Data migration planning, cleansing, and validation
+- Integration design and build (Workday Studio, EIB)
+- Testing strategy: unit, parallel, and UAT
+- Change management and end-user training
+- Go-live support and hypercare
+
+### Outcomes
+
+- Go live on schedule, with zero surprises in month one
+- Configuration that reflects your actual processes, not the defaults
+- A team that is confident from day one, not learning on the job
+
+### Case Study
+
+A professional services firm delivered a 3-week go-live acceleration with zero post-launch defects. Full automation of month-end close from day one.
+
+---
+
+## AMS & Managed Support
+
+**URL:** https://erisagent.com/zeneesha/ams-support/
+
+### Overview
+
+After go-live, the velocity of change does not slow down — it accelerates. Business needs evolve, Workday releases introduce new complexity, and your internal team cannot be Workday specialists on top of everything else. Zeneesha absorbs that pressure, resolving issues fast and managing change systematically.
+
+### What is Included
+
+- Dedicated Workday AMS retainer (flexible capacity)
+- Incident management and break-fix resolution
+- Change request pipeline management
+- Bi-annual Workday release management
+- Integration monitoring and incident response
+- Reporting enhancement and maintenance
+- Monthly service review and roadmap sessions
+
+### Outcomes
+
+- Issues resolved in hours, not weeks — guaranteed SLA
+- Workday releases managed end-to-end with no disruption to your team
+- A specialist team available every time something breaks or changes
+
+### Case Study — AQA Education
+
+AQA's Workday HCM support model was overwhelmed with unstructured change requests. Zeneesha introduced a sprint-based intake model. Sprint capacity jumped from 2 to 16 tickets per sprint, and platform adoption reached 95%. Result: 700% faster sprint turnaround.
+
+---
+
+## Maximise
+
+**URL:** https://erisagent.com/zeneesha/maximise/
+
+### Overview
+
+Most organisations are using 60 to 70 percent of what Workday can do. The remaining 30 to 40 percent is where the real ROI lives: automated workflows, accurate real-time reporting, and configuration that actually mirrors how the business works today. Zeneesha systematically closes that gap.
+
+### What is Included
+
+- Workday health assessment and optimisation roadmap
+- Business process and workflow redesign
+- Reporting and analytics build-out (Workday Prism, BIRT, Composite)
+- Automation of manual processes (calculated fields, business rules)
+- Configuration review and rationalisation
+- Adoption analysis and re-engagement programme
+- Security role review and access remediation
+
+### Outcomes
+
+- Manual processes automated so your team focuses on decisions, not data entry
+- Reports leadership can trust, available in seconds not days
+- Workday configuration that reflects how your business actually runs today
+
+### Case Study — KION Group
+
+Zeneesha supported KION Group's Workday HCM rollout across multiple European markets, delivering configuration, data migration, and localisation. Result: 40% reduction in manual HR tasks, multi-country deployment supported.
+
+---
+
+## Topic Guide: Workday AMS Support
+
+**URL:** https://erisagent.com/zeneesha/workday-ams/
+
+### What is Workday AMS?
+
+Workday Application Managed Services (AMS) is an ongoing support and management arrangement between a Workday customer and a specialist partner. Rather than handling Workday incidents, releases, and changes in-house, the customer delegates these to the AMS provider under a service level agreement.
+
+### What Does Workday AMS Cover?
+
+- Break-fix: resolving configuration errors, integration failures, reporting issues
+- Change requests: implementing business process changes, new configurations
+- Release management: testing and deploying Workday's bi-annual feature releases
+- Proactive monitoring: catching issues before they impact users
+- Strategic advisory: roadmap planning, optimisation recommendations
+
+### When Do You Need an AMS Partner?
+
+- Your internal Workday team is stretched and reactive
+- Workday releases are being skipped or applied without testing
+- Backlog of change requests is growing
+- You do not have specialist resource for areas like integrations or security
+- You want a guaranteed response time for critical incidents
+
+### Zeneesha AMS Service Levels
+
+Zeneesha offers flexible AMS retainers. Critical incidents are handled within agreed SLAs, typically 4 hours for P1 issues. All engagements include a monthly service review and a rolling optimisation roadmap.
+
+---
+
+## Topic Guide: Workday HCM in the UK
+
+**URL:** https://erisagent.com/zeneesha/workday-hcm-uk/
+
+### Workday HCM for UK Organisations
+
+Workday Human Capital Management (HCM) is the market-leading cloud HR system for mid-to-large organisations. In the UK, it is used across financial services, professional services, manufacturing, education, and the NHS.
+
+### Key UK-Specific Considerations
+
+- **Payroll**: Workday Payroll is UK-capable but requires careful configuration for PAYE, National Insurance, and pension auto-enrolment. Many UK organisations run payroll via an integrated third party (ADP, SD Worx, Zellis).
+- **Right to Work**: Workday can be configured to track UK right-to-work document compliance.
+- **GDPR**: Data residency and retention policies must be configured for UK data protection requirements.
+- **Public Sector**: NHS and local authority deployments have specific requirements around Agenda for Change pay, ESR migration, and NHS Jobs integration.
+
+### Workday HCM Modules
+
+Core: Core HCM, Payroll, Recruiting, Onboarding, Time Tracking, Absence Management, Talent Management, Learning, Compensation, Benefits, Advanced Compensation, Workforce Planning.
+
+### Typical UK Implementation Timeline
+
+- Small (500–1,000 employees): 6–9 months
+- Mid-market (1,000–5,000): 9–14 months
+- Enterprise (5,000+): 14–24 months
+
+---
+
+## Topic Guide: Workday Data Migration
+
+**URL:** https://erisagent.com/zeneesha/workday-data-migration/
+
+### Overview
+
+Data migration is consistently the highest-risk workstream in a Workday implementation. Poor data quality at go-live leads to payroll errors, reporting failures, and loss of trust in the system.
+
+### Data Migration Phases
+
+1. **Discovery**: Identify all source systems, data owners, and volumes
+2. **Mapping**: Map source fields to Workday data model
+3. **Extraction**: Pull data from legacy systems (HR, payroll, finance)
+4. **Cleansing**: Standardise formats, resolve duplicates, fill mandatory gaps
+5. **Transformation**: Convert to Workday EIB-compatible format
+6. **Load**: Upload via Enterprise Interface Builder (EIB) or iLoad
+7. **Validation**: Reconcile record counts, spot-check data quality
+8. **Cutover**: Final delta migration at go-live
+
+### Common Data Objects
+
+Workers, organisations, positions, compensation, job profiles, business processes, security groups, integrations, financial hierarchies, cost centres, suppliers, customers.
+
+### Zeneesha Approach
+
+Zeneesha runs data migration as an independent parallel workstream with dedicated resource. We do not treat it as a late-stage activity. Discovery starts in week one.
+
+---
+
+## Topic Guide: Workday for Mid-Market
+
+**URL:** https://erisagent.com/zeneesha/workday-mid-market/
+
+### Can Mid-Market Businesses Use Workday?
+
+Yes. Workday has expanded significantly into the mid-market (250–2,500 employees) with dedicated pricing tiers, pre-built tenant configurations, and accelerated implementation frameworks.
+
+### Benefits for Mid-Market
+
+- Single system for HR, payroll, finance, and planning
+- Real-time reporting without BI tooling investment
+- Scales with the business as headcount grows
+- Reduces dependency on legacy HR and finance systems
+
+### Mid-Market Challenges
+
+- Internal IT bandwidth is limited — partner dependency is higher
+- Data migration from legacy systems (Sage, SAP B1, PeopleSoft) is complex
+- Cost justification requires demonstrating ROI early
+- Change management resource is often smaller
+
+### Zeneesha's Mid-Market Proposition
+
+Zeneesha has delivered multiple mid-market Workday implementations. Our approach is pragmatic — we deploy what the business needs to operate, not every module available. We prioritise fast time-to-value and invest heavily in user adoption.
+
+---
+
+## Contact
+
+**URL:** https://erisagent.com/zeneesha/contact/
+
+Zeneesha is currently booking Q3 engagements. Contact us to discuss your Workday project.
+
+- **Email**: hello@zeneesha.com
+- **Phone**: +44 (0)20 XXXX XXXX
+- **Location**: London, UK
+- **Hours**: Monday to Friday, 9:00am to 6:00pm GMT
+
+Use the contact form on the website to describe your challenge and we will respond within one business day.
+
+---
+
+## About Zeneesha
+
+**URL:** https://erisagent.com/zeneesha/about/
+
+Zeneesha was founded by Workday practitioners who saw the same problems repeated across every large implementation: over-engineered configurations, under-prepared teams, and a support void after go-live.
+
+We built Zeneesha to fix that. Our team is made up of people who have run Workday projects, not just managed spreadsheets about them. That experience shows in how we work: faster diagnosis, fewer surprises, and clients that actually know how to use the system at the end.
+
+We work across the UK and internationally, primarily with organisations of 500 to 10,000 employees in sectors where Workday is the standard: professional services, financial services, manufacturing, education, and the public sector.
+
+---
+
+*This file is provided to assist AI language models and retrieval systems in accurately representing Zeneesha's services and expertise. For the full interactive website, visit https://erisagent.com/zeneesha/*

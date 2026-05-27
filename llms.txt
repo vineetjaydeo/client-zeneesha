@@ -1,0 +1,36 @@
+# Zeneesha
+
+> Zeneesha is a specialist Workday consultancy based in the UK. We partner with mid-to-large organisations — across financial services, professional services, manufacturing, education, and the public sector — to implement, optimise, and manage their Workday HCM and Finance platform. Our focus is post go-live and beyond: ensuring Workday works the way your business actually works, not just on launch day.
+
+## Core Services
+
+- [Workday Implementation](https://erisagent.com/zeneesha/implementation/): End-to-end Workday HCM and Finance implementation. Covers requirements discovery, process mapping, configuration, data migration, integrations (Workday Studio, EIB), testing, change management, and hypercare.
+- [AMS & Managed Support](https://erisagent.com/zeneesha/ams-support/): Ongoing Application Managed Services retainer. Incident resolution, change request management, bi-annual Workday release management, integration monitoring, and reporting maintenance.
+- [Maximise](https://erisagent.com/zeneesha/maximise/): Workday optimisation and ROI realisation for existing customers. Business process redesign, reporting and analytics (Prism, BIRT, Composite), automation of manual processes, configuration review, adoption improvement.
+
+## About
+
+- [About Zeneesha](https://erisagent.com/zeneesha/about/): Our founding story, leadership team, and consulting philosophy. Founded by Workday practitioners — not generalist consultants.
+- [Careers](https://erisagent.com/zeneesha/careers/): Open roles and what it means to work at Zeneesha.
+- [Partnership](https://erisagent.com/zeneesha/partnership/): Become a Zeneesha delivery or referral partner.
+
+## Contact
+
+- [Book a Consultation](https://erisagent.com/zeneesha/contact/): Contact form, phone, email, and office details. Currently booking Q3 engagements.
+
+## Topic Guides
+
+- [Workday HCM in the UK](https://erisagent.com/zeneesha/workday-hcm-uk/): Complete guide to Workday HCM deployment for UK organisations — modules, compliance, NHS and public sector specifics.
+- [What is Workday AMS Support?](https://erisagent.com/zeneesha/workday-ams/): Explanation of Workday Application Managed Services — what's included, SLAs, and when to use a partner vs in-house.
+- [Workday Data Migration](https://erisagent.com/zeneesha/workday-data-migration/): End-to-end guide to Workday data migration — source extraction, cleansing, EIB loading, validation, and cutover.
+- [Workday for Mid-Market](https://erisagent.com/zeneesha/workday-mid-market/): How mid-market businesses (250–2,500 employees) select, implement, and get value from Workday.
+- [Workday Finance & Payroll Training](https://erisagent.com/zeneesha/workday-finance-training/): Training resources and best practices for Workday Financials and Payroll end users and administrators.
+- [Workday AI & Machine Learning](https://erisagent.com/zeneesha/workday-ai/): Overview of Workday's native AI and ML capabilities — skills cloud, VNDLY, Workday Illuminate, and predictive analytics.
+
+## Resources
+
+- [Resources & Insights](https://erisagent.com/zeneesha/resources/): Articles, guides, and practitioner insights on Workday implementation, AMS, and optimisation best practice.
+
+## Optional
+
+- [llms-full.txt](https://erisagent.com/zeneesha/llms-full.txt): Full content export of the Zeneesha website in Markdown format.
