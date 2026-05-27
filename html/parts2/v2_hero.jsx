@@ -18,13 +18,7 @@ const NavV2 = () => {
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const links = [
-    { label: 'Challenges', id: 'challenges' },
-    { label: 'Outcomes', id: 'outcomes' },
-    { label: 'People', id: 'people' },
-    { label: 'Clients', id: 'clients' },
-    { label: 'Insights', id: 'insights' },
-  ];
+  const links = ['Outcomes', 'Process', 'People', 'Clients', 'Insights'];
   return (
     <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? 'nav-scrolled' : ''}`}>
       <div className="max-w-[1440px] mx-auto px-8 h-[78px] flex items-center justify-between">
@@ -36,8 +30,8 @@ const NavV2 = () => {
         </a>
         <nav className="hidden lg:flex items-center gap-9 text-[13.5px]">
           {links.map((l) => (
-            <a key={l.id} href={`#${l.id}`} className={`u-link font-medium transition-colors ${scrolled ? 'text-navy/80 hover:text-navy' : 'text-white/85 hover:text-white'}`}>
-              {l.label}
+            <a key={l} href={`#${l.toLowerCase()}`} className={`u-link font-medium transition-colors ${scrolled ? 'text-navy/80 hover:text-navy' : 'text-white/85 hover:text-white'}`}>
+              {l}
             </a>
           ))}
         </nav>
@@ -128,48 +122,46 @@ const HeroVideo = () => {
         <div className="lg:col-span-8">
           <div className="flex items-center gap-3 text-[11px] font-mono tracking-[0.22em] uppercase text-white/70 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-redorange pulse" />
-            <span>Workday AMS, Support &amp; Optimisation Partner</span>
+            <span>Workday &middot; Delivered by the same team that designed it</span>
           </div>
 
-          <h1 className="font-display text-white text-[clamp(44px,6.6vw,98px)] leading-[1.12]" style={{ fontWeight: 300 }}>
-            <span className="kinetic-line"><span>The real Workday</span></span>
-            <span className="kinetic-line" style={{ transitionDelay: '120ms' }}><span>journey begins</span></span>
-            <span className="kinetic-line" style={{ transitionDelay: '240ms' }}><span><em className="italic text-redorange not-italic" style={{ fontStyle: 'italic', color: '#E8472C' }}>after go-live.</em></span></span>
+          <h1 className="font-display text-white text-[clamp(48px,7.4vw,112px)] leading-[0.96]" style={{ fontWeight: 300 }}>
+            <span className="kinetic-line"><span>Close the books in</span></span>
+            <span className="kinetic-line" style={{ transitionDelay: '120ms' }}><span><em className="italic text-redorange not-italic" style={{ fontStyle: 'italic', color: '#E8472C' }}>three days.</em></span></span>
+            <span className="kinetic-line" style={{ transitionDelay: '240ms' }}><span>Keep the people who</span></span>
+            <span className="kinetic-line" style={{ transitionDelay: '360ms' }}><span>know <em className="italic text-white/75">why.</em></span></span>
           </h1>
 
-          <p className="mt-10 max-w-[640px] text-[18px] leading-[1.65] text-white/80 reveal delay-5 in">
-            Zeneesha helps organisations support, optimise and improve Workday after implementation - so HR, Finance and IT teams can move faster, trust the data and unlock more value.
+          <p className="mt-10 max-w-[580px] text-[18px] leading-[1.65] text-white/80 reveal delay-5 in">
+            Workday, delivered as an outcome. Not a licence. We shorten close cycles, retire spreadsheets, and leave your people measurably more senior than we found them.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4 reveal delay-6 in">
             <a href="#talk" className="group inline-flex items-center gap-3 bg-redorange text-white px-7 py-4 rounded-full text-[14px] font-medium tracking-wide hover:bg-[#D63C23] transition-all duration-300 shadow-[0_16px_40px_-14px_rgba(232,71,44,.7)]">
-              Discuss Your Workday Priorities
+              Book a consultation
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="#talk" className="inline-flex items-center gap-3 text-white px-6 py-4 rounded-full text-[14px] font-medium border border-white/30 hover:bg-white hover:text-navy transition-all duration-300">
-              Request a Workday Health Check
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <a href="#process" className="inline-flex items-center gap-3 text-white px-6 py-4 rounded-full text-[14px] font-medium border border-white/30 hover:bg-white hover:text-navy transition-all duration-300">
+              Watch our process
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M5 3l8 5-8 5V3z"/></svg>
             </a>
           </div>
-
-          <p className="mt-7 max-w-[640px] text-[13.5px] leading-[1.55] text-white/55 reveal delay-6 in">
-            Flexible, cost-effective Workday expertise across HCM, Finance, Planning, Reporting and Integrations.
-          </p>
         </div>
 
         <div className="lg:col-span-4 flex flex-col gap-5 reveal delay-4 in">
           <div className="flex items-center justify-between mb-1">
             <div className="font-mono text-[10.5px] tracking-[0.2em] uppercase text-white/55 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-redorange toast-live" />
-              Where Zeneesha helps
+              Outcomes. Live feed.
             </div>
-            <span className="font-mono text-[10px] text-white/40 tracking-[0.1em]">Common gaps</span>
+            <span className="font-mono text-[10px] text-white/40 tracking-[0.1em]">auto &middot; updating</span>
           </div>
 
           <LiveFeed />
 
           <div className="pt-3 flex items-center justify-between text-[11px] font-mono tracking-[0.12em] uppercase text-white/50">
-            <span>HCM &middot; Finance &middot; Planning &middot; Reporting &middot; Integrations</span>
+            <span>Currently delivering &middot; 17 SMBs</span>
+            <a href="#clients" className="hover:text-white">View all →</a>
           </div>
         </div>
       </div>
@@ -178,34 +170,99 @@ const HeroVideo = () => {
       <div className="relative border-t border-white/10 bg-navy-ink/40 backdrop-blur-sm">
         <div className="max-w-[1440px] mx-auto px-8 h-14 flex items-center justify-between text-[11px] font-mono tracking-[0.22em] uppercase text-white/60">
           <span>Partners in Growth</span>
-          <span className="hidden md:inline">Scroll to see how we help <span className="text-redorange">↓</span></span>
-          <span className="hidden md:inline">Workday AMS · UK &amp; EMEA</span>
+          <span className="hidden md:inline">Scroll for outcomes <span className="text-redorange">↓</span></span>
+          <span className="hidden md:inline">Est. 2014 · UK &amp; EMEA</span>
         </div>
       </div>
     </section>
   );
 };
 
-// Floating value-prop cards — 3 static items, one per AMS challenge area
+// Animated live feed — 3 visible, new cards pop in at top, looping
 const FEED_ITEMS = [
-  { tag: 'AMS Support', title: 'Tickets piling up?', desc: 'Bring structure to AMS support.', grad: 'linear-gradient(140deg,#E8472C,#F57C1F)' },
-  { tag: 'Reporting',   title: 'Reports questioned?', desc: 'Build confidence in Workday data.', grad: 'linear-gradient(140deg,#3B9EDB,#1E3A8A)' },
-  { tag: 'Workflows',   title: 'Workflows ageing?',   desc: 'Optimise Workday around the business.', grad: 'linear-gradient(140deg,#F57C1F,#E8472C)' },
+  { tag: '42%', initials: 'HB', grad: 'linear-gradient(140deg,#E8472C,#F57C1F)', title: 'Close cycle shortened', desc: 'Harlow Biosciences ran their first three-day close. Finance team signed off on Thursday afternoon.', ago: '2h ago' },
+  { tag: '£2.1m', initials: 'NC', grad: 'linear-gradient(140deg,#3B9EDB,#1E3A8A)', title: 'Planning hours reclaimed', desc: 'Northwind Credit retired four recurring spreadsheets. Adaptive Planning live for year-two budget.', ago: 'Yesterday' },
+  { tag: '94%', initials: 'MR', grad: 'linear-gradient(140deg,#1E3A8A,#0A1638)', title: 'Partnered, post year-one', desc: 'Meridian Retail renewed Managed Services for a second year. Ninety-eight percent adoption at review.', ago: '3d ago' },
+  { tag: '6 wk', initials: 'KL', grad: 'linear-gradient(140deg,#F57C1F,#E8472C)', title: 'Go-live, six weeks after SOW', desc: 'Kestrel Logistics went live on Workday Financials. Zero surprise escalations on cutover weekend.', ago: '5d ago' },
+  { tag: '3x', initials: 'AG', grad: 'linear-gradient(140deg,#3B9EDB,#0A1638)', title: 'Reporting velocity', desc: 'Ashcombe Group tripled board-pack turnaround. Two analysts freed from Monday morning exports.', ago: '1w ago' },
+  { tag: '£180k', initials: 'BW', grad: 'linear-gradient(140deg,#1E3A8A,#E8472C)', title: 'First-year saving, verified', desc: 'Brightwell closed year one ahead of plan. Licence optimisation paid the programme back twice over.', ago: '2w ago' },
 ];
 
+const CARD_H = 112; // px, fixed height per card
+const CARD_GAP = 14;
+
 const LiveFeed = () => {
+  const [cursor, setCursor] = React.useState(2); // index of currently newest
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setCursor((c) => c + 1), 3400);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  // Build the 5 visible slots: -1 = incoming, 0..2 visible, 3 = leaving
+  const slots = [];
+  for (let rank = -1; rank <= 3; rank++) {
+    const idx = cursor - rank;
+    if (idx < 0) continue;
+    const data = FEED_ITEMS[idx % FEED_ITEMS.length];
+    slots.push({ key: idx, rank, data });
+  }
+
+  const height = CARD_H * 3 + CARD_GAP * 2;
+
   return (
-    <div className="space-y-3">
-      {FEED_ITEMS.map((data, i) => (
-        <div key={i} className="toast" style={{ animation: 'none' }}>
-          <div className="flex items-center gap-2 mb-2.5">
-            <span className="inline-block w-2 h-2 rounded-full" style={{ background: data.grad }} />
-            <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/55">{data.tag}</span>
+    <div
+      className="relative"
+      style={{ height }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {slots.map(({ key, rank, data }) => {
+        const targetY = rank === -1 ? -18 : rank * (CARD_H + CARD_GAP);
+        const opacity = rank === -1 ? 0 : rank === 3 ? 0 : rank === 2 ? 0.55 : rank === 1 ? 0.82 : 1;
+        const scale = rank === -1 ? 0.96 : rank === 3 ? 0.94 : 1 - rank * 0.015;
+        const blur = rank >= 2 ? (rank - 1) * 1.2 : 0;
+        return (
+          <div
+            key={key}
+            className="toast absolute left-0 right-0"
+            style={{
+              height: CARD_H,
+              transform: `translateY(${targetY}px) scale(${scale})`,
+              opacity,
+              filter: blur ? `blur(${blur}px)` : 'none',
+              transition: 'transform .8s cubic-bezier(.2,.7,.2,1), opacity .8s cubic-bezier(.2,.7,.2,1), filter .8s',
+              pointerEvents: rank >= 0 && rank <= 2 ? 'auto' : 'none',
+              animation: 'none',
+            }}
+          >
+            <div className="toast-dot" />
+            <button className="toast-close" aria-label="Dismiss">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <div className="flex items-start gap-3 h-full">
+              <div className="toast-avatar relative" style={{ background: data.grad }}>
+                {data.initials}
+                <span className="toast-ping" />
+              </div>
+              <div className="flex-1 min-w-0 pr-1">
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="font-display text-white text-[20px] leading-none" style={{ fontWeight: 400 }}>{data.tag}</span>
+                  <span className="text-white/90 text-[12.5px] font-medium truncate">{data.title}</span>
+                </div>
+                <p className="text-[12px] leading-[1.5] text-white/65 line-clamp-2">{data.desc}</p>
+                <div className="mt-2 flex items-center gap-2 text-[10px] font-mono tracking-[0.12em] text-white/45 uppercase">
+                  <span>{data.ago}</span>
+                  <span className="w-1 h-1 rounded-full bg-white/25" />
+                  <span>Zeneesha &middot; Live</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="font-display text-white text-[20px] leading-[1.2]" style={{ fontWeight: 400 }}>{data.title}</div>
-          <p className="mt-2 text-[13.5px] leading-[1.55] text-white/72">{data.desc}</p>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

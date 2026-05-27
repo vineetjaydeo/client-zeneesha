@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" role="img" aria-label="iKawn">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&amp;display=swap');
+      .wm { font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-weight: 900; font-size: 48px; fill: #2C2C2C; letter-spacing: -1px; }
+    </style>
+  </defs>
+  <!-- Golden signature dot — replaces the i-dot -->
+  <circle cx="15" cy="9" r="8.5" fill="#F5A623"/>
+  <!-- Wordmark -->
+  <text class="wm" x="2" y="52">iKawn</text>
+</svg>

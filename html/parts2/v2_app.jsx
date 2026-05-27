@@ -69,8 +69,8 @@ const AppV2 = () => {
       <NavV2 />
       <main>
         <HeroVideo />
-        <ProblemSection />
-        <OutcomeValue />
+        <OutcomesSection />
+        <Process />
         <People />
         <Clients />
         <InsightsV2 />
