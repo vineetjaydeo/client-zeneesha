@@ -392,7 +392,10 @@ $rhythm_phases = [
               <textarea class="form-input form-textarea" id="contact_message" name="contact_message" rows="3" placeholder="Briefly describe your current Workday situation..."></textarea>
             </div>
             <div class="form-group">
-              <button type="submit" class="form-submit">Book My Health Check <?php echo z_arrow( 14 ); ?></button>
+              <div class="cta-with-note">
+                <button type="submit" class="form-submit">Book My Health Check <?php echo z_arrow( 14 ); ?></button>
+                <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
+              </div>
             </div>
             <div id="form-message" class="form-msg" role="alert"></div>
           </form>
@@ -664,9 +667,12 @@ $rhythm_phases = [
             <textarea class="form-input form-textarea" id="contact_message" name="contact_message" rows="4" placeholder="Tell us about your Workday environment..."></textarea>
           </div>
           <div class="form-group">
-            <button type="submit" class="form-submit">
-              Book My Complimentary Health Check <?php echo z_arrow( 14 ); ?>
-            </button>
+            <div class="cta-with-note">
+              <button type="submit" class="form-submit">
+                Book My Complimentary Health Check <?php echo z_arrow( 14 ); ?>
+              </button>
+              <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
+            </div>
           </div>
           <div id="form-message" class="form-msg" role="alert"></div>
         </form>

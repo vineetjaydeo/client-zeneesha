@@ -400,7 +400,10 @@ $breadcrumbs = [
             <textarea class="form-input form-textarea" id="topic_cta_message" name="contact_message" rows="3" placeholder="Tell us about your Workday setup..."></textarea>
           </div>
           <div class="form-group">
-            <button type="submit" class="form-submit">Book Health Check <?php echo z_arrow( 14 ); ?></button>
+            <div class="cta-with-note">
+              <button type="submit" class="form-submit">Book Health Check <?php echo z_arrow( 14 ); ?></button>
+              <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
+            </div>
           </div>
           <div id="topic-form-message" class="form-msg" role="alert" aria-live="polite"></div>
         </form>

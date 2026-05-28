@@ -36,10 +36,13 @@
         </p>
 
         <div class="hero-ctas">
-          <a href="#talk" class="btn-primary">
-            <?php echo esc_html( zf( 'hero_cta', 'Request a Complimentary Workday Health Checkup' ) ); ?>
-            <?php echo z_arrow( 14 ); ?>
-          </a>
+          <div class="cta-with-note">
+            <a href="#talk" class="btn-primary">
+              <?php echo esc_html( zf( 'hero_cta', 'Request a Complimentary Workday Health Checkup' ) ); ?>
+              <?php echo z_arrow( 14 ); ?>
+            </a>
+            <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
+          </div>
           <a href="#solutions" class="btn-ghost">
             See How We Help
             <?php echo z_arrow( 13 ); ?>
@@ -79,9 +82,6 @@
     <h2 class="trust-heading reveal">
       <?php echo esc_html( zf( 'trust_heading', 'Designed for Businesses That Run on Workday.' ) ); ?>
     </h2>
-    <p class="trust-subtext reveal delay-1">
-      <?php echo esc_html( zf( 'trust_sub', 'We help you bring clarity to your most critical business decisions.' ) ); ?>
-    </p>
   </div>
 
   <!-- Logo carousel -->
@@ -445,7 +445,7 @@
         </div>
 
         <!-- Right: media panel -->
-        <div class="sol-media-panel" style="border-top:4px solid <?php echo esc_attr( $svc['color'] ); ?>">
+        <div class="sol-media-panel">
           <?php $tdir = get_template_directory_uri(); $slug = esc_attr( $svc['slug'] ); ?>
           <video class="sol-vid" autoplay loop muted playsinline>
             <source src="<?php echo $tdir; ?>/assets/vid/<?php echo $slug; ?>.mp4" type="video/mp4">
@@ -1092,10 +1092,13 @@
             <textarea class="form-textarea" id="contact_message" name="contact_message" rows="4" placeholder="Tell us about your Workday environment..."></textarea>
           </div>
           <div class="form-group">
-            <button type="submit" class="form-submit">
-              Request a Workday Health Checkup
-              <?php echo z_arrow( 14 ); ?>
-            </button>
+            <div class="cta-with-note">
+              <button type="submit" class="form-submit">
+                Request a Workday Health Checkup
+                <?php echo z_arrow( 14 ); ?>
+              </button>
+              <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
+            </div>
           </div>
           <div id="form-message" class="form-msg" role="alert"></div>
         </form>
