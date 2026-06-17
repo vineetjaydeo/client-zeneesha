@@ -58,7 +58,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 // ── Enqueue Assets ─────────────────────────────────────────────
 function zeneesha_enqueue_assets() {
-    $v   = '2.1.7';
+    $v   = '2.1.49';
     $uri = get_template_directory_uri();
 
     // Main CSS — preload / deferred
@@ -79,7 +79,7 @@ add_action( 'wp_enqueue_scripts', 'zeneesha_enqueue_assets' );
 // Defer zeneesha-main script tag
 add_filter( 'script_loader_tag', function ( $tag, $handle ) {
     if ( 'zeneesha-main' === $handle ) {
-        return '<script src="' . esc_url( wp_scripts()->registered[ $handle ]->src ) . '" defer></script>' . "\n";
+        return str_replace( '<script ', '<script defer ', $tag );
     }
     return $tag;
 }, 10, 2 );
@@ -231,11 +231,11 @@ add_action( 'acf/init', function () {
         'key'    => 'group_home',
         'title'  => 'Homepage Content',
         'fields' => [
-            [ 'key'=>'field_hero_h1',       'label'=>'Hero — Line 1 (small)',    'name'=>'hero_h1',       'type'=>'text',     'default_value'=>'Transforming Workday' ],
-            [ 'key'=>'field_hero_h2',       'label'=>'Hero — Line 2 (large)',    'name'=>'hero_h2',       'type'=>'text',     'default_value'=>'Into Business Value.' ],
-            [ 'key'=>'field_hero_body',     'label'=>'Hero — Body text',         'name'=>'hero_body',     'type'=>'textarea', 'default_value'=>"Post go-live is where most organisations lose their Workday ROI. Zeneesha ensures that doesn't happen, from implementation to AI-led optimisation.", 'rows'=>3 ],
-            [ 'key'=>'field_hero_cta',      'label'=>'Hero — Primary CTA text',  'name'=>'hero_cta',      'type'=>'text',     'default_value'=>'Book Your Complimentary Health Check' ],
-            [ 'key'=>'field_trust_heading', 'label'=>'Trust — Heading',          'name'=>'trust_heading', 'type'=>'text',     'default_value'=>'Designed for Businesses That Run on Workday.' ],
+            [ 'key'=>'field_hero_h1',       'label'=>'Hero — Line 1 (small)',    'name'=>'hero_h1',       'type'=>'text',     'default_value'=>'Make Workday Work.' ],
+            [ 'key'=>'field_hero_h2',       'label'=>'Hero — Line 2 (large)',    'name'=>'hero_h2',       'type'=>'text',     'default_value'=>'' ],
+            [ 'key'=>'field_hero_body',     'label'=>'Hero — Body text',         'name'=>'hero_body',     'type'=>'textarea', 'default_value'=>'Optimise, support and evolve Workday so it delivers the value it promised.', 'rows'=>3 ],
+            [ 'key'=>'field_hero_cta',      'label'=>'Hero — Primary CTA text',  'name'=>'hero_cta',      'type'=>'text',     'default_value'=>'Book Your Free Workday Health Check' ],
+            [ 'key'=>'field_trust_heading', 'label'=>'Trust — Heading',          'name'=>'trust_heading', 'type'=>'text',     'default_value'=>'Trusted by organisations running Workday around the world.' ],
             [ 'key'=>'field_trust_sub',     'label'=>'Trust — Subtext',          'name'=>'trust_sub',     'type'=>'text',     'default_value'=>'We help you bring clarity to your most critical business decisions.' ],
             [ 'key'=>'field_ai_h1',         'label'=>'AI — Heading',             'name'=>'ai_h1',         'type'=>'text',     'default_value'=>'Still Talking About AI' ],
             [ 'key'=>'field_ai_h2',         'label'=>'AI — Heading (highlight)', 'name'=>'ai_h2',         'type'=>'text',     'default_value'=>'or Using It?' ],

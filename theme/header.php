@@ -14,11 +14,7 @@
 
     <!-- Logo -->
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-logo" aria-label="Zeneesha home">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/zeneesha-logo.png" alt="Zeneesha" height="34" style="height:34px;width:auto">
-      <span class="nav-partner-badges">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/workday-services-partner.png" alt="Workday Services Partner" class="nav-partner-badge">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/workday-sales-partner.png" alt="Workday Sales Partner" class="nav-partner-badge">
-      </span>
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/zeneesha-logo.png" alt="Zeneesha" class="nav-brand-logo">
     </a>
 
     <!-- Desktop nav links -->
@@ -78,10 +74,10 @@
 
     <!-- Right cluster -->
     <div class="nav-right">
-      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-nav">
-        Start a Conversation
-        <?php echo z_arrow( 13 ); ?>
-      </a>
+      <span class="nav-partner-badges" aria-label="Workday partner certifications">
+        <img src="https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-services-partner@4x.png" alt="Workday Services Partner" class="nav-partner-badge">
+        <img src="https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-sales-partner@4x.png" alt="Workday Sales Partner" class="nav-partner-badge">
+      </span>
       <!-- Mobile burger -->
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>

@@ -2,3 +2,6 @@
 **/.vercel
 node_modules/
 *.log
+theme/assets/vid/
+HANDOFF.md
+_preview/

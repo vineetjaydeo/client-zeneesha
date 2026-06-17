@@ -10,7 +10,7 @@
       <p>An independent Workday practice focused entirely on post-go-live value.</p>
       <div class="footer-contact-details">
         <div>Zeneesha Ltd.</div>
-        <div>14 Finsbury Circus, London EC2M 7EB</div>
+        <div>Old Boundary House, Sunningdale, SL5 0DJ, United Kingdom</div>
         <div style="margin-top:.75rem"><span class="contact-type">T</span> &nbsp;<a href="tel:+442080904040" style="color:inherit">+44 (0) 20 8090 4040</a></div>
         <div><span class="contact-type">E</span> &nbsp;<a href="mailto:hello@zeneesha.co.uk" style="color:inherit">hello@zeneesha.co.uk</a></div>
       </div>

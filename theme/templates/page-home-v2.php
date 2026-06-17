@@ -1,10 +1,14 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Template Name: Homepage V2
+ */
+get_header(); ?>
 <main>
 
 <!-- ══════════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════════ -->
-<section id="top" class="section-hero">
+<section id="top" class="section-hero hero-v2-section">
   <!-- Ambient blobs -->
   <div class="hero-blobs" aria-hidden="true">
     <div class="blob blob-1"></div>
@@ -12,61 +16,121 @@
     <div class="blob blob-3"></div>
   </div>
 
+  <!-- ═══ V2 VIDEO PANEL — absolute, covers right 52% of section top-to-bottom ═══ -->
+  <?php
+  $hero_img = 'https://d8j0ntlcm91z4.cloudfront.net/user_2vs6ENieORgWc142LINH63XobO2/hf_20260528_060559_9b04c4d4-0232-4efd-bb96-63bddb555bc9.png';
+  $hero_vid = 'https://d8j0ntlcm91z4.cloudfront.net/user_2vs6ENieORgWc142LINH63XobO2/hf_20260528_064623_5da71d7d-c2ca-40fc-a1b1-ae55389f5234.mp4';
+  ?>
+  <div class="hero-v2-right" id="hero-v2-right">
+
+    <!-- Ambient glows -->
+    <div class="hero-v2-blob hero-v2-blob-navy" aria-hidden="true"></div>
+    <div class="hero-v2-blob hero-v2-blob-orange" aria-hidden="true"></div>
+
+    <!-- Video layer — fades left edge into cream -->
+    <div class="hero-v2-photo-wrap" data-v2-parallax="0.05">
+      <video class="hero-v2-video" autoplay muted loop playsinline
+             poster="<?php echo esc_url( $hero_img ); ?>">
+        <source src="<?php echo esc_url( $hero_vid ); ?>" type="video/mp4">
+      </video>
+      <!-- Mobile: static image shown instead of video -->
+      <img src="<?php echo esc_url( $hero_img ); ?>"
+           alt="Professional enterprise team collaborating with Workday analytics"
+           class="hero-v2-photo hero-v2-mobile-img" loading="eager">
+    </div>
+
+    <!-- Glass card: Health Score — 3rd to appear -->
+    <div class="hero-v2-score-card" data-v2-parallax="-0.05" aria-hidden="true">
+      <div class="hero-v2-score-header">
+        <div class="hero-v2-score-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3B9EDB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <span class="hero-v2-score-label">Workday Health Score</span>
+      </div>
+      <div class="hero-v2-score-ring-wrap">
+        <svg width="86" height="86" viewBox="0 0 86 86" aria-hidden="true">
+          <circle cx="43" cy="43" r="36" fill="none" stroke="rgba(30,58,138,.08)" stroke-width="8"/>
+          <circle cx="43" cy="43" r="36" fill="none" stroke="url(#v2-score-grad)" stroke-width="8"
+                  stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="22.6"
+                  transform="rotate(-90 43 43)"/>
+          <defs>
+            <linearGradient id="v2-score-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1E3A8A"/>
+              <stop offset="100%" stop-color="#3B9EDB"/>
+            </linearGradient>
+          </defs>
+          <text x="43" y="47" text-anchor="middle" font-family="Jost,sans-serif" font-size="22" font-weight="700" fill="#1E3A8A">94</text>
+        </svg>
+      </div>
+      <div class="hero-v2-score-footer">
+        <div class="hero-v2-score-stat">
+          <span class="hero-v2-score-stat-val" style="color:#E8472C">+12</span>
+          <span class="hero-v2-score-stat-lbl">pts since last review</span>
+        </div>
+        <div class="hero-v2-score-divider"></div>
+        <div class="hero-v2-score-stat">
+          <span class="hero-v2-score-stat-val" style="color:#10b981">3</span>
+          <span class="hero-v2-score-stat-lbl">quick wins found</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chip A: sprint velocity — 4th to appear -->
+    <div class="hero-v2-chip hero-v2-chip-a" data-v2-parallax="0.12" aria-hidden="true">
+      <span class="pulse-dot redorange" style="flex-shrink:0"></span>
+      Sprint velocity +700%
+    </div>
+
+    <!-- Chip B: client retention — 5th to appear -->
+    <div class="hero-v2-chip hero-v2-chip-b" data-v2-parallax="-0.08" aria-hidden="true">
+      <span class="hero-v2-chip-green"></span>
+      95% client retention
+    </div>
+
+    <!-- Partner badge — 2nd to appear -->
+    <div class="hero-v2-partner-badge" data-v2-parallax="0.06" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Workday Service Partner
+    </div>
+
+  </div><!-- /.hero-v2-right -->
+
+  <!-- ═══ COPY COLUMN — single-column grid, left side ═══ -->
   <div class="container hero-relative">
     <div class="hero-grid">
-
-      <!-- Left: copy -->
       <div class="hero-left">
         <div class="hero-eyebrow">
           <span class="pulse-dot redorange"></span>
-          Workday optimisation and support
+          Your All-in-One Workday Partner
         </div>
 
         <h1 class="hero-headline">
           <span class="kline">
-            <span class="kline-inner kline-bold">Make Workday Work.</span>
+            <span class="kline-inner kline-light"><?php echo esc_html( zf( 'hero_h1', 'Transforming Workday Into' ) ); ?></span>
+          </span>
+          <span class="kline">
+            <span class="kline-inner kline-bold"><?php echo esc_html( zf( 'hero_h2', 'Business Value.' ) ); ?></span>
           </span>
         </h1>
 
         <p class="hero-body">
-          Optimise, support and evolve Workday so it delivers the value it promised.
+          <?php echo esc_html( zf( 'hero_body', 'Go-live is just the beginning. Zeneesha partners with you from pre-deployment through long-term support - so Workday keeps delivering as your business grows and changes.' ) ); ?>
         </p>
-      </div>
 
-      <!-- Right: action panel -->
-      <div class="hero-right">
-        <div class="hero-action-panel">
-          <div class="hero-action-copy">
-            <span class="hero-action-label">Start with clarity</span>
-            <h2>Find the value already inside Workday.</h2>
-            <p>A focused review of adoption, governance, reporting and support friction.</p>
+        <div class="hero-ctas">
+          <div class="cta-with-note">
+            <a href="#talk" class="btn-primary">
+              <?php echo esc_html( zf( 'hero_cta', 'Request a Complimentary Workday Health Checkup' ) ); ?>
+              <?php echo z_arrow( 14 ); ?>
+            </a>
+            <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
           </div>
-
-          <a href="#talk" class="hero-action hero-action-primary">
-            <span>
-              <strong>Book Your Free Workday Health Check</strong>
-              <small>Practical recommendations. No sales pitch.</small>
-            </span>
-            <?php echo z_arrow( 15 ); ?>
+          <a href="#solutions" class="btn-ghost">
+            See How We Help
+            <?php echo z_arrow( 13 ); ?>
           </a>
-
-          <a href="#workday-calculator" class="hero-action hero-action-secondary">
-            <span>
-              <strong>Calculate The Cost Of Workday Inefficiency</strong>
-              <small>Estimate hidden annual cost by organisation size.</small>
-            </span>
-            <?php echo z_arrow( 15 ); ?>
-          </a>
-
-          <div class="hero-action-tags" aria-label="Health check focus areas">
-            <span>Adoption</span>
-            <span>Reporting</span>
-            <span>Support</span>
-            <span>Governance</span>
-          </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -76,27 +140,31 @@
      TRUST
 ══════════════════════════════════════════════════════ -->
 <section id="trust" class="section-trust" style="border-bottom:1px solid rgba(30,58,138,.07)">
-  <div class="trust-badge-wrap trust-badge-wrap--compact">
-    <p class="trust-kicker reveal">Trusted by organisations running Workday around the world.</p>
+  <div class="trust-badge-wrap">
+    <h2 class="trust-heading reveal">
+      <?php echo esc_html( zf( 'trust_heading', 'Designed for Businesses That Run on Workday.' ) ); ?>
+    </h2>
   </div>
 
   <!-- Logo carousel -->
   <?php
   $ldir = get_template_directory_uri() . '/assets/img/logos/';
   $logo_items = [
-    '<img src="' . $ldir . 'kion.png" alt="KION Group">',
-    '<img src="' . $ldir . 'warner.svg" alt="Warner Music Group">',
+    '<img src="' . $ldir . 'kion.png" alt="KION Group" style="height:30px;width:auto;object-fit:contain">',
+    '<svg height="36" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Warner Music Group"><text x="0" y="14" font-family="Jost,sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="currentColor">WARNER</text><text x="0" y="26" font-family="Jost,sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="currentColor">MUSIC GROUP</text></svg>',
+    '<svg height="28" viewBox="0 0 150 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="HelloFresh"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="500" fill="currentColor">HelloFresh</text></svg>',
     '<svg height="28" viewBox="0 0 160 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Howdens"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="600" letter-spacing="1" fill="currentColor">HOWDENS</text></svg>',
-    '<img src="' . $ldir . 'aqa.svg" alt="AQA">',
-    '<img src="' . $ldir . 'quadient.png" alt="Quadient">',
-    '<img src="' . $ldir . 'slaughter.png" alt="Slaughter and May">',
+    '<svg height="36" viewBox="0 0 100 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="AQA"><text x="0" y="28" font-family="Jost,sans-serif" font-size="30" font-weight="700" fill="currentColor">AQA</text></svg>',
+    '<svg height="28" viewBox="0 0 140 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Quadient"><text x="0" y="22" font-family="Jost,sans-serif" font-size="22" font-weight="300" fill="currentColor">quadient</text></svg>',
+    '<svg height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Slaughter and May"><text x="0" y="14" font-family="Jost,sans-serif" font-size="12" font-weight="600" letter-spacing="1.5" fill="currentColor">SLAUGHTER</text><text x="0" y="30" font-family="Jost,sans-serif" font-size="12" font-weight="300" letter-spacing="1.5" fill="currentColor">AND MAY</text></svg>',
+    '<svg height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="UK Research and Innovation"><rect x="0" y="2" width="30" height="30" rx="2" fill="currentColor"/><text x="3" y="14" font-family="Jost,sans-serif" font-size="9" font-weight="700" fill="white">UK</text><text x="3" y="28" font-family="Jost,sans-serif" font-size="7" font-weight="400" fill="white">RI</text><text x="36" y="14" font-family="Jost,sans-serif" font-size="10" font-weight="500" fill="currentColor">UK Research</text><text x="36" y="28" font-family="Jost,sans-serif" font-size="10" font-weight="300" fill="currentColor">and Innovation</text></svg>',
   ];
   ?>
   <div class="logo-carousel-wrap">
     <div class="logo-track" id="logo-track">
-      <?php foreach ( [ 1, 2, 3, 4 ] as $set ) : ?>
+      <?php foreach ( [ 1, 2 ] as $set ) : ?>
         <?php foreach ( $logo_items as $logo ) : ?>
-          <div class="logo-item"<?php echo $set > 1 ? ' aria-hidden="true"' : ''; ?>><?php echo $logo; ?></div>
+          <div class="logo-item"<?php echo $set === 2 ? ' aria-hidden="true"' : ''; ?>><?php echo $logo; ?></div>
         <?php endforeach; ?>
       <?php endforeach; ?>
     </div>
@@ -153,97 +221,58 @@
   <?php
   $challenge_cards = [
     [
-      'tag'     => 'Low adoption',
-      'title'   => 'Low adoption',
-      'sub'     => "Employees have access to Workday. That doesn't mean they're actually using it properly.",
-      'desc'    => "Employees have access to Workday. That doesn't mean they're actually using it properly.",
-      'bullets' => [
-        'HR becomes the unofficial helpdesk',
-        'Employees create workarounds',
-        'Self-service never quite takes off',
-        'Every process takes longer than it should',
-      ],
-      'impact'  => 'Potential impact: £100,000s in lost productivity every year.',
-      'color'   => '#1E3A8A',
-      'img'     => 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>',
+      'tag'   => 'Recurring tickets',
+      'title' => 'Recurring tickets',
+      'sub'   => 'The same issues keep coming back, draining time and attention.',
+      'desc'  => 'Zeneesha helps identify the root cause behind repeat tickets, so teams can fix the pattern - not just the symptom.',
+      'color' => '#E8472C',
+      'img'   => 'https://images.unsplash.com/photo-1553484771-371a605b060b?auto=format&fit=crop&w=1200&q=80',
+      'icon'  => '<path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>',
     ],
     [
-      'tag'     => 'HR operational inefficiency',
-      'title'   => 'HR operational inefficiency',
-      'sub'     => "Your HR team didn't sign up to spend their week fixing processes. Yet here we are.",
-      'desc'    => "Your HR team didn't sign up to spend their week fixing processes. Yet here we are.",
-      'bullets' => [
-        'Higher HR workload',
-        'Slower service delivery',
-        'Reduced strategic focus',
-        'Increased operating costs',
-      ],
-      'impact'  => 'Potential impact: Up to £300,000 annually.',
-      'color'   => '#E8472C',
-      'img'     => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>',
+      'tag'   => 'Manual workarounds',
+      'title' => 'Manual workarounds',
+      'sub'   => 'Teams build side processes when Workday no longer fits how work happens.',
+      'desc'  => 'Zeneesha reviews workflows and helps bring processes back into Workday, reducing reliance on spreadsheets, side tools, and manual fixes.',
+      'color' => '#1E3A8A',
+      'img'   => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      'icon'  => '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>',
     ],
     [
-      'tag'     => 'Reporting delays',
-      'title'   => 'Reporting delays',
-      'sub'     => "If every report requires detective work, something isn't working.",
-      'desc'    => "If every report requires detective work, something isn't working.",
-      'bullets' => [
-        'Slow decision making',
-        'Manual reporting effort',
-        'Reduced visibility',
-        'Leadership flying partially blind',
-      ],
-      'impact'  => 'Potential impact: £100,000+ annually.',
-      'color'   => '#F57C1F',
-      'img'     => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+      'tag'   => 'Reporting delays',
+      'title' => 'Reporting delays',
+      'sub'   => 'Decisions get made on instinct because the data is not ready in time.',
+      'desc'  => 'Zeneesha improves reporting visibility and data flow, so leaders can access clearer answers when they need them.',
+      'color' => '#F57C1F',
+      'img'   => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+      'icon'  => '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
     ],
     [
-      'tag'     => 'Governance challenges',
-      'title'   => 'Governance challenges',
-      'sub'     => "Workday environments don't become messy overnight. They drift.",
-      'desc'    => "Workday environments don't become messy overnight. They drift.",
-      'bullets' => [
-        'Duplicate processes',
-        'Security risks',
-        'Configuration inconsistency',
-        'Delayed projects',
-      ],
-      'color'   => '#1E3A8A',
-      'img'     => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+      'tag'   => 'Low adoption',
+      'title' => 'Low adoption',
+      'sub'   => 'Employees have access, but not the confidence to use Workday effectively.',
+      'desc'  => 'Zeneesha strengthens adoption through better guidance, practical enablement and processes that fit how people actually work.',
+      'color' => '#1E3A8A',
+      'img'   => 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+      'icon'  => '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>',
     ],
     [
-      'tag'     => 'Ticket backlogs',
-      'title'   => 'Ticket backlogs',
-      'sub'     => 'Constant firefighting is not a support strategy.',
-      'desc'    => 'Constant firefighting is not a support strategy.',
-      'bullets' => [
-        'Delayed improvements',
-        'Burnout risk',
-        'Reactive teams',
-        'Lost optimisation opportunities',
-      ],
-      'color'   => '#E8472C',
-      'img'     => 'https://images.unsplash.com/photo-1553484771-371a605b060b?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>',
+      'tag'   => 'Release fatigue',
+      'title' => 'Release fatigue',
+      'sub'   => 'New updates arrive faster than teams can assess and adopt them.',
+      'desc'  => 'Zeneesha helps prioritise the releases that matter, turning Workday updates into planned improvements instead of disruption.',
+      'color' => '#E8472C',
+      'img'   => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80',
+      'icon'  => '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>',
     ],
     [
-      'tag'     => 'Poor manager self-service',
-      'title'   => 'Poor manager self-service',
-      'sub'     => 'Managers have enough on their plate already.',
-      'desc'    => 'Managers have enough on their plate already.',
-      'bullets' => [
-        'Slower approvals',
-        'Increased HR dependency',
-        'Reduced productivity',
-        'Frustrated teams',
-      ],
-      'color'   => '#3B9EDB',
-      'img'     => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>',
+      'tag'   => 'Underutilised capability',
+      'title' => 'Underutilised capability',
+      'sub'   => 'Features you already own sit dormant while teams consider new tools.',
+      'desc'  => 'Zeneesha helps uncover underused Workday capabilities that can improve performance, efficiency and business value.',
+      'color' => '#3B9EDB',
+      'img'   => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+      'icon'  => '<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
     ],
   ];
   ?>
@@ -279,15 +308,20 @@
             <!-- BACK -->
             <div class="cflip-back" style="background:<?php echo esc_attr( $card['color'] ); ?>" aria-hidden="true">
               <div class="cflip-back-inner">
-                <h3 class="cflip-back-title"><?php echo esc_html( $card['title'] ); ?></h3>
-                <div class="cflip-back-content">
-                  <ul class="cflip-back-list">
-                    <?php foreach ( $card['bullets'] as $bullet ) : ?>
-                      <li><?php echo esc_html( $bullet ); ?></li>
-                    <?php endforeach; ?>
-                  </ul>
+                <div class="cflip-back-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $card['icon']; ?></svg>
                 </div>
+                <h3 class="cflip-back-title"><?php echo esc_html( $card['title'] ); ?></h3>
+                <p class="cflip-back-desc"><?php echo esc_html( $card['desc'] ); ?></p>
+                <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="cflip-back-cta">
+                  Talk to Zeneesha
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
               </div>
+              <button class="cflip-back-close" data-flip="cflip-<?php echo $i; ?>" aria-label="Back to <?php echo esc_attr( $card['title'] ); ?>">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+              </button>
             </div>
 
           </div>
@@ -328,82 +362,8 @@
 
   <div class="container">
     <p class="challenges-footer reveal delay-3">
-      Small signs often reveal bigger opportunities. Zeneesha uncovers gaps, reduces friction and shapes a practical roadmap for improvement.
+      Small signs often reveal bigger opportunities. Zeneesha uncover gaps, reduce friction and shape a practical roadmap for improvement.
     </p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     WORKDAY INEFFICIENCY CALCULATOR
-══════════════════════════════════════════════════════ -->
-<section id="workday-calculator" class="section-calculator py-28">
-  <div class="container calculator-grid" data-workday-calculator>
-
-    <div class="calculator-copy reveal">
-      <div class="section-label text-redorange">
-        <span class="section-label-line" style="background:var(--redorange)"></span>
-        Workday Inefficiency Calculator
-      </div>
-      <h2 class="section-heading">Curious what Workday inefficiency is costing you?</h2>
-      <p class="section-sub">Most organisations know what Workday costs. Far fewer know what inefficient Workday usage costs.</p>
-      <p class="calculator-copy-note">Use this indicative estimate to spot where adoption, governance, reporting and support friction may be leaking value.</p>
-      <a href="#talk" class="calculator-cta">
-        Validate this with a free health check <?php echo z_arrow( 13 ); ?>
-      </a>
-    </div>
-
-    <div class="calculator-panel reveal delay-1">
-      <div class="calculator-control">
-        <label for="employeeSlider">
-          Number of employees
-          <strong data-calc-employee-count>3,000</strong>
-        </label>
-        <input type="range" id="employeeSlider" min="0" max="24" step="1" value="10" data-calc-slider>
-        <div class="calculator-slider-labels">
-          <span>500</span>
-          <span>3,000</span>
-          <span>10,000</span>
-        </div>
-      </div>
-
-      <div class="calculator-result">
-        <span>Estimated annual cost of inefficiency</span>
-        <strong data-calc-total-cost>£1,174,000</strong>
-      </div>
-
-      <div class="calculator-breakdown" aria-label="Estimated annual impact by area">
-        <div class="calculator-impact">
-          <span>Low adoption</span>
-          <strong data-calc-low-adoption>£390,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>HR operational inefficiency</span>
-          <strong data-calc-hr-inefficiency>£300,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>Reporting delays</span>
-          <strong data-calc-reporting-delays>£104,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>Governance challenges</span>
-          <strong data-calc-governance-failures>£200,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>Ticket backlog</span>
-          <strong data-calc-ticket-backlog>£105,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>Poor manager self-service</span>
-          <strong data-calc-manager-self-service>£75,000</strong>
-        </div>
-      </div>
-
-      <p class="calculator-disclaimer">
-        Indicative estimate only, based on common Workday adoption, governance, reporting and support challenges.
-      </p>
-    </div>
-
   </div>
 </section>
 
@@ -414,13 +374,52 @@
 <section id="solutions" class="section-solutions py-28">
   <div class="container">
 
-    <div class="solutions-header solutions-header--stacked reveal">
-      <h2 class="section-heading">Our Workday services.</h2>
-      <p class="section-sub">We help organisations optimise, support and improve Workday through delivery, AMS, integrations, governance, adoption and health checks.</p>
+    <div class="section-label reveal text-redorange">
+      <span class="section-label-line" style="background:var(--redorange)"></span>
+      How Zeneesha Helps
+    </div>
+
+    <div class="solutions-header reveal delay-1">
+      <h2 class="section-heading">Wherever you are with Workday today, Zeneesha connects the next step with the right expertise.</h2>
+      <p class="section-sub">Zeneesha brings the expertise, innovation, and strategic guidance needed to maximise the value of Workday at every stage.</p>
+    </div>
+
+    <!-- Lifecycle SVG -->
+    <div class="lifecycle-wrap reveal delay-2">
+      <svg class="lifecycle-svg" viewBox="0 0 560 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Workday lifecycle: Implementation, AMS and Support, Maximise">
+        <defs>
+          <marker id="arr-to-2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M1 1.5 L8 4.5 L1 7.5 Z" fill="#3B9EDB"/>
+          </marker>
+          <marker id="arr-to-3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M1 1.5 L8 4.5 L1 7.5 Z" fill="#F57C1F"/>
+          </marker>
+        </defs>
+        <line x1="103" y1="40" x2="255" y2="40" stroke="#3B9EDB" stroke-width="1.5" stroke-opacity=".55" marker-end="url(#arr-to-2)"/>
+        <line x1="303" y1="40" x2="455" y2="40" stroke="#F57C1F" stroke-width="1.5" stroke-opacity=".55" marker-end="url(#arr-to-3)"/>
+        <g class="lc-node" data-sol-node="0" tabindex="0" role="button" aria-label="Implementation">
+          <circle class="lc-ring" cx="80" cy="40" r="32" fill="#1E3A8A" opacity=".08"/>
+          <circle class="lc-main" cx="80" cy="40" r="22" fill="#1E3A8A"/>
+          <text x="80" y="45" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" font-weight="600" fill="#fff">01</text>
+          <text x="80" y="82" text-anchor="middle" font-family="Jost,sans-serif" font-size="11.5" font-weight="600" fill="#1E3A8A" letter-spacing=".02em">Implementation</text>
+        </g>
+        <g class="lc-node" data-sol-node="1" tabindex="0" role="button" aria-label="AMS and Support">
+          <circle class="lc-ring" cx="280" cy="40" r="32" fill="#3B9EDB" opacity="0"/>
+          <circle class="lc-main" cx="280" cy="40" r="22" fill="#fff" stroke="#3B9EDB" stroke-width="2"/>
+          <text x="280" y="45" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" font-weight="600" fill="#3B9EDB">02</text>
+          <text x="280" y="82" text-anchor="middle" font-family="Jost,sans-serif" font-size="11.5" font-weight="500" fill="#475569" letter-spacing=".02em">AMS / Support</text>
+        </g>
+        <g class="lc-node" data-sol-node="2" tabindex="0" role="button" aria-label="Maximise">
+          <circle class="lc-ring" cx="480" cy="40" r="32" fill="#F57C1F" opacity="0"/>
+          <circle class="lc-main" cx="480" cy="40" r="22" fill="#fff" stroke="#F57C1F" stroke-width="2"/>
+          <text x="480" y="45" text-anchor="middle" font-family="Jost,sans-serif" font-size="13" font-weight="600" fill="#F57C1F">03</text>
+          <text x="480" y="82" text-anchor="middle" font-family="Jost,sans-serif" font-size="11.5" font-weight="500" fill="#475569" letter-spacing=".02em">Maximise</text>
+        </g>
+      </svg>
     </div>
 
     <!-- Tab buttons -->
-    <div class="solutions-tabs reveal delay-1">
+    <div class="solutions-tabs reveal delay-2">
       <?php
       $services = [
         [ 'id'=>'implementation', 'num'=>'01', 'title'=>'Implementation', 'color'=>'#1E3A8A' ],
@@ -444,11 +443,11 @@
         'title'    => 'Implementation',
         'color'    => '#1E3A8A',
         'tagline'  => 'Advisory, planning, migration, and go-live support to start Workday with confidence.',
-        'desc'     => 'A Workday implementation sets the rules your organisation will live by for years. Zeneesha configures those rules around how your business actually works.',
+        'desc'     => 'A Workday implementation sets the rules your organisation will live by for years. Zeneesha ensures those rules are right — configured for how your business actually works, not how the default template assumes it does.',
         'tags'     => [ 'Workday HCM', 'Finance', 'Adaptive Planning', 'Data Migration' ],
         'outcomes' => [
           'Configured for your processes, not just the defaults.',
-          'Data migrated cleanly with fewer surprises in month one.',
+          'Data migrated cleanly — no surprises in month one.',
           'Team trained and genuinely confident at go-live.',
         ],
       ],
@@ -472,7 +471,7 @@
         'title'    => 'Maximise',
         'color'    => '#F57C1F',
         'tagline'  => 'Automation, analytics, integrations, and adoption to unlock more from Workday.',
-        'desc'     => "There's a version of Workday your organisation hasn't reached yet. One that answers leadership's questions faster, reduces manual work, and reflects how your business operates today.",
+        'desc'     => "There's a version of Workday that your organisation hasn't reached yet — one that answers leadership's questions instantly, eliminates manual work, and reflects how your business operates today. Zeneesha helps you get there.",
         'tags'     => [ 'Automation', 'Reporting', 'Configuration Review', 'Adoption' ],
         'outcomes' => [
           'Automation that eliminates manual intervention.',
@@ -486,15 +485,10 @@
 
         <!-- Left: copy -->
         <div>
-          <div class="sol-service-num" style="color:<?php echo esc_attr( $svc['color'] ); ?>">Workday service</div>
+          <div class="sol-service-num" style="color:<?php echo esc_attr( $svc['color'] ); ?>">Service <?php echo esc_html( $svc['num'] ); ?></div>
           <h3 class="sol-service-title"><?php echo esc_html( $svc['title'] ); ?></h3>
           <p class="sol-tagline" style="color:<?php echo esc_attr( $svc['color'] ); ?>"><?php echo esc_html( $svc['tagline'] ); ?></p>
           <p class="sol-desc"><?php echo esc_html( $svc['desc'] ); ?></p>
-          <ul class="sol-outcomes">
-            <?php foreach ( $svc['outcomes'] as $outcome ) : ?>
-              <li><?php echo esc_html( $outcome ); ?></li>
-            <?php endforeach; ?>
-          </ul>
           <div class="sol-tags">
             <?php foreach ( $svc['tags'] as $tag ) : ?>
               <span class="sol-tag" style="color:<?php echo esc_attr( $svc['color'] ); ?>;background:<?php echo esc_attr( $svc['color'] ); ?>10;border:1px solid <?php echo esc_attr( $svc['color'] ); ?>25"><?php echo esc_html( $tag ); ?></span>
@@ -1040,8 +1034,8 @@
             'a' => 'Zeneesha supports key Workday modules including HCM, Finance, Adaptive Planning and Analytics, with expertise across reporting and integrations.',
           ],
           [
-            'q' => 'What happens during a Workday Health Check?',
-            'a' => 'Zeneesha reviews your setup, processes, data, reporting, integrations and adoption to identify gaps, risks and opportunities, then provides a practical optimisation roadmap.',
+            'q' => 'What happens during a Workday Health Checkup?',
+            'a' => 'Zeneesha reviews your setup, processes, data, reporting, integrations and adoption to identify gaps, risks and opportunities — then provides a practical optimisation roadmap.',
           ],
         ];
         foreach ( $faqs as $i => $faq ) : ?>
@@ -1145,7 +1139,7 @@
           <div class="form-group">
             <div class="cta-with-note">
               <button type="submit" class="form-submit">
-                Request a Workday Health Check
+                Request a Workday Health Checkup
                 <?php echo z_arrow( 14 ); ?>
               </button>
               <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
@@ -1158,6 +1152,33 @@
 
   </div>
 </section>
+
+<!-- V2 hero parallax -->
+<script>
+(function(){
+  var right = document.getElementById('hero-v2-right');
+  if(!right) return;
+  var els = Array.from(right.querySelectorAll('[data-v2-parallax]'));
+  if(!els.length) return;
+  var ticking = false;
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+  function applyParallax(){
+    var y = window.pageYOffset;
+    // Only run while hero is on screen
+    var heroBottom = right.getBoundingClientRect().bottom + y;
+    if(y > heroBottom) { ticking = false; return; }
+    els.forEach(function(el){
+      var speed = parseFloat(el.dataset.v2Parallax);
+      el.style.transform = 'translateY(' + (y * speed).toFixed(1) + 'px)';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(applyParallax); ticking = true; }
+  }, {passive: true});
+})();
+</script>
 
 </main>
 <?php get_footer(); ?>

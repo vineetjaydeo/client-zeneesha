@@ -130,31 +130,84 @@
     }, 3200);
   }
 
-  /* ── Solutions Tabs ────────────────────────────────────────── */
-  var solTabs   = document.querySelectorAll('[data-sol-tab]');
-  var solPanels = document.querySelectorAll('[data-sol-panel]');
-  var svgNodes  = document.querySelectorAll('.lc-node');
+  /* ── Workday Inefficiency Calculator ─────────────────────── */
+  var workdayCalc = document.querySelector('[data-workday-calculator]');
+  if (workdayCalc) {
+    var employeeValues = [
+      500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000,
+      3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500,
+      9000, 9500, 10000
+    ];
+    var slider = workdayCalc.querySelector('[data-calc-slider]');
+    var employeeCount = workdayCalc.querySelector('[data-calc-employee-count]');
+    var totalCost = workdayCalc.querySelector('[data-calc-total-cost]');
+    var lowAdoption = workdayCalc.querySelector('[data-calc-low-adoption]');
+    var hrInefficiency = workdayCalc.querySelector('[data-calc-hr-inefficiency]');
+    var reportingDelays = workdayCalc.querySelector('[data-calc-reporting-delays]');
+    var governanceFailures = workdayCalc.querySelector('[data-calc-governance-failures]');
+    var ticketBacklog = workdayCalc.querySelector('[data-calc-ticket-backlog]');
+    var managerSelfService = workdayCalc.querySelector('[data-calc-manager-self-service]');
+    var calcFocus = workdayCalc.querySelector('[data-calc-focus]');
 
-  if (solTabs.length) {
-    function activateSol(idx) {
-      solTabs.forEach(function (t, i) {
-        t.classList.toggle('active', i === idx);
-        var svcColor = t.getAttribute('data-color');
-        if (i === idx && svcColor) {
-          t.style.background = svcColor;
-          t.style.borderColor = svcColor;
-        } else {
-          t.style.background = '';
-          t.style.borderColor = '';
-        }
-      });
-      solPanels.forEach(function (p, i) { p.classList.toggle('active', i === idx); });
-      svgNodes.forEach(function (n, i) { n.classList.toggle('active', i === idx); });
+    var currencyFormatter = new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: 'GBP',
+      maximumFractionDigits: 0
+    });
+    var numberFormatter = new Intl.NumberFormat('en-GB');
+
+    function formatCurrency(value) {
+      return currencyFormatter.format(Math.round(value));
     }
 
-    solTabs.forEach(function (t, i) { t.addEventListener('click', function () { activateSol(i); }); });
-    svgNodes.forEach(function (n, i) { n.addEventListener('click', function () { activateSol(i); }); });
-    activateSol(0);
+    function calculateWorkdayCosts(employees) {
+      var managers = employees / 6;
+      var hrStaff = employees / 60;
+      var hrisStaff = employees / 600;
+      var lowAdoptionCost = employees * 5 * 52 / 60 * 30;
+      var hrInefficiencyCost = hrStaff * 60000 * 0.10;
+      var reportingDelayCost = hrisStaff * 10 * 52 * 40;
+      var governanceFailureCost = 200000 * Math.pow(employees / 3000, 0.85);
+      var ticketBacklogCost = hrisStaff * 70000 * 0.30;
+      var managerSelfServiceCost = managers * 15 * 12 / 60 * 50;
+      return {
+        lowAdoptionCost: lowAdoptionCost,
+        hrInefficiencyCost: hrInefficiencyCost,
+        reportingDelayCost: reportingDelayCost,
+        governanceFailureCost: governanceFailureCost,
+        ticketBacklogCost: ticketBacklogCost,
+        managerSelfServiceCost: managerSelfServiceCost,
+        total: lowAdoptionCost + hrInefficiencyCost + reportingDelayCost + governanceFailureCost + ticketBacklogCost + managerSelfServiceCost
+      };
+    }
+
+    function updateWorkdayCalculator() {
+      var idx = Number(slider.value);
+      var employees = employeeValues[idx] || employeeValues[0];
+      var costs = calculateWorkdayCosts(employees);
+      var progress = idx / (employeeValues.length - 1) * 100;
+
+      workdayCalc.style.setProperty('--calc-progress', progress + '%');
+      employeeCount.textContent = numberFormatter.format(employees);
+      totalCost.textContent = formatCurrency(costs.total);
+      lowAdoption.textContent = formatCurrency(costs.lowAdoptionCost);
+      hrInefficiency.textContent = formatCurrency(costs.hrInefficiencyCost);
+      reportingDelays.textContent = formatCurrency(costs.reportingDelayCost);
+      governanceFailures.textContent = formatCurrency(costs.governanceFailureCost);
+      ticketBacklog.textContent = formatCurrency(costs.ticketBacklogCost);
+      managerSelfService.textContent = formatCurrency(costs.managerSelfServiceCost);
+    }
+
+    if (slider) {
+      slider.max = String(employeeValues.length - 1);
+      slider.addEventListener('input', updateWorkdayCalculator);
+      if (calcFocus) {
+        calcFocus.addEventListener('click', function () {
+          slider.focus();
+        });
+      }
+      updateWorkdayCalculator();
+    }
   }
 
   /* ── FAQ Accordion ─────────────────────────────────────────── */
@@ -166,6 +219,31 @@
       if (!isOpen) item.classList.add('open');
     });
   });
+
+  var faqAccordion = document.querySelector('.faq-accordion');
+  if (faqAccordion) {
+    var lazyFaqItems = Array.prototype.slice.call(faqAccordion.querySelectorAll('.faq-item--lazy'));
+    if (lazyFaqItems.length) {
+      faqAccordion.classList.add('faq-lazy-ready');
+      var showLazyFaqs = function () {
+        lazyFaqItems.forEach(function (item) { item.classList.add('in'); });
+      };
+
+      if ('IntersectionObserver' in window) {
+        var faqLazyObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              showLazyFaqs();
+              faqLazyObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -80px 0px' });
+        faqLazyObs.observe(faqAccordion);
+      } else {
+        showLazyFaqs();
+      }
+    }
+  }
 
   /* ── Contact form AJAX ─────────────────────────────────────── */
   var contactForm = document.getElementById('cta-contact-form');
@@ -187,7 +265,7 @@
           if (res.success) {
             contactForm.reset();
             msgEl.className = 'form-msg success';
-            msgEl.textContent = 'Thank you — we\'ll be in touch within one working day.';
+            msgEl.textContent = 'Thank you. We\'ll be in touch within one working day.';
           } else {
             msgEl.className = 'form-msg error';
             msgEl.textContent = 'Something went wrong. Please email us directly at hello@zeneesha.co.uk';
