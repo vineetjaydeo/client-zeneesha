@@ -1207,7 +1207,7 @@ label.field-label span{color:var(--redorange)}
   transition:transform .2s,box-shadow .25s,border-color .25s,background .25s;
 }
 .hero-action:hover{transform:translateY(-2px)}
-.hero-action strong{display:block;font-size:clamp(20px,1.55vw,24px);font-weight:700;line-height:1.22}
+.hero-action strong{display:block;font-size:clamp(20px,1.55vw,24px);font-weight:700;line-height:1.22;letter-spacing:-.5px}
 .hero-action svg{flex:0 0 auto}
 .hero-action-primary{background:linear-gradient(135deg,#E8472C 0%,#F57C1F 100%);color:#fff;box-shadow:0 18px 42px -24px rgba(232,71,44,.8)}
 .hero-action-secondary{margin-top:0;background:#fff;color:var(--navy);border:1px solid rgba(30,58,138,.13);box-shadow:0 18px 44px -30px rgba(30,58,138,.5)}
