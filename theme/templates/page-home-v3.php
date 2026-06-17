@@ -425,14 +425,14 @@ get_header(); ?>
 
     <?php
     $service_capabilities = [
-      [ 'label' => 'Global project delivery', 'accent' => '#1E3A8A', 'icon' => '<path d="M3 7h18"/><path d="M7 3v18"/><path d="M17 3v18"/><path d="M3 17h18"/>' ],
-      [ 'label' => 'AMS support', 'accent' => '#3B9EDB', 'icon' => '<path d="M4 14a8 8 0 1116 0"/><path d="M4 14v3a2 2 0 002 2h2"/><path d="M20 14v3a2 2 0 01-2 2h-2"/><path d="M9 19h6"/>' ],
-      [ 'label' => 'Workday optimisation', 'accent' => '#E8472C', 'icon' => '<path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/>' ],
+      [ 'label' => 'Global Project Delivery', 'accent' => '#1E3A8A', 'icon' => '<path d="M3 7h18"/><path d="M7 3v18"/><path d="M17 3v18"/><path d="M3 17h18"/>' ],
+      [ 'label' => 'AMS Support', 'accent' => '#3B9EDB', 'icon' => '<path d="M4 14a8 8 0 1116 0"/><path d="M4 14v3a2 2 0 002 2h2"/><path d="M20 14v3a2 2 0 01-2 2h-2"/><path d="M9 19h6"/>' ],
+      [ 'label' => 'Workday Optimisation', 'accent' => '#E8472C', 'icon' => '<path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/>' ],
       [ 'label' => 'Integrations', 'accent' => '#F57C1F', 'icon' => '<path d="M8 12h8"/><path d="M6 8a4 4 0 100 8"/><path d="M18 8a4 4 0 110 8"/>' ],
-      [ 'label' => 'Release readiness', 'accent' => '#E8472C', 'icon' => '<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/>' ],
-      [ 'label' => 'Governance reviews', 'accent' => '#1E3A8A', 'icon' => '<path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 11l8 4 8-4"/><path d="M4 15l8 4 8-4"/>' ],
-      [ 'label' => 'Adoption improvement', 'accent' => '#3B9EDB', 'icon' => '<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M16 11h6"/>' ],
-      [ 'label' => 'Health checks', 'accent' => '#F57C1F', 'icon' => '<path d="M20 6L9 17l-5-5"/><path d="M21 12a9 9 0 11-3-6.7"/>' ],
+      [ 'label' => 'Release Readiness', 'accent' => '#E8472C', 'icon' => '<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/>' ],
+      [ 'label' => 'Governance Reviews', 'accent' => '#1E3A8A', 'icon' => '<path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 11l8 4 8-4"/><path d="M4 15l8 4 8-4"/>' ],
+      [ 'label' => 'Adoption Improvement', 'accent' => '#3B9EDB', 'icon' => '<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M16 11h6"/>' ],
+      [ 'label' => 'Health Checks', 'accent' => '#F57C1F', 'icon' => '<path d="M20 6L9 17l-5-5"/><path d="M21 12a9 9 0 11-3-6.7"/>' ],
     ];
     ?>
     <div class="service-capability-grid reveal delay-1">
