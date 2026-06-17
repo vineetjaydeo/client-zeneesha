@@ -206,13 +206,14 @@
   background:rgba(30,58,138,.04);border-left:3px solid var(--navy);
 }
 .challenges-stat-bar p{font-size:15px;font-weight:400;color:var(--navy);line-height:1.6;margin:0}
-.problem-intro{display:block;max-width:980px;margin-bottom:2.75rem}
-.problem-intro .section-heading{max-width:920px}
-.problem-intro .section-sub{margin-top:1.25rem;max-width:760px}
-.problem-signals{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1.05rem;margin-top:1.2rem;padding-top:.95rem;max-width:900px;border-top:1px solid rgba(30,58,138,.1)}
-.problem-signals span{display:inline-flex;align-items:center;gap:.5rem;padding:0;font-size:17px;font-weight:600;line-height:1.5;color:var(--navy)}
-.problem-signals span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--redorange);flex-shrink:0}
-.problem-familiar{font-size:18px;font-weight:500;color:var(--slate2);margin:1rem 0 0}
+.problem-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:4.5rem;align-items:start;margin-bottom:3rem}
+.problem-intro .section-heading{max-width:780px}
+.problem-copy{padding-top:.45rem;max-width:640px}
+.problem-copy .section-sub{margin-top:0;max-width:none}
+.problem-signals{margin:1.15rem 0 0;padding-left:1.35rem;list-style:disc;color:var(--navy)}
+.problem-signals li{padding-left:.1rem;margin:.45rem 0;font-size:18px;font-weight:600;line-height:1.45;color:var(--navy)}
+.problem-signals li::marker{color:var(--redorange);font-size:.8em}
+.problem-familiar{font-size:18px;font-weight:600;color:var(--slate2);margin:1.15rem 0 0}
 .signal-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:stretch}
 .signal-cards .reveal{height:100%}
 .signal-card{background:#fff;border-radius:10px;padding:24px 26px 22px;box-shadow:0 2px 16px rgba(30,58,138,.05);display:flex;flex-direction:column;gap:10px;transition:transform .3s,box-shadow .3s;height:100%}
@@ -634,7 +635,8 @@ label.field-label span{color:var(--redorange)}
 }
 @media(max-width:1023px){
   .stats-grid{grid-template-columns:repeat(3,1fr)}
-  .problem-intro{grid-template-columns:1fr}
+  .problem-intro{grid-template-columns:1fr;gap:1.4rem}
+  .problem-copy{padding-top:0;max-width:720px}
   .signal-cards{grid-template-columns:1fr 1fr}
   .calculator-grid{grid-template-columns:1fr;gap:2.5rem}
   .calculator-copy{position:static}

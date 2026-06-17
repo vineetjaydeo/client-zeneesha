@@ -118,15 +118,17 @@ get_header(); ?>
 
     <div class="problem-intro reveal delay-1">
       <h2 class="section-heading">Workday isn't the problem. The way it's being used probably is.</h2>
-      <p class="section-sub">Most organisations don't wake up one morning and decide to optimise Workday. They usually reach that point after months or years of:</p>
-      <div class="problem-signals" aria-label="Common Workday warning signs">
-        <span>Growing frustration</span>
-        <span>Endless tickets</span>
-        <span>Confusing processes</span>
-        <span>Reporting issues</span>
-        <span>"We'll look at that next quarter"</span>
+      <div class="problem-copy">
+        <p class="section-sub">Most organisations don't wake up one morning and decide to optimise Workday. They usually reach that point after months or years of:</p>
+        <ul class="problem-signals" aria-label="Common Workday warning signs">
+          <li>Growing frustration</li>
+          <li>Endless tickets</li>
+          <li>Confusing processes</li>
+          <li>Reporting issues</li>
+          <li>"We'll look at that next quarter"</li>
+        </ul>
+        <p class="problem-familiar">Sounds familiar?</p>
       </div>
-      <p class="problem-familiar">Sound familiar?</p>
     </div>
 
   </div>
