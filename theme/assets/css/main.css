@@ -209,7 +209,9 @@
   background:rgba(30,58,138,.04);border-left:3px solid var(--navy);
 }
 .challenges-stat-bar p{font-size:15px;font-weight:400;color:var(--navy);line-height:1.6;margin:0}
-.page-template-page-home-v3 .section-challenges{background:linear-gradient(180deg,#edf4fa 0%,#f7fafc 100%);border-top:1px solid rgba(30,58,138,.09)}
+.page-template-page-home-v3 .section-challenges{background:#fff;border-top:1px solid rgba(30,58,138,.09)}
+.page-template-page-home-v3 .section-calculator{background:var(--cream2)}
+.page-template-page-home-v3 .section-faq{background:var(--cream2)}
 .problem-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:4.5rem;align-items:center;margin-bottom:3rem}
 .problem-intro .section-heading{max-width:780px}
 .problem-copy{padding-top:.45rem;max-width:640px}
