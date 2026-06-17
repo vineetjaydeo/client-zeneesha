@@ -209,6 +209,7 @@
   background:rgba(30,58,138,.04);border-left:3px solid var(--navy);
 }
 .challenges-stat-bar p{font-size:15px;font-weight:400;color:var(--navy);line-height:1.6;margin:0}
+.page-template-page-home-v3 .section-challenges{background:linear-gradient(180deg,#edf4fa 0%,#f7fafc 100%);border-top:1px solid rgba(30,58,138,.09)}
 .problem-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:4.5rem;align-items:center;margin-bottom:3rem}
 .problem-intro .section-heading{max-width:780px}
 .problem-copy{padding-top:.45rem;max-width:640px}
@@ -1191,7 +1192,7 @@ label.field-label span{color:var(--redorange)}
   grid-template-columns:minmax(0,6.4fr) minmax(390px,4.6fr);
   gap:clamp(2rem,5vw,5.5rem);align-items:center;
   min-height:clamp(340px,calc(100dvh - 330px),430px);
-  padding-top:2.1rem;padding-bottom:1.75rem;
+  padding-top:2.85rem;padding-bottom:2.45rem;
 }
 .page-template-page-home-v3 .hero-left{align-self:center}
 .page-template-page-home-v3 .hero-headline{margin-bottom:1rem}
