@@ -287,9 +287,9 @@
 .service-capability-item:hover,.service-capability-item:focus-within{z-index:2;transform:scale(1.018);background:#fff;border-color:rgba(30,58,138,.13)}
 .service-capability-item:hover::before,.service-capability-item:focus-within::before{transform:scaleX(1)}
 .service-capability-top{display:flex;align-items:flex-start;justify-content:flex-end;min-height:48px}
-.service-capability-icon{position:absolute;right:-22px;top:22px;width:120px;height:120px;display:flex;align-items:center;justify-content:center;color:var(--svc-accent,var(--navy));opacity:.16;pointer-events:none;transition:opacity .25s,transform .25s}
+.service-capability-icon{position:absolute;right:1.25rem;top:1.2rem;width:98px;height:98px;display:flex;align-items:center;justify-content:center;color:var(--svc-accent,var(--navy));opacity:.15;pointer-events:none;transition:opacity .25s,transform .25s}
 .service-capability-icon svg{width:100%;height:100%;stroke-width:1.15}
-.service-capability-item:hover .service-capability-icon{opacity:.22;transform:translate(-4px,-2px) scale(1.03)}
+.service-capability-item:hover .service-capability-icon{opacity:.22;transform:translate(-2px,-2px) scale(1.03)}
 .service-capability-body{position:relative;z-index:1;display:grid;gap:.8rem;align-content:end}
 .service-capability-item strong{max-width:12ch;font-size:clamp(20px,1.55vw,25px);font-weight:600;line-height:1.12;color:var(--navy);letter-spacing:0}
 .service-capability-cta{display:inline-flex;align-items:center;gap:7px;width:max-content;max-width:100%;font-size:14px;font-weight:600;line-height:1;color:var(--svc-accent,var(--redorange));opacity:0;transform:translateY(8px);transition:opacity .22s,transform .22s}
@@ -665,7 +665,7 @@ label.field-label span{color:var(--redorange)}
   .calculator-breakdown{grid-template-columns:1fr}
   .service-capability-grid{grid-template-columns:1fr;border-radius:14px}
   .service-capability-item{min-height:132px;padding:1.15rem;border-right:0!important}
-  .service-capability-icon{right:-16px;top:14px;width:96px;height:96px}
+  .service-capability-icon{right:1rem;top:1rem;width:78px;height:78px}
   .service-capability-cta{opacity:1;transform:none}
   .service-capability-item:nth-last-child(-n+2){border-bottom:1px solid rgba(30,58,138,.08)}
   .service-capability-item:last-child{border-bottom:0}
