@@ -211,7 +211,7 @@
 .challenges-stat-bar p{font-size:15px;font-weight:400;color:var(--navy);line-height:1.6;margin:0}
 .page-template-page-home-v3 .section-challenges{background:#fff;border-top:1px solid rgba(30,58,138,.09)}
 .page-template-page-home-v3 .section-calculator{background:var(--cream2)}
-.page-template-page-home-v3 .section-faq{background:var(--cream2)}
+.page-template-page-home-v3 .section-faq{background:#fff;border-top:1px solid rgba(30,58,138,.08)}
 .problem-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:4.5rem;align-items:center;margin-bottom:3rem}
 .problem-intro .section-heading{max-width:780px}
 .problem-copy{padding-top:.45rem;max-width:640px}
@@ -308,7 +308,7 @@
 .section-why::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.08) 0 1px,transparent 1px 120px);opacity:.35;pointer-events:none}
 .section-why .container{position:relative;z-index:1}
 .section-why .section-heading{color:#fff}
-.section-health-check{background:#fff}
+.section-health-check{background:linear-gradient(180deg,#FFFDF5 0%,#FFF7EA 100%);border-top:1px solid rgba(245,124,31,.12);border-bottom:1px solid rgba(245,124,31,.12)}
 .section-approach{background:var(--cream2)}
 .why-hero{display:grid;grid-template-columns:6fr 5fr;gap:3rem;align-items:center;margin-bottom:2.5rem}
 .why-hero .section-heading{margin-top:.8rem}
