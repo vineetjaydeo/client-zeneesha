@@ -38,47 +38,59 @@ get_header(); ?>
           <p>Zeneesha helps organisations optimise, support and evolve Workday so it delivers the value it promised in the first place.</p>
         </div>
 
-        <a href="#talk" class="hero-primary-cta hero-action hero-action-primary">
-          <span>
-            <strong>Book Your Free Workday Health Check</strong>
-          </span>
-          <?php echo z_arrow( 15 ); ?>
-        </a>
       </div>
 
-      <!-- Right: visual and calculator CTA -->
+      <!-- Right: CTAs -->
       <div class="hero-right">
-        <figure class="hero-visual-card">
-          <img
-            class="hero-visual-img"
-            src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/sol-02-ams-support.webp' ); ?>"
-            alt=""
-            width="1400"
-            height="933"
-            fetchpriority="high"
-          >
+        <div class="hero-action-panel">
+          <a href="#talk" class="hero-action hero-action-primary">
+            <span>
+              <strong>Book Your Free Workday Health Check</strong>
+            </span>
+            <?php echo z_arrow( 16 ); ?>
+          </a>
           <a href="#workday-calculator" class="hero-action hero-action-secondary">
             <span>
               <strong>Calculate The Cost Of Workday Inefficiency</strong>
             </span>
-            <?php echo z_arrow( 15 ); ?>
+            <?php echo z_arrow( 16 ); ?>
           </a>
-        </figure>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════
+     CERTIFICATIONS
+══════════════════════════════════════════════════════ -->
+<section class="section-certs section-certs-home-v3 py-12" style="border-top:1px solid rgba(30,58,138,.08);border-bottom:1px solid rgba(30,58,138,.06)">
+  <div class="container">
+    <p class="certs-title">Accredited <span>&middot;</span> Certified <span>&middot;</span> Trusted</p>
+    <div class="certs-grid">
+      <?php
+      $certs = [
+        [ 'name'=>'Workday Sales Partner',    'img'=>'https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-sales-partner@4x.png',    'h'=>74 ],
+        [ 'name'=>'Workday Services Partner', 'img'=>'https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-services-partner@4x.png', 'h'=>74 ],
+        [ 'name'=>'IAF Member',               'img'=>'https://www.zeneesha.com/wp-content/uploads/2021/12/IAF-Logo.png',                                'h'=>68 ],
+        [ 'name'=>'MSDUK',                    'img'=>'https://www.zeneesha.com/wp-content/uploads/2024/01/MSDNUK.png',                                  'h'=>48 ],
+        [ 'name'=>'Cyber Essentials',         'img'=>'https://www.zeneesha.com/wp-content/uploads/2021/12/Cyber-Essentials-Logo_1.png',                 'h'=>74 ],
+      ];
+      foreach ( $certs as $c ) : ?>
+        <div class="cert-item">
+          <img src="<?php echo esc_url( $c['img'] ); ?>" alt="<?php echo esc_attr( $c['name'] ); ?>"
+               style="height:<?php echo $c['h']; ?>px" loading="eager">
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════
      TRUST
 ══════════════════════════════════════════════════════ -->
 <section id="trust" class="section-trust" style="border-bottom:1px solid rgba(30,58,138,.07)">
-  <div class="trust-badge-wrap trust-badge-wrap--compact">
-    <p class="trust-kicker reveal">Trusted by organisations running Workday around the world.</p>
-  </div>
-
   <!-- Logo carousel -->
   <?php
   $ldir = get_template_directory_uri() . '/assets/img/logos/';
@@ -100,8 +112,6 @@ get_header(); ?>
       <?php endforeach; ?>
     </div>
   </div>
-
-  <p class="trust-partner-line reveal">Workday Services Partner | Workday Sales Partner</p>
 </section>
 
 
@@ -146,7 +156,6 @@ get_header(); ?>
         'Self-service never quite takes off',
         'Every process takes longer than it should',
       ],
-      'impact'  => '£100,000s in lost productivity every year.',
       'color'   => '#1E3A8A',
       'img'     => 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
       'icon'    => '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>',
@@ -161,7 +170,6 @@ get_header(); ?>
         'Reduced strategic focus',
         'Increased operating costs',
       ],
-      'impact'  => 'Up to £300,000 annually.',
       'color'   => '#E8472C',
       'img'     => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
       'icon'    => '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>',
@@ -176,7 +184,6 @@ get_header(); ?>
         'Reduced visibility',
         'Leadership flying partially blind',
       ],
-      'impact'  => '£100,000+ annually.',
       'color'   => '#F57C1F',
       'img'     => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
       'icon'    => '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
@@ -226,7 +233,7 @@ get_header(); ?>
   ];
   ?>
 
-  <!-- Flip cards grid — click to reveal how Zeneesha helps -->
+  <!-- Flip cards grid: click to reveal how Zeneesha helps -->
   <div class="container">
     <div class="cflip-grid">
       <?php foreach ( $challenge_cards as $i => $card ) : ?>
@@ -276,12 +283,6 @@ get_header(); ?>
                       <li><?php echo esc_html( $bullet ); ?></li>
                     <?php endforeach; ?>
                   </ul>
-                  <?php if ( ! empty( $card['impact'] ) ) : ?>
-                    <div class="cflip-impact">
-                      <div class="cflip-section-title">Potential Impact</div>
-                      <p><?php echo esc_html( $card['impact'] ); ?></p>
-                    </div>
-                  <?php endif; ?>
                 </div>
                 <div class="cflip-back-actions">
                   <a href="#talk" class="cflip-back-cta">
@@ -313,7 +314,7 @@ get_header(); ?>
       document.querySelectorAll('.reveal-card').forEach(function(el){ el.classList.add('is-visible'); });
     }
 
-    // Desktop flip handled by CSS :hover — no JS needed (avoids child-element flicker).
+    // Desktop flip handled by CSS hover, no JS needed.
     // Mobile: tap to toggle.
     if(window.matchMedia('(hover:none) and (pointer:coarse)').matches){
       function setFlipState(card, on){
@@ -412,7 +413,6 @@ get_header(); ?>
       <p class="calculator-disclaimer">
         This calculator provides an indicative estimate only, based on common Workday adoption, governance, reporting and support challenges. A Workday Health Check can validate the actual impact for your organisation.
       </p>
-      <button type="button" class="calculator-calc-btn" data-calc-focus>Calculate My Cost</button>
     </div>
 
   </div>
@@ -478,8 +478,6 @@ get_header(); ?>
         <h2 class="section-heading">Workday Expertise. Without The Consultancy Theatre.</h2>
       </div>
       <div class="why-copy">
-        <p>Some consultancies love complexity.</p>
-        <p>We prefer clarity.</p>
         <ul>
           <li>No unnecessary complexity.</li>
           <li>No oversized programmes.</li>
@@ -495,23 +493,22 @@ get_header(); ?>
         'body'  => 'No rotating account managers or ticket voids. You get direct access to a named, senior Workday consultant who thoroughly understands your configuration baseline.',
       ],
       [
-        'title' => 'Pre-emptive Risk Mapping:',
+        'title' => 'Pre-emptive Risk Mapping',
         'body'  => 'We audit your environment and isolate hidden configuration gaps before major delivery begins. You will never have to explain a system surprise to your board.',
       ],
       [
-        'title' => 'Deliberate Self-Sufficiency:',
+        'title' => 'Deliberate Self-Sufficiency',
         'body'  => 'We engineer ourselves out of a job. Every engagement includes thorough documentation and hands-on knowledge transfer to make your internal team completely independent.',
       ],
       [
-        'title' => 'Real, Board-Level ROI:',
-        'body'  => 'We have helped global enterprises&mdash;like AQA, LEGO&mdash;turn vague optimization stories into real, quantifiable business metrics.',
+        'title' => 'Real, Board-Level ROI',
+        'body'  => 'We have helped global enterprises like AQA and LEGO turn vague optimization stories into real, quantifiable business metrics.',
       ],
     ];
     ?>
     <div class="why-grid">
       <?php foreach ( $why_items as $i => $item ) : ?>
         <article class="why-card reveal" style="transition-delay:<?php echo esc_attr( ( $i + 1 ) * 80 ); ?>ms">
-          <span class="why-card-num"><?php echo esc_html( $i + 1 ); ?>.</span>
           <h3><?php echo esc_html( $item['title'] ); ?></h3>
           <p><?php echo wp_kses_post( $item['body'] ); ?></p>
         </article>
@@ -587,12 +584,10 @@ get_header(); ?>
   <div class="container">
     <div class="faq-grid">
 
-      <!-- Left: heading (sticky) -->
       <div class="faq-sticky">
-        <h2 class="section-heading reveal delay-1" style="font-size:clamp(36px,4.4vw,58px)">FAQs:</h2>
+        <h2 class="section-heading reveal delay-1" style="font-size:clamp(36px,4.4vw,58px)">FAQs</h2>
       </div>
 
-      <!-- Right: accordion -->
       <div class="faq-accordion reveal delay-2">
         <?php
         $faqs = [
@@ -600,7 +595,7 @@ get_header(); ?>
             'q' => 'Do you provide Workday AMS services?',
             'a' => [
               "Yes. But we'd rather help you need less support, not more.",
-              "We provide Workday AMS services for organisations that need additional expertise, capacity or specialist support. Our goal isn't to keep you dependent on us forever&mdash;it's to help your Workday environment become more efficient, more stable and easier to manage over time.",
+              "We provide Workday AMS services for organisations that need additional expertise, capacity or specialist support. Our goal isn't to keep you dependent on us forever. It is to help your Workday environment become more efficient, more stable and easier to manage over time.",
             ],
           ],
           [
@@ -720,36 +715,47 @@ get_header(); ?>
               'Because solving the right problem is more important than selling the wrong service.',
             ],
           ],
+          [
+            'q' => 'Lorem ipsum dolor sit amet?',
+            'a' => [
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non turpis vitae neque facilisis porta.',
+            ],
+          ],
         ];
-        foreach ( $faqs as $i => $faq ) :
-          $faq_lazy  = $i >= 5;
-          $faq_class = 'faq-item' . ( $faq_lazy ? ' faq-item--lazy' : '' );
-          $faq_style = $faq_lazy ? ' style="--faq-delay:' . esc_attr( ( $i - 5 ) * 90 ) . 'ms"' : '';
-          ?>
-          <div class="<?php echo esc_attr( $faq_class ); ?>"<?php echo $faq_style; ?>>
-            <button class="faq-btn" aria-expanded="false" aria-controls="faq-answer-<?php echo $i; ?>">
-              <span class="faq-question"><?php echo esc_html( $faq['q'] ); ?></span>
-              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8472C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <div class="faq-answer" id="faq-answer-<?php echo $i; ?>" role="region">
-              <div class="faq-answer-inner">
-                <?php foreach ( $faq['a'] as $para ) : ?>
-                  <p><?php echo wp_kses_post( $para ); ?></p>
-                <?php endforeach; ?>
-                <?php if ( ! empty( $faq['bullets'] ) ) : ?>
-                  <ul>
-                    <?php foreach ( $faq['bullets'] as $bullet ) : ?>
-                      <li><?php echo esc_html( $bullet ); ?></li>
+        $faq_columns = array_chunk( $faqs, 6, true );
+        foreach ( $faq_columns as $col_i => $faq_column ) : ?>
+          <div class="faq-column">
+            <?php foreach ( $faq_column as $i => $faq ) :
+              $faq_lazy  = $i >= 5;
+              $faq_class = 'faq-item' . ( $faq_lazy ? ' faq-item--lazy' : '' );
+              $faq_style = $faq_lazy ? ' style="--faq-delay:' . esc_attr( ( $i - 5 ) * 90 ) . 'ms"' : '';
+              ?>
+              <div class="<?php echo esc_attr( $faq_class ); ?>"<?php echo $faq_style; ?>>
+                <button class="faq-btn" aria-expanded="false" aria-controls="faq-answer-<?php echo $i; ?>">
+                  <span class="faq-question"><?php echo esc_html( $faq['q'] ); ?></span>
+                  <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E8472C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="faq-answer" id="faq-answer-<?php echo $i; ?>" role="region">
+                  <div class="faq-answer-inner">
+                    <?php foreach ( $faq['a'] as $para ) : ?>
+                      <p><?php echo wp_kses_post( $para ); ?></p>
                     <?php endforeach; ?>
-                  </ul>
-                <?php endif; ?>
-                <?php if ( ! empty( $faq['after'] ) ) : ?>
-                  <?php foreach ( $faq['after'] as $para ) : ?>
-                    <p><?php echo wp_kses_post( $para ); ?></p>
-                  <?php endforeach; ?>
-                <?php endif; ?>
+                    <?php if ( ! empty( $faq['bullets'] ) ) : ?>
+                      <ul>
+                        <?php foreach ( $faq['bullets'] as $bullet ) : ?>
+                          <li><?php echo esc_html( $bullet ); ?></li>
+                        <?php endforeach; ?>
+                      </ul>
+                    <?php endif; ?>
+                    <?php if ( ! empty( $faq['after'] ) ) : ?>
+                      <?php foreach ( $faq['after'] as $para ) : ?>
+                        <p><?php echo wp_kses_post( $para ); ?></p>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
               </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         <?php endforeach; ?>
       </div>
