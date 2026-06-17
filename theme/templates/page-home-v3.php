@@ -37,25 +37,33 @@ get_header(); ?>
           <p>If you're still wrestling with adoption, support tickets, reporting headaches or governance challenges, something has gone wrong.</p>
           <p>Zeneesha helps organisations optimise, support and evolve Workday so it delivers the value it promised in the first place.</p>
         </div>
+
+        <a href="#talk" class="hero-primary-cta hero-action hero-action-primary">
+          <span>
+            <strong>Book Your Free Workday Health Check</strong>
+          </span>
+          <?php echo z_arrow( 15 ); ?>
+        </a>
       </div>
 
-      <!-- Right: action panel -->
+      <!-- Right: visual and calculator CTA -->
       <div class="hero-right">
-        <div class="hero-action-panel">
-          <a href="#talk" class="hero-action hero-action-primary">
-            <span>
-              <strong>Book Your Free Workday Health Check</strong>
-            </span>
-            <?php echo z_arrow( 15 ); ?>
-          </a>
-
+        <figure class="hero-visual-card">
+          <img
+            class="hero-visual-img"
+            src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/sol-02-ams-support.webp' ); ?>"
+            alt=""
+            width="1400"
+            height="933"
+            fetchpriority="high"
+          >
           <a href="#workday-calculator" class="hero-action hero-action-secondary">
             <span>
               <strong>Calculate The Cost Of Workday Inefficiency</strong>
             </span>
             <?php echo z_arrow( 15 ); ?>
           </a>
-        </div>
+        </figure>
       </div>
 
     </div>
