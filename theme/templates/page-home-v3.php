@@ -246,9 +246,16 @@ get_header(); ?>
               <div class="cstack-front-body">
                 <h3 class="cstack-title"><?php echo esc_html( $card['title'] ); ?></h3>
                 <div class="cstack-intro">
-                  <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?></p>
                   <?php if ( ! empty( $card['body'] ) ) : ?>
-                    <p class="cstack-sub"><?php echo esc_html( $card['body'] ); ?></p>
+                    <?php $body_is_short = strlen( $card['body'] ) <= 22; ?>
+                    <?php if ( $body_is_short ) : ?>
+                      <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?> <span class="cstack-sub-inline"><?php echo esc_html( $card['body'] ); ?></span></p>
+                    <?php else : ?>
+                      <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?></p>
+                      <p class="cstack-sub"><?php echo esc_html( $card['body'] ); ?></p>
+                    <?php endif; ?>
+                  <?php else : ?>
+                    <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?></p>
                   <?php endif; ?>
                 </div>
                 <button class="cstack-flip-btn" data-flip="cflip-<?php echo $i; ?>" aria-label="See consequences for <?php echo esc_attr( $card['title'] ); ?>">

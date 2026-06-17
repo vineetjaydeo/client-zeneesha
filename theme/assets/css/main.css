@@ -1324,6 +1324,7 @@ label.field-label span{color:var(--redorange)}
   font-size:18px;font-weight:400;line-height:1.55;
   color:#fff;margin:0;
 }
+.cstack-sub-inline{font-weight:400;opacity:.96}
 .cstack-flip-btn{
   display:inline-flex;align-items:center;gap:10px;
   padding:.75rem 1.5rem;border-radius:100px;
