@@ -206,12 +206,13 @@
   background:rgba(30,58,138,.04);border-left:3px solid var(--navy);
 }
 .challenges-stat-bar p{font-size:15px;font-weight:400;color:var(--navy);line-height:1.6;margin:0}
-.problem-intro{display:grid;grid-template-columns:6fr 5fr;gap:2rem;margin-bottom:1.2rem;align-items:start}
-.problem-intro .section-sub{margin-top:1.25rem;max-width:660px}
-.problem-signals{display:grid;gap:.75rem}
-.problem-signals span{display:flex;align-items:center;gap:.65rem;background:#fff;border:1px solid rgba(30,58,138,.08);border-radius:10px;padding:.85rem 1rem;font-size:17px;font-weight:500;color:var(--navy);box-shadow:0 2px 16px rgba(30,58,138,.04)}
+.problem-intro{display:block;max-width:980px;margin-bottom:2.75rem}
+.problem-intro .section-heading{max-width:920px}
+.problem-intro .section-sub{margin-top:1.25rem;max-width:760px}
+.problem-signals{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1.05rem;margin-top:1.2rem;padding-top:.95rem;max-width:900px;border-top:1px solid rgba(30,58,138,.1)}
+.problem-signals span{display:inline-flex;align-items:center;gap:.5rem;padding:0;font-size:17px;font-weight:600;line-height:1.5;color:var(--navy)}
 .problem-signals span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--redorange);flex-shrink:0}
-.problem-familiar{font-size:22px;font-weight:600;color:var(--redorange);margin:0 0 3rem}
+.problem-familiar{font-size:18px;font-weight:500;color:var(--slate2);margin:1rem 0 0}
 .signal-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:stretch}
 .signal-cards .reveal{height:100%}
 .signal-card{background:#fff;border-radius:10px;padding:24px 26px 22px;box-shadow:0 2px 16px rgba(30,58,138,.05);display:flex;flex-direction:column;gap:10px;transition:transform .3s,box-shadow .3s;height:100%}

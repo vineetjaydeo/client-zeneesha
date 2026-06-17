@@ -117,10 +117,8 @@ get_header(); ?>
     </div>
 
     <div class="problem-intro reveal delay-1">
-      <div>
-        <h2 class="section-heading">Workday isn't the problem. The way it's being used probably is.</h2>
-        <p class="section-sub">Most organisations don't wake up one morning and decide to optimise Workday. They usually reach that point after months or years of:</p>
-      </div>
+      <h2 class="section-heading">Workday isn't the problem. The way it's being used probably is.</h2>
+      <p class="section-sub">Most organisations don't wake up one morning and decide to optimise Workday. They usually reach that point after months or years of:</p>
       <div class="problem-signals" aria-label="Common Workday warning signs">
         <span>Growing frustration</span>
         <span>Endless tickets</span>
@@ -128,8 +126,8 @@ get_header(); ?>
         <span>Reporting issues</span>
         <span>"We'll look at that next quarter"</span>
       </div>
+      <p class="problem-familiar">Sound familiar?</p>
     </div>
-    <p class="problem-familiar reveal delay-2">Sound familiar?</p>
 
   </div>
 
