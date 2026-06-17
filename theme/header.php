@@ -74,10 +74,9 @@
 
     <!-- Right cluster -->
     <div class="nav-right">
-      <span class="nav-partner-badges" aria-label="Workday partner certifications">
-        <img src="https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-services-partner@4x.png" alt="Workday Services Partner" class="nav-partner-badge">
-        <img src="https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-sales-partner@4x.png" alt="Workday Sales Partner" class="nav-partner-badge">
-      </span>
+      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-nav">
+        Book a Call <?php echo z_arrow( 13 ); ?>
+      </a>
       <!-- Mobile burger -->
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
@@ -102,7 +101,7 @@
       <a href="<?php echo esc_url( home_url( '/careers/' ) ); ?>">Careers</a>
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-mobile-cta">
-        Start a Conversation <?php echo z_arrow( 14 ); ?>
+        Book a Call <?php echo z_arrow( 14 ); ?>
       </a>
     </nav>
   </div>
@@ -110,5 +109,5 @@
 
 <!-- Mobile sticky bottom CTA -->
 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="mobile-bottom-cta" aria-label="Book a consultation">
-  Start a Conversation <?php echo z_arrow( 13 ); ?>
+  Book a Call <?php echo z_arrow( 13 ); ?>
 </a>
