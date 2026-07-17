@@ -130,7 +130,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 // ── Enqueue Assets ─────────────────────────────────────────────
 function zeneesha_enqueue_assets() {
-    $v   = '2.1.196';
+    $v   = '2.2.0';
     $uri = get_template_directory_uri();
 
     // Main CSS — preload / deferred
@@ -148,21 +148,19 @@ function zeneesha_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'zeneesha_enqueue_assets' );
 
-// ── V3 preview mount ─────────────────────────────────────────
-function zeneesha_is_v3_mount() {
-    return isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#^/zeneesha-v(?:3|4)(?:/|$)#', $_SERVER['REQUEST_URI'] );
-}
-
-add_filter( 'pre_option_show_on_front', function ( $pre ) {
-    return zeneesha_is_v3_mount() ? 'page' : $pre;
-} );
-
-add_filter( 'pre_option_page_on_front', function ( $pre ) {
-    if ( ! zeneesha_is_v3_mount() ) {
-        return $pre;
+// ── Front page body class ─────────────────────────────────────
+// front-page.php renders templates/page-home-v3.php, so the front page must
+// carry that template's body class: 65 rules across critical.css and main.css
+// are scoped to .page-template-page-home-v3 (including the above-the-fold hero
+// sizing at critical.css:178). Without this the front page only ever gets
+// page-template-default and those rules never match.
+add_filter( 'body_class', function ( $classes ) {
+    if ( ! is_front_page() || in_array( 'page-template-page-home-v3', $classes, true ) ) {
+        return $classes;
     }
-    $page = get_page_by_path( 'home-v3' );
-    return $page ? (string) $page->ID : $pre;
+    $classes[] = 'page-template';
+    $classes[] = 'page-template-page-home-v3';
+    return $classes;
 } );
 
 // Defer zeneesha-main script tag
@@ -379,59 +377,6 @@ add_action( 'acf/init', function () {
         'style'    => 'default',
     ] );
 
-    // ── About Page ────────────────────────────────────────────
-    acf_add_local_field_group( [
-        'key'    => 'group_about',
-        'title'  => 'About Page Content',
-        'fields' => [
-            [ 'key'=>'field_about_tagline',       'label'=>'Hero Tagline',              'name'=>'about_tagline',       'type'=>'text',     'instructions'=>'One-liner under the H1.' ],
-            [ 'key'=>'field_about_mission',       'label'=>'Mission statement',         'name'=>'about_mission',       'type'=>'textarea', 'rows'=>3 ],
-            [ 'key'=>'field_about_story',         'label'=>'Our Story (paragraphs)',    'name'=>'about_story',         'type'=>'textarea', 'rows'=>8, 'instructions'=>'Use blank lines to separate paragraphs.' ],
-            [ 'key'=>'field_director_1_name',     'label'=>'Director 1 — Name',         'name'=>'director_1_name',     'type'=>'text',     'default_value'=>'Rajesh Kumar' ],
-            [ 'key'=>'field_director_1_title',    'label'=>'Director 1 — Title',        'name'=>'director_1_title',    'type'=>'text',     'default_value'=>'Managing Director' ],
-            [ 'key'=>'field_about_director_bio_1','label'=>'Director 1 — Bio',          'name'=>'about_director_bio_1','type'=>'textarea', 'rows'=>4 ],
-            [ 'key'=>'field_director_2_name',     'label'=>'Director 2 — Name',         'name'=>'director_2_name',     'type'=>'text',     'default_value'=>'Ranjan Singh' ],
-            [ 'key'=>'field_director_2_title',    'label'=>'Director 2 — Title',        'name'=>'director_2_title',    'type'=>'text',     'default_value'=>'Executive Director' ],
-            [ 'key'=>'field_about_director_bio_2','label'=>'Director 2 — Bio',          'name'=>'about_director_bio_2','type'=>'textarea', 'rows'=>4 ],
-            [ 'key'=>'field_director_3_name',     'label'=>'Director 3 — Name',         'name'=>'director_3_name',     'type'=>'text',     'default_value'=>'Keshav Kolla' ],
-            [ 'key'=>'field_director_3_title',    'label'=>'Director 3 — Title',        'name'=>'director_3_title',    'type'=>'text',     'default_value'=>'Finance Director' ],
-            [ 'key'=>'field_about_director_bio_3','label'=>'Director 3 — Bio',          'name'=>'about_director_bio_3','type'=>'textarea', 'rows'=>4 ],
-            [ 'key'=>'field_director_4_name',     'label'=>'Director 4 — Name',         'name'=>'director_4_name',     'type'=>'text',     'default_value'=>'Karen Mayo' ],
-            [ 'key'=>'field_director_4_title',    'label'=>'Director 4 — Title',        'name'=>'director_4_title',    'type'=>'text',     'default_value'=>'Sales Director' ],
-            [ 'key'=>'field_about_director_bio_4','label'=>'Director 4 — Bio',          'name'=>'about_director_bio_4','type'=>'textarea', 'rows'=>4 ],
-        ],
-        'location' => [ [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-about.php' ] ] ],
-        'position' => 'normal',
-        'style'    => 'default',
-    ] );
-
-    // ── Contact Page ──────────────────────────────────────────
-    acf_add_local_field_group( [
-        'key'    => 'group_contact',
-        'title'  => 'Contact Page Content',
-        'fields' => [
-            [ 'key'=>'field_contact_tagline', 'label'=>'Hero tagline', 'name'=>'contact_tagline', 'type'=>'text',
-              'default_value'=>'A complimentary 60-minute session where we review your Workday setup and give you a clear picture of where value is being lost, and how to recover it.' ],
-            [
-                'key'        => 'field_contact_faq',
-                'label'      => 'FAQ items',
-                'name'       => 'contact_faq',
-                'type'       => 'repeater',
-                'min'        => 0,
-                'max'        => 10,
-                'layout'     => 'block',
-                'button_label' => 'Add FAQ item',
-                'sub_fields' => [
-                    [ 'key'=>'field_contact_faq_q', 'label'=>'Question', 'name'=>'faq_q', 'type'=>'text' ],
-                    [ 'key'=>'field_contact_faq_a', 'label'=>'Answer',   'name'=>'faq_a', 'type'=>'textarea', 'rows'=>3 ],
-                ],
-            ],
-        ],
-        'location' => [ [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-contact.php' ] ] ],
-        'position' => 'normal',
-        'style'    => 'default',
-    ] );
-
     // ── Careers Page ──────────────────────────────────────────
     acf_add_local_field_group( [
         'key'    => 'group_careers',
@@ -505,19 +450,6 @@ add_action( 'acf/init', function () {
             ],
         ],
         'location' => [ [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-resources.php' ] ] ],
-        'position' => 'normal',
-        'style'    => 'default',
-    ] );
-
-    // ── Partnership Page ──────────────────────────────────────
-    acf_add_local_field_group( [
-        'key'    => 'group_partnership',
-        'title'  => 'Partnership Page Content',
-        'fields' => [
-            [ 'key'=>'field_partner_headline', 'label'=>'Headline', 'name'=>'partner_headline', 'type'=>'text', 'default_value'=>'Build Together.' ],
-            [ 'key'=>'field_partner_tagline',  'label'=>'Tagline',  'name'=>'partner_tagline',  'type'=>'text', 'default_value'=>'We partner with organisations who share our commitment to Workday excellence. Three models, one goal: helping clients get more from Workday.' ],
-        ],
-        'location' => [ [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-partnership.php' ] ] ],
         'position' => 'normal',
         'style'    => 'default',
     ] );
