@@ -14,6 +14,7 @@ Optional environment:
 """
 
 import os
+import re
 import shlex
 import sys
 from datetime import datetime, timezone
@@ -31,8 +32,8 @@ if not PASSWD:
 PUBLIC_HTML = os.getenv("ZENEESHA_PUBLIC_HTML", f"/home/{USER}/domains/erisagent.com/public_html")
 WP_PATH = PUBLIC_HTML + "/zeneesha"
 MOUNT = os.getenv("ZENEESHA_MOUNT", "zeneesha-v3").strip("/")
-if MOUNT not in {"zeneesha-v3", "zeneesha-v4"}:
-    raise SystemExit("ZENEESHA_MOUNT must be zeneesha-v3 or zeneesha-v4.")
+if not re.fullmatch(r"zeneesha-v[3-9]", MOUNT):
+    raise SystemExit("ZENEESHA_MOUNT must match zeneesha-v3..zeneesha-v9.")
 SITE_URL = f"https://erisagent.com/{MOUNT}"
 WP_V3_PATH = PUBLIC_HTML + "/" + MOUNT
 THEME_V3_REMOTE = WP_V3_PATH + "/wp-content/themes/zeneesha"
