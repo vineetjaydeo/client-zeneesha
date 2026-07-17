@@ -2,6 +2,12 @@
 /**
  * Template Name: Homepage V3
  */
+$theme_uri = get_template_directory_uri();
+$hero_kicker = zf( 'home_v3_hero_kicker', 'Workday Advisory, AMS & AI Enablement' );
+$hero_title = zf( 'home_v3_hero_title', 'Maximise Every Workday Investment' );
+$hero_body = zf( 'home_v3_hero_body', 'Enterprise-grade expertise for HCM and Finance, delivered faster and without the complexity or cost of a Tier 1 firm. From strategy to deployment and recovery, we help you maximise your Workday investment.' );
+$hero_cta = zf( 'hero_cta', 'Book your free Workday Health Check' );
+$hero_secondary_cta = zf( 'home_v3_secondary_cta', 'Talk to a Workday Expert' );
 get_header(); ?>
 <main>
 
@@ -23,66 +29,89 @@ get_header(); ?>
       <div class="hero-left">
         <div class="hero-eyebrow">
           <span class="pulse-dot redorange"></span>
-          Workday optimisation and support
+          <?php echo esc_html( $hero_kicker ); ?>
         </div>
 
         <h1 class="hero-headline">
           <span class="kline">
-            <span class="kline-inner kline-bold">Make Workday Work.</span>
+            <span class="kline-inner kline-bold"><?php echo esc_html( $hero_title ); ?></span>
           </span>
         </h1>
 
-        <div class="hero-body hero-body-stack">
-          <p>You invested in Workday to make life easier.</p>
-          <p>If you're still wrestling with adoption, support tickets, reporting headaches or governance challenges, something has gone wrong.</p>
-          <p>Zeneesha helps organisations optimise, support and evolve Workday so it delivers the value it promised in the first place.</p>
+        <div class="hero-body">
+          <p><?php echo esc_html( $hero_body ); ?></p>
         </div>
 
+        <div class="home-hero-ctas">
+          <a href="#talk" class="btn-primary home-hero-cta">
+            <?php echo esc_html( $hero_cta ); ?> <?php echo z_arrow( 14 ); ?>
+          </a>
+          <a href="#talk" class="btn-ghost home-hero-cta">
+            <?php echo esc_html( $hero_secondary_cta ); ?> <?php echo z_arrow( 14 ); ?>
+          </a>
+        </div>
+
+        <div class="hero-partner-badges" aria-label="Workday partner badges">
+          <img src="https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-services-partner@4x.png" alt="Workday Services Partner">
+          <img src="https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-sales-partner@4x.png" alt="Workday Sales Partner">
+        </div>
       </div>
 
-      <!-- Right: CTAs -->
+      <!-- Right: animated value graph -->
       <div class="hero-right">
-        <div class="hero-action-panel">
-          <a href="#talk" class="hero-action hero-action-primary">
-            <span>
-              <strong>Book Your Free Workday Health Check</strong>
-            </span>
-            <?php echo z_arrow( 16 ); ?>
-          </a>
-          <a href="#workday-calculator" class="hero-action hero-action-secondary">
-            <span>
-              <strong>Calculate The Cost Of Workday Inefficiency</strong>
-            </span>
-            <?php echo z_arrow( 16 ); ?>
-          </a>
+        <div class="hero-graph-card" aria-label="Workday value improvement visual">
+          <div class="hero-graph-panel">
+            <div class="hero-graph-top">
+              <div>
+                <span>Workday value recovery</span>
+                <strong>Quarterly momentum</strong>
+              </div>
+              <div class="hero-graph-score">
+                <span>ROI</span>
+                <strong>+38%</strong>
+              </div>
+            </div>
+
+            <div class="hero-graph-canvas" aria-hidden="true">
+              <div class="hero-graph-grid"></div>
+              <span class="hero-graph-axis-line hero-graph-axis-line--y"></span>
+              <span class="hero-graph-axis-line hero-graph-axis-line--x"></span>
+              <span class="hero-graph-axis-label hero-graph-axis-label--y">Business Value</span>
+              <span class="hero-graph-axis-label hero-graph-axis-label--x">Time</span>
+              <svg class="hero-graph-svg" viewBox="0 0 520 250" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="heroGraphFill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#F57C1F" stop-opacity=".28"/>
+                    <stop offset="100%" stop-color="#F57C1F" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="heroGraphStroke" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0%" stop-color="#E8472C"/>
+                    <stop offset="52%" stop-color="#F57C1F"/>
+                    <stop offset="100%" stop-color="#1E3A8A"/>
+                  </linearGradient>
+                </defs>
+                <path class="hero-graph-area" d="M44 205 C85 190 118 178 150 181 C193 185 218 126 260 133 C304 140 324 96 364 104 C414 113 438 60 482 45 L482 222 L44 222 Z"/>
+                <path class="hero-graph-line" d="M44 205 C85 190 118 178 150 181 C193 185 218 126 260 133 C304 140 324 96 364 104 C414 113 438 60 482 45"/>
+              </svg>
+              <span class="hero-graph-dot hero-graph-dot--advisory"></span>
+              <span class="hero-graph-dot hero-graph-dot--deployment"></span>
+              <span class="hero-graph-dot hero-graph-dot--optimization"></span>
+              <span class="hero-graph-dot hero-graph-dot--ai"></span>
+              <span class="hero-graph-dot hero-graph-dot--ams"></span>
+              <span class="hero-graph-label hero-graph-label--advisory">Advisory</span>
+              <span class="hero-graph-label hero-graph-label--deployment">Deployment</span>
+              <span class="hero-graph-label hero-graph-label--optimization">Optimization</span>
+              <span class="hero-graph-label hero-graph-label--ai">AI</span>
+              <span class="hero-graph-label hero-graph-label--ams">AMS</span>
+              <span class="hero-graph-pulse"></span>
+            </div>
+
+            <p class="hero-graph-caption">Your Workday value keeps increasing with Zeneesha.</p>
+
+          </div>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════
-     CERTIFICATIONS
-══════════════════════════════════════════════════════ -->
-<section class="section-certs section-certs-home-v3 py-12" style="border-top:1px solid rgba(30,58,138,.08);border-bottom:1px solid rgba(30,58,138,.06)">
-  <div class="container">
-    <p class="certs-title">Accredited <span>&middot;</span> Certified <span>&middot;</span> Trusted</p>
-    <div class="certs-grid">
-      <?php
-      $certs = [
-        [ 'name'=>'Workday Sales Partner',    'img'=>'https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-sales-partner@4x.png',    'h'=>74 ],
-        [ 'name'=>'Workday Services Partner', 'img'=>'https://www.zeneesha.com/wp-content/uploads/2025/08/wday-partners-logo-services-partner@4x.png', 'h'=>74 ],
-        [ 'name'=>'IAF Member',               'img'=>'https://www.zeneesha.com/wp-content/uploads/2021/12/IAF-Logo.png',                                'h'=>68 ],
-        [ 'name'=>'MSDUK',                    'img'=>'https://www.zeneesha.com/wp-content/uploads/2024/01/MSDNUK.png',                                  'h'=>48 ],
-        [ 'name'=>'Cyber Essentials',         'img'=>'https://www.zeneesha.com/wp-content/uploads/2021/12/Cyber-Essentials-Logo_1.png',                 'h'=>74 ],
-      ];
-      foreach ( $certs as $c ) : ?>
-        <div class="cert-item">
-          <img src="<?php echo esc_url( $c['img'] ); ?>" alt="<?php echo esc_attr( $c['name'] ); ?>"
-               style="height:<?php echo $c['h']; ?>px" loading="eager">
-        </div>
-      <?php endforeach; ?>
     </div>
   </div>
 </section>
@@ -90,7 +119,7 @@ get_header(); ?>
 <!-- ══════════════════════════════════════════════════════
      TRUST
 ══════════════════════════════════════════════════════ -->
-<section id="trust" class="section-trust" style="border-bottom:1px solid rgba(30,58,138,.07)">
+<section id="trust" class="section-trust home-logo-row" aria-label="Selected Zeneesha clients">
   <!-- Logo carousel -->
   <?php
   $ldir = get_template_directory_uri() . '/assets/img/logos/';
@@ -114,6 +143,30 @@ get_header(); ?>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════
+     STATS
+══════════════════════════════════════════════════════ -->
+<section class="section-hero-stats" aria-label="Zeneesha outcomes at a glance">
+  <div class="stats-grid">
+    <?php
+    $stats = [
+      [ '15+',   "Years Senior\nConsultant Experience", '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>' ],
+      [ '100%',  "Certified\nConsultants",        '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>' ],
+      [ '50K+',  "Global Employees\nSupported",   '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>' ],
+      [ '95%',   "Client\nRetention Rate",        '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>' ],
+      [ '200K+', "AMS Hours\nDelivered",          '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' ],
+    ];
+    foreach ( $stats as $i => $s ) : ?>
+      <div class="stat-item reveal" style="transition-delay:<?php echo esc_attr( $i * 60 ); ?>ms">
+        <div class="stat-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><?php echo $s[2]; ?></svg>
+        </div>
+        <div class="stat-value"><?php echo esc_html( $s[0] ); ?></div>
+        <div class="stat-label"><?php echo esc_html( $s[1] ); ?></div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════
      CHALLENGES
@@ -121,226 +174,48 @@ get_header(); ?>
 <section id="challenges" class="section-challenges py-28">
   <div class="container">
 
-    <div class="section-label reveal text-redorange">
-      <span class="section-label-line" style="background:var(--redorange)"></span>
-      Problem Section
-    </div>
-
-    <div class="problem-intro reveal delay-1">
-      <h2 class="section-heading">Workday isn't the problem. The way it's being used probably is.</h2>
-      <div class="problem-copy">
-        <p class="section-sub">Most organisations don't wake up one morning and decide to optimise Workday. They usually reach that point after months or years of:</p>
-        <ul class="problem-signals" aria-label="Common Workday warning signs">
-          <li>Growing frustration</li>
-          <li>Endless tickets</li>
-          <li>Confusing processes</li>
-          <li>Reporting issues</li>
-          <li>"We'll look at that next quarter"</li>
-        </ul>
-        <p class="problem-familiar">Sounds familiar?</p>
+    <div class="framework-intro home-section-intro home-section-intro--challenges reveal delay-1">
+      <div class="framework-intro-heading">
+        <div class="section-label text-redorange">
+          <span class="section-label-line" style="background:var(--redorange)"></span>
+          Common Workday Challenges
+        </div>
+        <h2 class="section-heading home-challenges-heading">
+          <?php
+          $challenges_heading = esc_html( zf( 'home_v3_challenges_heading', "Workday is powerful. But right now, it probably just feels frustrating." ) );
+          $challenges_heading = str_replace( 'Workday is powerful. But', 'Workday is powerful.<br>But', $challenges_heading );
+          echo wp_kses_post( preg_replace( '/(frustrating\.?)/i', '<span>$1</span>', $challenges_heading ) );
+          ?>
+        </h2>
       </div>
+      <p class="section-sub framework-intro-copy"><?php echo esc_html( zf( 'home_v3_challenges_intro', 'Digital transformation opens the door to incredible possibilities, and turning that potential into lasting value is where the real magic happens.' ) ); ?></p>
     </div>
 
-  </div>
-
-  <!-- Parallax sticky-stack cards -->
-  <?php
-  $challenge_cards = [
-    [
-      'title'   => 'Low Adoption',
-      'lead'    => 'Employees have access to Workday.',
-      'body'    => "That doesn't mean they're actually using it properly.",
-      'bullets' => [
-        'HR becomes the unofficial helpdesk',
-        'Employees create workarounds',
-        'Self-service never quite takes off',
-        'Every process takes longer than it should',
-      ],
-      'color'   => '#1E3A8A',
-      'img'     => 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>',
-    ],
-    [
-      'title'   => 'HR Operational Inefficiency',
-      'lead'    => "Your HR team didn't sign up to spend their week fixing processes.",
-      'body'    => 'Yet here we are.',
-      'bullets' => [
-        'Higher HR workload',
-        'Slower service delivery',
-        'Reduced strategic focus',
-        'Increased operating costs',
-      ],
-      'color'   => '#E8472C',
-      'img'     => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>',
-    ],
-    [
-      'title'   => 'Reporting Delays',
-      'lead'    => "If every report requires detective work, something isn't working.",
-      'body'    => '',
-      'bullets' => [
-        'Slow decision making',
-        'Manual reporting effort',
-        'Reduced visibility',
-        'Leadership flying partially blind',
-      ],
-      'color'   => '#F57C1F',
-      'img'     => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
-    ],
-    [
-      'title'   => 'Governance Challenges',
-      'lead'    => "Workday environments don't become messy overnight.",
-      'body'    => 'They drift.',
-      'bullets' => [
-        'Duplicate processes',
-        'Security risks',
-        'Configuration inconsistency',
-        'Delayed projects',
-      ],
-      'color'   => '#1E3A8A',
-      'img'     => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
-    ],
-    [
-      'title'   => 'Ticket Backlogs',
-      'lead'    => 'Constant firefighting is not a support strategy.',
-      'body'    => '',
-      'bullets' => [
-        'Delayed improvements',
-        'Burnout risk',
-        'Reactive teams',
-        'Lost optimisation opportunities',
-      ],
-      'color'   => '#E8472C',
-      'img'     => 'https://images.unsplash.com/photo-1553484771-371a605b060b?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>',
-    ],
-    [
-      'title'   => 'Poor Manager Self-Service',
-      'lead'    => 'Managers have enough on their plate already.',
-      'body'    => '',
-      'bullets' => [
-        'Slower approvals',
-        'Increased HR dependency',
-        'Reduced productivity',
-        'Frustrated teams',
-      ],
-      'color'   => '#3B9EDB',
-      'img'     => 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80',
-      'icon'    => '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>',
-    ],
-  ];
-  ?>
-
-  <!-- Flip cards grid: click to reveal how Zeneesha helps -->
-  <div class="container">
-    <div class="cflip-grid">
-      <?php foreach ( $challenge_cards as $i => $card ) : ?>
-        <div class="cflip-wrap reveal-card" style="--reveal-delay:<?php echo $i % 2 === 0 ? '0s' : '.12s'; ?>">
-          <div class="cflip" id="cflip-<?php echo $i; ?>">
-
-            <!-- FRONT -->
-            <div class="cflip-front" aria-hidden="false">
-              <img src="<?php echo esc_url( $card['img'] ); ?>"
-                   alt="" class="cstack-bg"
-                   loading="<?php echo $i < 2 ? 'eager' : 'lazy'; ?>"
-                   aria-hidden="true">
-              <div class="cstack-overlay" style="background:linear-gradient(160deg,<?php echo esc_attr( $card['color'] ); ?>f2 0%,<?php echo esc_attr( $card['color'] ); ?>bb 45%,rgba(13,30,74,.92) 100%)"></div>
-              <div class="cstack-icon-chip">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $card['icon']; ?></svg>
-              </div>
-              <div class="cstack-front-body">
-                <h3 class="cstack-title"><?php echo esc_html( $card['title'] ); ?></h3>
-                <div class="cstack-intro">
-                  <?php if ( ! empty( $card['body'] ) ) : ?>
-                    <?php $body_is_short = strlen( $card['body'] ) <= 22; ?>
-                    <?php if ( $body_is_short ) : ?>
-                      <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?> <span class="cstack-sub-inline"><?php echo esc_html( $card['body'] ); ?></span></p>
-                    <?php else : ?>
-                      <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?></p>
-                      <p class="cstack-sub"><?php echo esc_html( $card['body'] ); ?></p>
-                    <?php endif; ?>
-                  <?php else : ?>
-                    <p class="cstack-lead"><?php echo esc_html( $card['lead'] ); ?></p>
-                  <?php endif; ?>
-                </div>
-                <button class="cstack-flip-btn" data-flip="cflip-<?php echo $i; ?>" aria-label="See consequences for <?php echo esc_attr( $card['title'] ); ?>">
-                  See consequences
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- BACK -->
-            <div class="cflip-back" style="background:<?php echo esc_attr( $card['color'] ); ?>" aria-hidden="true">
-              <div class="cflip-back-inner">
-                <h3 class="cflip-back-title"><?php echo esc_html( $card['title'] ); ?></h3>
-                <div class="cflip-back-content">
-                  <div class="cflip-section-title">Consequences</div>
-                  <ul class="cflip-back-list">
-                    <?php foreach ( $card['bullets'] as $bullet ) : ?>
-                      <li><?php echo esc_html( $bullet ); ?></li>
-                    <?php endforeach; ?>
-                  </ul>
-                </div>
-                <div class="cflip-back-actions">
-                  <a href="#talk" class="cflip-back-cta">
-                    Book health check
-                    <?php echo z_arrow( 13 ); ?>
-                  </a>
-                  <button class="cflip-back-close" type="button" aria-label="Flip back to <?php echo esc_attr( $card['title'] ); ?>">Back</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
+    <?php
+    $timeline_signals = [
+      [ 'title' => 'Paying for a strategy you never got?', 'body' => 'Without expert advisory, you overpay for generic configurations that fail to match your actual business needs.' ],
+      [ 'title' => 'Are workflows fighting your business?', 'body' => 'Slow approvals push managers back to using offline spreadsheets and emails.' ],
+      [ 'title' => 'HR acting like IT support?', 'body' => 'Your team wastes time fixing user access and permission errors instead of driving strategy.' ],
+      [ 'title' => 'Is your data impossible to trust?', 'body' => 'Broken integrations and duplicate records leave leaders questioning every report.' ],
+      [ 'title' => 'Still paying for unused capabilities?', 'body' => 'AI and advanced Workday features remain switched off while costs keep rising.' ],
+      [ 'title' => 'Dreading system updates?', 'body' => 'Your team scrambles to fix broken processes during Workday releases instead of activating new features.' ],
+    ];
+    ?>
+    <div class="problem-timeline reveal delay-2" aria-label="Common Workday frustration timeline">
+      <span class="problem-timeline-line" aria-hidden="true"></span>
+      <?php foreach ( $timeline_signals as $i => $signal ) : ?>
+        <?php $timeline_side = $i % 2 === 0 ? 'up' : 'down'; ?>
+        <div class="problem-timeline-item problem-timeline-item--<?php echo esc_attr( $timeline_side ); ?>" style="--timeline-delay:<?php echo esc_attr( $i * 110 ); ?>ms">
+          <span class="problem-timeline-num"><?php echo esc_html( (string) ( $i + 1 ) ); ?></span>
+          <span class="problem-timeline-stem" aria-hidden="true"></span>
+          <span class="problem-timeline-dot" aria-hidden="true"></span>
+          <article class="problem-timeline-card">
+            <h3><?php echo esc_html( $signal['title'] ); ?></h3>
+            <p><?php echo esc_html( $signal['body'] ); ?></p>
+          </article>
         </div>
       <?php endforeach; ?>
     </div>
-  </div>
-
-  <script>
-  (function(){
-    // Scroll-reveal: cards fade + slide up as they enter viewport
-    if('IntersectionObserver' in window){
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-        });
-      }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
-      document.querySelectorAll('.reveal-card').forEach(function(el){ obs.observe(el); });
-    } else {
-      document.querySelectorAll('.reveal-card').forEach(function(el){ el.classList.add('is-visible'); });
-    }
-
-    // Desktop flip handled by CSS hover, no JS needed.
-    // Mobile: tap to toggle.
-    if(window.matchMedia('(hover:none) and (pointer:coarse)').matches){
-      function setFlipState(card, on){
-        card.classList.toggle('is-flipped', on);
-        card.querySelector('.cflip-front').setAttribute('aria-hidden', on ? 'true' : 'false');
-        card.querySelector('.cflip-back' ).setAttribute('aria-hidden', on ? 'false': 'true');
-      }
-      document.querySelectorAll('.cflip').forEach(function(card){
-        card.addEventListener('click', function(e){
-          if(e.target.closest('.cflip-back-cta')) return;
-          if(e.target.closest('.cflip-back-close')){
-            e.preventDefault();
-            setFlipState(card, false);
-            return;
-          }
-          setFlipState(card, !card.classList.contains('is-flipped'));
-        });
-      });
-    }
-  })();
-  </script>
-
-  <div class="container">
-    <p class="challenges-footer reveal delay-3">
-      Small signs often reveal bigger opportunities. Zeneesha uncovers gaps, reduces friction and shapes a practical roadmap for improvement.
-    </p>
   </div>
 </section>
 
@@ -354,67 +229,185 @@ get_header(); ?>
     <div class="calculator-copy reveal">
       <div class="section-label text-redorange">
         <span class="section-label-line" style="background:var(--redorange)"></span>
-        Workday Inefficiency Calculator
+        Workday ROI Calculator
       </div>
-      <h2 class="section-heading">Curious What Workday Inefficiency Is Costing You?</h2>
-      <p class="section-sub">Most organisations can tell you exactly what Workday costs. Far fewer can tell you what inefficient Workday usage costs.</p>
-      <p class="calculator-copy-note">Use our Workday Inefficiency Calculator to estimate the hidden operational costs affecting your organisation.</p>
+      <h2 class="section-heading"><?php echo esc_html( zf( 'home_v3_calculator_heading', 'The hidden cost of your Workday value gap.' ) ); ?></h2>
+      <p class="section-sub"><?php echo esc_html( zf( 'home_v3_calculator_body', 'Use the slider to estimate the hidden cost of inefficient workflows, poor adoption and underused capabilities based on your headcount.' ) ); ?></p>
+      <p class="calculator-copy-note">Based on industry benchmarks from active Workday environments. A free Health Check provides a tailored assessment.</p>
       <a href="#talk" class="calculator-cta">
-        Validate this with a free health check <?php echo z_arrow( 13 ); ?>
+        Validate with a Free Health Check <?php echo z_arrow( 13 ); ?>
       </a>
     </div>
 
     <div class="calculator-panel reveal delay-1">
       <div class="calculator-control">
         <label for="employeeSlider">
-          Number of Employees
+          Number of employees
           <strong data-calc-employee-count>3,000</strong>
         </label>
         <input type="range" id="employeeSlider" min="0" max="24" step="1" value="10" data-calc-slider>
         <div class="calculator-slider-labels">
           <span>500</span>
           <span>3,000</span>
-          <span>10,000</span>
+          <span>10,000+</span>
         </div>
       </div>
 
       <div class="calculator-result">
-        <span>Estimated Annual Cost</span>
+        <span>Estimated annual value gap</span>
         <strong data-calc-total-cost>£1,174,000</strong>
       </div>
 
       <div class="calculator-breakdown" aria-label="Estimated Annual Impact By Area">
         <div class="calculator-impact">
-          <span>Low Adoption</span>
-          <strong data-calc-low-adoption>£390,000</strong>
+          <span>Implementation &amp; Configuration Debt</span>
+          <strong data-calc-implementation-debt>£352,200</strong>
         </div>
         <div class="calculator-impact">
-          <span>HR Operational Inefficiency</span>
-          <strong data-calc-hr-inefficiency>£300,000</strong>
+          <span>Reactive Support &amp; HR Inefficiency</span>
+          <strong data-calc-reactive-support>£469,600</strong>
         </div>
         <div class="calculator-impact">
-          <span>Reporting Delays</span>
-          <strong data-calc-reporting-delays>£104,000</strong>
+          <span>Data Latency &amp; Reporting Delays</span>
+          <strong data-calc-data-latency>£176,100</strong>
         </div>
         <div class="calculator-impact">
-          <span>Governance Challenges</span>
-          <strong data-calc-governance-failures>£200,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>Ticket Backlog</span>
-          <strong data-calc-ticket-backlog>£105,000</strong>
-        </div>
-        <div class="calculator-impact">
-          <span>Poor Manager Self-Service</span>
-          <strong data-calc-manager-self-service>£75,000</strong>
+          <span>Unutilized AI &amp; License Value</span>
+          <strong data-calc-ai-license-value>£176,100</strong>
         </div>
       </div>
 
       <p class="calculator-disclaimer">
-        This calculator provides an indicative estimate only, based on common Workday adoption, governance, reporting and support challenges. A Workday Health Check can validate the actual impact for your organisation.
+        Indicative estimate only, based on common Workday adoption, governance, reporting and support challenges. A Workday Health Check can validate the actual impact for your organisation.
       </p>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     DELIVERY FRAMEWORK
+══════════════════════════════════════════════════════ -->
+<section id="delivery-framework" class="section-delivery-framework py-28">
+  <div class="container">
+    <div class="framework-intro home-section-intro reveal">
+      <div class="framework-intro-heading">
+        <div class="section-label text-redorange">
+          <span class="section-label-line" style="background:var(--redorange)"></span>
+          How We Deliver Differently
+        </div>
+        <h2 class="section-heading">We start with the business, not the system.</h2>
+      </div>
+      <p class="section-sub framework-intro-copy">Every organisation uses Workday differently. We combine strategic thinking with senior-led delivery to solve today&apos;s challenges while preparing you for what&apos;s next.</p>
+    </div>
+
+    <div class="framework-grid">
+      <?php
+      $framework_items = [
+        [ 'num'=>'01', 'title'=>'Business-first advisory', 'body'=>'We prioritise the right initiatives, reduce risk and build a practical roadmap before you invest in complex change.' ],
+        [ 'num'=>'02', 'title'=>'Senior-led agile delivery', 'body'=>'The experts who design your strategy stay with you through testing and go-live, keeping decisions faster and accountability clear.' ],
+        [ 'num'=>'03', 'title'=>'Zero-hour AMS', 'body'=>'No fixed monthly support hours or use-it-or-lose-it retainers. Just proactive optimisation and pay-as-you-need support.' ],
+        [ 'num'=>'04', 'title'=>'Continuous value evolution', 'body'=>'Workday is never done. We manage releases, activate advanced features and ensure operational ROI compounds over time.' ],
+      ];
+      foreach ( $framework_items as $i => $item ) : ?>
+        <article class="framework-card reveal" style="transition-delay:<?php echo esc_attr( $i * 80 ); ?>ms">
+          <span><?php echo esc_html( $item['num'] ); ?></span>
+          <h3><?php echo esc_html( $item['title'] ); ?></h3>
+          <p><?php echo esc_html( $item['body'] ); ?></p>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════════════ -->
+<section id="testimonials" class="section-home-testimonials py-28">
+  <div class="container">
+    <div class="section-label reveal text-redorange">
+      <span class="section-label-line" style="background:var(--redorange)"></span>
+      Testimonials
+    </div>
+    <h2 class="section-heading reveal delay-1">Don&apos;t Just Take Our Word For It</h2>
+  </div>
+
+  <?php
+  $testimonials = [
+    [
+      'quote'    => 'Zeneesha helped us navigate a complex Workday rollout with the right expertise, flexibility, and support. Their team was invaluable in helping make our Workday adoption a success.',
+      'name'     => 'Georgina Taitt',
+      'role'     => 'Head of Enterprise Apps · AQA',
+      'avatar'   => $theme_uri . '/assets/img/testimonials/georgina-taitt.png',
+      'gradient' => 'linear-gradient(135deg,#FFF7EA 0%,#F8FBFF 54%,#FFFFFF 100%)',
+    ],
+    [
+      'quote'    => 'We had zero tolerance for delay or data loss during our live legacy migration to Workday HCM. Zeneesha\'s end-to-end testing and automated data validation were critical, ensuring we hit our final cutover exactly on deadline with zero overruns.',
+      'name'     => 'David M.',
+      'role'     => 'VP of Enterprise Systems',
+      'avatar'   => $theme_uri . '/assets/img/testimonials/david-m.jpg',
+      'gradient' => 'linear-gradient(135deg,#F3F7FF 0%,#FFFFFF 50%,#FFF6F1 100%)',
+    ],
+    [
+      'quote'    => 'They didn\'t just hand us an AI model; they got it production-ready and fully deployed in weeks. Outstanding execution.',
+      'name'     => 'Marcus Vance',
+      'role'     => 'VP of Enterprise HR Technology',
+      'avatar'   => 'https://i.pravatar.cc/120?u=zeneesha-marcus-vance',
+      'gradient' => 'linear-gradient(135deg,#F8FAFC 0%,#EEF7F9 48%,#FFFFFF 100%)',
+    ],
+    [
+      'quote'    => 'Invaluable advisory work. They helped us cut through the AI hype and build a practical roadmap that actually aligned with our business goals.',
+      'name'     => 'Elena Rostova',
+      'role'     => 'Chief Financial Officer',
+      'avatar'   => 'https://i.pravatar.cc/120?u=zeneesha-elena-rostova',
+      'gradient' => 'linear-gradient(135deg,#FFFFFF 0%,#FFF3E8 46%,#F5F7FB 100%)',
+    ],
+    [
+      'quote'    => 'Data migration is usually a nightmare, but their team handled ours with zero downtime and total integrity. Impeccable execution.',
+      'name'     => 'Sarah Jenkins',
+      'role'     => 'Director of Global Data Operations & Analytics',
+      'avatar'   => $theme_uri . '/assets/img/testimonials/sarah-jenkins-v2.jpg',
+      'gradient' => 'linear-gradient(135deg,#F9FAF5 0%,#FFFFFF 44%,#EEF4FF 100%)',
+    ],
+    [
+      'quote'    => 'The integration work connected our legacy stack and new AI tools cleanly, without disruption to live operations.',
+      'name'     => 'Devon Brooks',
+      'role'     => 'Global Head of Systems Architecture & Integrations',
+      'avatar'   => 'https://i.pravatar.cc/120?u=zeneesha-devon-brooks',
+      'gradient' => 'linear-gradient(135deg,#F4F8FF 0%,#FFFFFF 42%,#FFF5EC 100%)',
+    ],
+  ];
+  ?>
+
+  <div class="home-testimonial-carousel reveal delay-2" data-loop-carousel data-loop-card-class="home-testimonial-card" data-loop-dot-class="home-carousel-dot" aria-label="Client testimonials">
+    <div class="home-testimonial-viewport">
+      <div class="home-testimonial-track" data-loop-track>
+        <?php foreach ( $testimonials as $t ) : ?>
+          <blockquote class="home-testimonial-card" style="--testimonial-gradient:<?php echo esc_attr( $t['gradient'] ); ?>">
+            <div class="home-testimonial-quote-mark" aria-hidden="true">&ldquo;</div>
+            <p><?php echo esc_html( $t['quote'] ); ?></p>
+            <footer>
+              <img src="<?php echo esc_url( $t['avatar'] ); ?>" alt="Profile photo of <?php echo esc_attr( $t['name'] ); ?>" loading="lazy">
+              <span>
+                <strong><?php echo esc_html( $t['name'] ); ?></strong>
+                <em><?php echo esc_html( $t['role'] ); ?></em>
+              </span>
+            </footer>
+          </blockquote>
+        <?php endforeach; ?>
+      </div>
+    </div>
+    <div class="home-carousel-nav">
+      <button class="home-carousel-btn" type="button" data-loop-prev aria-label="Previous testimonial">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="home-carousel-dots" data-loop-dots></div>
+      <button class="home-carousel-btn" type="button" data-loop-next aria-label="Next testimonial">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -425,39 +418,135 @@ get_header(); ?>
 <section id="solutions" class="section-solutions py-28">
   <div class="container">
 
-    <div class="solutions-header solutions-header--stacked reveal">
-      <h2 class="section-heading">Our Services</h2>
-      <p class="section-sub">We help organisations optimise, support and improve Workday through:</p>
+    <div class="framework-intro home-section-intro solutions-header solutions-header--journey reveal">
+      <div class="framework-intro-heading">
+        <div class="section-label text-redorange">
+          <span class="section-label-line" style="background:var(--redorange)"></span>
+          Workday Advisory, Deployment, AMS & AI Services
+        </div>
+        <h2 class="section-heading"><span>Your Workday Journey.</span><span>One Trusted Partner.</span></h2>
+      </div>
+      <p class="section-sub framework-intro-copy">Whether you&apos;re planning, optimising, expanding, or solving complex challenges, our specialists support every stage of your Workday journey.</p>
     </div>
 
     <?php
     $service_capabilities = [
-      [ 'label' => 'Global Project Delivery', 'accent' => '#1E3A8A', 'icon' => '<path d="M3 7h18"/><path d="M7 3v18"/><path d="M17 3v18"/><path d="M3 17h18"/>' ],
-      [ 'label' => 'AMS Support', 'accent' => '#3B9EDB', 'icon' => '<path d="M4 14a8 8 0 1116 0"/><path d="M4 14v3a2 2 0 002 2h2"/><path d="M20 14v3a2 2 0 01-2 2h-2"/><path d="M9 19h6"/>' ],
-      [ 'label' => 'Workday Optimisation', 'accent' => '#E8472C', 'icon' => '<path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/>' ],
-      [ 'label' => 'Integrations', 'accent' => '#F57C1F', 'icon' => '<path d="M8 12h8"/><path d="M6 8a4 4 0 100 8"/><path d="M18 8a4 4 0 110 8"/>' ],
-      [ 'label' => 'Release Readiness', 'accent' => '#E8472C', 'icon' => '<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-5"/>' ],
-      [ 'label' => 'Governance Reviews', 'accent' => '#1E3A8A', 'icon' => '<path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 11l8 4 8-4"/><path d="M4 15l8 4 8-4"/>' ],
-      [ 'label' => 'Adoption Improvement', 'accent' => '#3B9EDB', 'icon' => '<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M16 11h6"/>' ],
-      [ 'label' => 'Health Checks', 'accent' => '#F57C1F', 'icon' => '<path d="M20 6L9 17l-5-5"/><path d="M21 12a9 9 0 11-3-6.7"/>' ],
+      [
+        'num' => '01',
+        'label' => 'Advisory',
+        'tagline' => "Not sure where to start, or what's actually broken?",
+        'body' => 'We deliver independent guidance and strategic roadmaps — an honest assessment of your Workday setup and a practical plan to fix it, before you spend on implementation.',
+        'href' => '/advisory/',
+        'accent' => '#E8472C',
+        'tags' => [ 'Roadmap', 'Business case', 'Fit-gap', 'Governance' ],
+        'outcomes' => [ 'Prioritise the right Workday initiatives.', 'Reduce delivery risk before spend commits.', 'Turn uncertainty into a practical action plan.' ],
+      ],
+      [
+        'num' => '02',
+        'label' => 'Deployment',
+        'tagline' => 'Rolling out Workday or adding a new module?',
+        'body' => 'From solution validation and user testing through go-live and Hypercare, we configure Workday around how your business actually works — and stay hands-on so nothing breaks on day one.',
+        'href' => '/deployment/',
+        'accent' => '#1E3A8A',
+        'tags' => [ 'HCM', 'Finance', 'Testing', 'Migration' ],
+        'outcomes' => [ 'Configuration reflects real business processes.', 'Data migration lands cleanly.', 'Teams are ready before go-live.' ],
+      ],
+      [
+        'num' => '03',
+        'label' => 'AMS & Support',
+        'tagline' => 'Tired of tickets sitting untouched for days?',
+        'body' => "Ongoing support, proactive enhancements, and release readiness mean issues get fixed fast — and Workday releases don't break what you've already built.",
+        'href' => '/ams-support/',
+        'accent' => '#3B9EDB',
+        'tags' => [ 'Incidents', 'Releases', 'Enhancements', 'SLA' ],
+        'outcomes' => [ 'Issues move faster than internal queues.', 'Releases stop becoming fire drills.', 'Support reduces dependency over time.' ],
+      ],
+      [
+        'num' => '04',
+        'label' => 'Maximise',
+        'tagline' => 'Paying for features nobody uses?',
+        'body' => 'We connect your systems through smart integrations, build real-time analytics your leaders actually trust, and drive the adoption improvements that get people using Workday properly.',
+        'href' => '/maximise/',
+        'accent' => '#F57C1F',
+        'tags' => [ 'Automation', 'Adoption', 'Reporting', 'Integrations' ],
+        'outcomes' => [ 'Manual work drops across HR and finance.', 'Reports answer leadership questions faster.', 'Users adopt the workflows you paid for.' ],
+      ],
+      [
+        'num' => '05',
+        'label' => 'AI & Enablement',
+        'tagline' => "Want to turn on Workday's AI features without breaking anything?",
+        'body' => 'We get your data, security, and governance ready first — so when you switch on AI, it works properly from day one.',
+        'href' => '/ai-enablement/',
+        'accent' => '#1E3A8A',
+        'tags' => [ 'AI readiness', 'Data quality', 'Security', 'Automation' ],
+        'outcomes' => [ 'Foundations are ready before AI investment.', 'Security and governance are built in.', 'Automation starts from clean, usable data.' ],
+      ],
     ];
     ?>
-    <div class="service-capability-grid reveal delay-1">
-      <?php foreach ( $service_capabilities as $capability ) : ?>
-        <article class="service-capability-item" style="--svc-accent:<?php echo esc_attr( $capability['accent'] ); ?>">
-          <div class="service-capability-top">
-            <div class="service-capability-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $capability['icon']; ?></svg>
+    <div class="service-tabs reveal delay-1" data-service-tabs>
+      <div class="service-tab-nav">
+        <button class="service-tab-arrow service-tab-arrow--prev" type="button" aria-label="Previous service" data-service-tab-prev>
+          <?php echo z_arrow( 18 ); ?>
+        </button>
+        <div class="service-tab-list" role="tablist" aria-label="Zeneesha Workday services">
+          <?php foreach ( $service_capabilities as $i => $capability ) : ?>
+            <button
+              class="service-tab<?php echo $i === 0 ? ' is-active' : ''; ?>"
+              type="button"
+              role="tab"
+              id="service-tab-<?php echo esc_attr( $i ); ?>"
+              aria-controls="service-panel-<?php echo esc_attr( $i ); ?>"
+              aria-selected="<?php echo $i === 0 ? 'true' : 'false'; ?>"
+              data-service-tab="<?php echo esc_attr( $i ); ?>"
+              style="--svc-accent:<?php echo esc_attr( $capability['accent'] ); ?>"
+            >
+              <span><?php echo esc_html( $capability['num'] ); ?></span>
+              <?php echo esc_html( $capability['label'] ); ?>
+            </button>
+          <?php endforeach; ?>
+        </div>
+        <button class="service-tab-arrow service-tab-arrow--next" type="button" aria-label="Next service" data-service-tab-next>
+          <?php echo z_arrow( 18 ); ?>
+        </button>
+      </div>
+
+      <div class="service-tab-panels">
+        <?php foreach ( $service_capabilities as $i => $capability ) : ?>
+          <article
+            class="service-tab-panel<?php echo $i === 0 ? ' is-active' : ''; ?>"
+            id="service-panel-<?php echo esc_attr( $i ); ?>"
+            role="tabpanel"
+            aria-labelledby="service-tab-<?php echo esc_attr( $i ); ?>"
+            data-service-panel="<?php echo esc_attr( $i ); ?>"
+            data-service-num="<?php echo esc_attr( $capability['num'] ); ?>"
+            style="--svc-accent:<?php echo esc_attr( $capability['accent'] ); ?>"
+          >
+            <div class="service-tab-copy">
+              <div class="service-tab-kicker">Service <?php echo esc_html( $capability['num'] ); ?></div>
+              <h3><?php echo esc_html( $capability['label'] ); ?></h3>
+              <p class="service-tab-tagline"><?php echo esc_html( $capability['tagline'] ); ?></p>
+              <p><?php echo esc_html( $capability['body'] ); ?></p>
+              <div class="service-tab-tags" aria-label="<?php echo esc_attr( $capability['label'] ); ?> capabilities">
+                <?php foreach ( $capability['tags'] as $tag ) : ?>
+                  <span><?php echo esc_html( $tag ); ?></span>
+                <?php endforeach; ?>
+              </div>
+              <a href="<?php echo esc_url( home_url( $capability['href'] ) ); ?>" class="service-tab-cta">
+                <span>Know more</span>
+                <?php echo z_arrow( 14 ); ?>
+              </a>
             </div>
-          </div>
-          <div class="service-capability-body">
-            <strong><?php echo esc_html( $capability['label'] ); ?></strong>
-            <a href="#talk" class="service-capability-cta">
-              Let&rsquo;s talk <?php echo z_arrow( 12 ); ?>
-            </a>
-          </div>
-        </article>
-      <?php endforeach; ?>
+            <div class="service-tab-outcomes">
+              <div>What this means for you</div>
+              <ul>
+                <?php foreach ( $capability['outcomes'] as $outcome ) : ?>
+                  <li><?php echo esc_html( $outcome ); ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </article>
+        <?php endforeach; ?>
+      </div>
     </div>
 
   </div>
@@ -465,117 +554,169 @@ get_header(); ?>
 
 
 <!-- ══════════════════════════════════════════════════════
-     WHY ZENEESHA
+     CLIENT SUCCESS STORIES
 ══════════════════════════════════════════════════════ -->
-<section id="why-zeneesha" class="section-why py-28">
+<section id="case-studies" class="section-home-case-studies py-28">
   <div class="container">
-    <div class="why-hero reveal">
-      <div>
-        <div class="section-label text-redorange">
-          <span class="section-label-line" style="background:var(--redorange)"></span>
-          Why Zeneesha
-        </div>
-        <h2 class="section-heading">Workday Expertise. Without The Consultancy Theatre.</h2>
+    <div class="case-studies-header reveal">
+      <div class="section-label text-redorange">
+        <span class="section-label-line" style="background:var(--redorange)"></span>
+        Workday Client Success Stories
       </div>
-      <div class="why-copy">
-        <ul>
-          <li>No unnecessary complexity.</li>
-          <li>No oversized programmes.</li>
-          <li>No surprises.</li>
-        </ul>
-      </div>
+      <h2 class="section-heading"><span>Real Outcomes.</span><span>Real Impact.</span></h2>
     </div>
 
     <?php
-    $why_items = [
+    $home_success_icon = static function ( $name ) {
+      $icons = [
+        'chart' => '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 19v-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 8l5-5 4 4 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        'check' => '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/><path d="M8.5 12.2l2.3 2.3 4.9-5.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        'star'  => '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.8l2.25 4.56 5.03.73-3.64 3.55.86 5.01L12 15.28l-4.5 2.37.86-5.01-3.64-3.55 5.03-.73L12 3.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+        'up'    => '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M6.5 10.5L12 5l5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        'down'  => '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M6.5 13.5L12 19l5.5-5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      ];
+      return $icons[ $name ] ?? '';
+    };
+
+    $home_cases = [
       [
-        'title' => 'Dedicated Senior Ownership',
-        'body'  => 'No rotating account managers or ticket voids. You get direct access to a named, senior Workday consultant who thoroughly understands your configuration baseline.',
+        'client'  => 'AQA',
+        'type'    => 'Global Education Provider',
+        'icon'    => 'chart',
+        'metrics' => [
+          [ 'value' => '86', 'suffix' => '%', 'trend' => 'up', 'label' => 'Self-service adoption' ],
+          [ 'value' => '3', 'suffix' => 'd', 'trend' => 'down', 'label' => 'Reporting time (down)' ],
+        ],
+        'impact'  => [ 'Adoption soared,', 'admin time nearly disappeared.' ],
       ],
       [
-        'title' => 'Pre-emptive Risk Mapping',
-        'body'  => 'We audit your environment and isolate hidden configuration gaps before major delivery begins. You will never have to explain a system surprise to your board.',
-      ],
-      [
-        'title' => 'Deliberate Self-Sufficiency',
-        'body'  => 'We engineer ourselves out of a job. Every engagement includes thorough documentation and hands-on knowledge transfer to make your internal team completely independent.',
-      ],
-      [
-        'title' => 'Real, Board-Level ROI',
-        'body'  => 'We have helped global enterprises like AQA and LEGO turn vague optimization stories into real, quantifiable business metrics.',
+        'client'  => 'Slaughter and May',
+        'type'    => 'Elite Legal Enterprise',
+        'icon'    => 'check',
+        'metrics' => [
+          [ 'value' => '100', 'suffix' => '%', 'trend' => 'up', 'label' => 'On-schedule deployment' ],
+          [ 'value' => '0', 'suffix' => 'x', 'trend' => 'down', 'label' => 'Overruns' ],
+        ],
+        'impact'  => [ 'A textbook legacy migration,', 'delivered flawlessly.' ],
       ],
     ];
     ?>
-    <div class="why-grid">
-      <?php foreach ( $why_items as $i => $item ) : ?>
-        <article class="why-card reveal" style="transition-delay:<?php echo esc_attr( ( $i + 1 ) * 80 ); ?>ms">
-          <h3><?php echo esc_html( $item['title'] ); ?></h3>
-          <p><?php echo wp_kses_post( $item['body'] ); ?></p>
+
+    <div class="home-success-list reveal delay-1" aria-label="Client success stories">
+      <?php foreach ( $home_cases as $case ) : ?>
+        <article class="home-success-card">
+          <header class="home-success-client">
+            <h3><?php echo esc_html( $case['client'] ); ?></h3>
+            <p><?php echo esc_html( $case['type'] ); ?></p>
+          </header>
+          <div class="home-success-story">
+            <div class="home-success-metrics">
+              <?php foreach ( $case['metrics'] as $metric ) : ?>
+                <div class="home-success-stat">
+                  <div class="home-success-stat-value">
+                    <strong><?php echo esc_html( $metric['value'] ); ?><em><?php echo esc_html( $metric['suffix'] ); ?></em></strong>
+                    <span class="home-success-trend home-success-trend--<?php echo esc_attr( $metric['trend'] ); ?>">
+                      <?php echo $home_success_icon( $metric['trend'] ); ?>
+                    </span>
+                  </div>
+                  <span class="home-success-stat-label"><?php echo esc_html( $metric['label'] ); ?></span>
+                </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+          <div class="home-success-quote">
+            <span class="home-success-impact-icon home-success-impact-icon--<?php echo esc_attr( $case['icon'] ); ?>">
+              <?php echo $home_success_icon( $case['icon'] ); ?>
+            </span>
+            <p>
+              <?php foreach ( $case['impact'] as $line ) : ?>
+                <span><?php echo esc_html( $line ); ?></span>
+              <?php endforeach; ?>
+            </p>
+          </div>
+        </article>
+      <?php endforeach; ?>
+    </div>
+
+    <div class="home-success-footer reveal delay-2">
+      <span class="home-success-footer-icon"><?php echo $home_success_icon( 'star' ); ?></span>
+      <div class="home-success-footer-copy">
+        <h3>Your success story could be next.</h3>
+        <p>Let&rsquo;s unlock more from your Workday.</p>
+      </div>
+      <a href="#talk" class="home-success-footer-cta">
+        Talk to a Workday Expert <?php echo z_arrow( 15 ); ?>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════
+     INSIGHTS
+══════════════════════════════════════════════════════ -->
+<section id="insights" class="section-home-insights py-28">
+  <div class="container">
+    <div class="framework-intro home-section-intro home-insights-header reveal">
+      <div class="framework-intro-heading">
+        <div class="section-label text-redorange">
+          <span class="section-label-line" style="background:var(--redorange)"></span>
+          Workday Deployment, AMS &amp; AI Insights
+        </div>
+        <h2 class="section-heading">From the Zeneesha Workday lifecycle playbook.</h2>
+      </div>
+      <p class="section-sub framework-intro-copy">Actionable insights across deployment, operations and AI to help you unlock the full value of Workday.</p>
+    </div>
+    <div class="home-insight-grid">
+      <?php
+      $insights = [
+        [ 'icon'=>'deployment', 'topic'=>'Workday Deployment Advisory', 'title'=>'The generic ERP deployment trap: why enterprise HCM strategy must dictate Workday tenant configuration.' ],
+        [ 'icon'=>'ams', 'topic'=>'Workday AMS Transformation', 'title'=>'The legacy HRIS support model is broken. Discover outcome-driven Workday AMS and proactive tenant optimisation.' ],
+        [ 'icon'=>'ai', 'topic'=>'Workday AI & Automation', 'title'=>'Unlock stranded ROI: safely activate Workday Illuminate AI and HCM automation without disrupting live operations.' ],
+      ];
+      foreach ( $insights as $i => $insight ) : ?>
+        <article class="home-insight-card reveal" style="transition-delay:<?php echo esc_attr( $i * 80 ); ?>ms">
+          <span class="home-insight-icon home-insight-icon--<?php echo esc_attr( $insight['icon'] ); ?>" aria-hidden="true">
+            <?php if ( 'deployment' === $insight['icon'] ) : ?>
+              <svg viewBox="0 0 64 64" fill="none">
+                <rect x="12" y="13" width="34" height="27" rx="3"></rect>
+                <path d="M12 22h34M20 18h.2M26 18h.2M32 18h.2M25 50h14M32 40v10"></path>
+                <circle cx="45" cy="43" r="8"></circle>
+                <path d="M45 38.5v9M40.5 43h9"></path>
+              </svg>
+            <?php elseif ( 'ams' === $insight['icon'] ) : ?>
+              <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="24" cy="21" r="6"></circle>
+                <circle cx="41" cy="19" r="5"></circle>
+                <path d="M13 41c1.5-8 6-12 11-12s9.5 4 11 12M34 31c6 .6 10 4.5 11 11"></path>
+                <path d="M14 50h38M19 45v5M29 39v11M39 34v16M49 27v23"></path>
+                <path d="M43 28l6-6 4 4"></path>
+              </svg>
+            <?php else : ?>
+              <svg viewBox="0 0 64 64" fill="none">
+                <path d="M29 13c-6.5 0-11 4.8-11 11 0 1 .1 1.9.4 2.8A10.5 10.5 0 0 0 21 48c2 0 3.9-.5 5.6-1.6V17.2A9 9 0 0 1 29 13Z"></path>
+                <path d="M35 17.2v29.2A10.5 10.5 0 0 0 40.6 48a10.5 10.5 0 0 0 2.9-20.6c.3-1 .5-2.1.5-3.2 0-6.4-4.5-11.2-11-11.2"></path>
+                <path d="M27 23h-6M37 23h6M27 33h-8M37 33h8M27 43h-6M37 43h6"></path>
+                <circle cx="18" cy="23" r="1.8"></circle><circle cx="46" cy="23" r="1.8"></circle>
+                <circle cx="16" cy="33" r="1.8"></circle><circle cx="48" cy="33" r="1.8"></circle>
+                <circle cx="18" cy="43" r="1.8"></circle><circle cx="46" cy="43" r="1.8"></circle>
+              </svg>
+            <?php endif; ?>
+          </span>
+          <div class="home-insight-card-body">
+            <div class="home-insight-meta">
+              <span class="home-insight-num"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
+              <span class="home-insight-topic"><?php echo esc_html( $insight['topic'] ); ?></span>
+            </div>
+            <h3><?php echo esc_html( $insight['title'] ); ?></h3>
+            <a class="home-insight-link" href="<?php echo esc_url( home_url( '/resources/' ) ); ?>">Read insight <?php echo z_arrow( 18 ); ?></a>
+          </div>
         </article>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-
-<!-- ══════════════════════════════════════════════════════
-     OUR APPROACH
-══════════════════════════════════════════════════════ -->
-<section id="approach" class="section-approach py-28">
-  <div class="container approach-grid">
-    <div class="approach-copy reveal">
-      <div class="section-label text-redorange">
-        <span class="section-label-line" style="background:var(--redorange)"></span>
-        Our Approach
-      </div>
-      <h2 class="section-heading">Find The Iceberg Before You Hit It.</h2>
-      <p>Most Workday projects look straightforward until someone uncovers six years of undocumented configuration.</p>
-      <p>That's why we front-load discovery, validation and scope mapping before major delivery begins.</p>
-      <p>Because we'd rather find the problems early than invoice you for finding them later.</p>
-    </div>
-    <div class="approach-result reveal delay-1">
-      <span>The Result</span>
-      <ul>
-        <li>Reduced delivery risk</li>
-        <li>Better planning</li>
-        <li>Fewer surprises</li>
-        <li>More predictable outcomes</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     WORKDAY HEALTH CHECK
-══════════════════════════════════════════════════════ -->
-<section id="health-check" class="section-health-check py-28">
-  <div class="container health-check-grid">
-    <div class="health-check-copy reveal">
-      <div class="section-label text-redorange">
-        <span class="section-label-line" style="background:var(--redorange)"></span>
-        Workday Health Check
-      </div>
-      <h2 class="section-heading">Find The Value You're Already Paying For.</h2>
-      <p>Most organisations invest heavily in Workday.</p>
-      <p>Our Health Check helps identify where adoption, governance, reporting and support challenges are preventing you from getting the return you expected.</p>
-      <p>You'll leave with practical recommendations and a clearer understanding of where value may be leaking from your Workday environment, before committing to anything.</p>
-      <a href="#talk" class="health-check-cta">
-        Book Your Free Health Check <?php echo z_arrow( 13 ); ?>
-      </a>
-    </div>
-    <div class="health-check-panel reveal delay-1">
-      <span>The free Workday Health Check helps identify:</span>
-      <ul>
-        <li>Adoption challenges</li>
-        <li>Governance risks</li>
-        <li>Reporting inefficiencies</li>
-        <li>Support bottlenecks</li>
-        <li>Optimisation opportunities</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════════════════════
      FAQ
@@ -592,14 +733,7 @@ get_header(); ?>
         <?php
         $faqs = [
           [
-            'q' => 'Do you provide Workday AMS services?',
-            'a' => [
-              "Yes. But we'd rather help you need less support, not more.",
-              "We provide Workday AMS services for organisations that need additional expertise, capacity or specialist support. Our goal isn't to keep you dependent on us forever. It is to help your Workday environment become more efficient, more stable and easier to manage over time.",
-            ],
-          ],
-          [
-            'q' => "We're already paying a fortune for Workday. Why would we need a partner as well?",
+            'q' => 'Why pay for a Workday partner too?',
             'a' => [
               "Because buying a gym membership doesn't automatically make you fit.",
               "Workday is a powerful platform, but most organisations don't have a team of Workday specialists sitting around waiting for problems to appear.",
@@ -608,7 +742,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'How do I know if my Workday environment needs optimising?',
+            'q' => 'How do we know Workday needs optimising?',
             'a' => [
               "If you're asking the question, there's a decent chance it does.",
               'Some common signs include:',
@@ -626,7 +760,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => "What's included in the Workday Health Check?",
+            'q' => "What's in the Workday Health Check?",
             'a' => [
               'Think of it as an MOT for your Workday environment.',
               "We'll review areas such as:",
@@ -644,7 +778,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'We only need help with one small issue. Is that something you do?',
+            'q' => 'Can you help with one small issue?',
             'a' => [
               "Absolutely. We don't insist on turning every conversation into a six-month programme.",
               "Whether it's a small integration, a reporting challenge, a security review or a wider optimisation project, we're happy to help.",
@@ -652,7 +786,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'What size organisations do you work with?',
+            'q' => 'What size organisations do you support?',
             'a' => [
               "If you're running Workday, we're interested in talking.",
               "We've supported organisations ranging from focused projects worth a few thousand pounds through to global programmes and long-term Workday support engagements.",
@@ -661,22 +795,14 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'Do you only work in the UK?',
+            'q' => 'Do you work outside the UK?',
             'a' => [
               "No. Workday doesn't stop at borders and neither do we.",
               'We support organisations globally across multiple industries, delivering projects, optimisation services and AMS support wherever Workday is being used.',
             ],
           ],
           [
-            'q' => 'How quickly can you start?',
-            'a' => [
-              'Usually much quicker than your internal approval process.',
-              "Timeframes vary depending on scope and availability, but we're often able to engage quickly for health checks, advisory work and smaller projects.",
-              "For larger programmes, we'll work with you to establish realistic timelines and delivery plans.",
-            ],
-          ],
-          [
-            'q' => 'What makes Zeneesha different from other Workday consultancies?',
+            'q' => 'How is Zeneesha different?',
             'a' => [
               "We'd rather find the iceberg before you hit it.",
               "Many Workday projects become frustrating because hidden complexity isn't identified until halfway through delivery.",
@@ -687,7 +813,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'Can you help if our Workday implementation is already live?',
+            'q' => 'Can you help after Workday go-live?',
             'a' => [
               "Honestly, that's where many of our conversations start.",
               "Most organisations don't need help implementing Workday forever.",
@@ -696,33 +822,8 @@ get_header(); ?>
               "That's exactly where we help.",
             ],
           ],
-          [
-            'q' => "Will you tell us if Workday isn't actually the problem?",
-            'a' => [
-              'Yes. Even if it costs us work.',
-              "Sometimes the issue isn't Workday.",
-              "Sometimes it's:",
-            ],
-            'bullets' => [
-              'Process design',
-              'Governance',
-              'Data quality',
-              'Change management',
-              'Internal ownership',
-            ],
-            'after' => [
-              "If the problem sits outside Workday, we'll tell you.",
-              'Because solving the right problem is more important than selling the wrong service.',
-            ],
-          ],
-          [
-            'q' => 'Lorem ipsum dolor sit amet?',
-            'a' => [
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non turpis vitae neque facilisis porta.',
-            ],
-          ],
         ];
-        $faq_columns = array_chunk( $faqs, 6, true );
+        $faq_columns = array_chunk( $faqs, 4, true );
         foreach ( $faq_columns as $col_i => $faq_column ) : ?>
           <div class="faq-column">
             <?php foreach ( $faq_column as $i => $faq ) :
@@ -780,10 +881,13 @@ get_header(); ?>
 
     <!-- Left: copy -->
     <div>
-      <h2 class="cta-heading reveal delay-1">Stop Fighting Workday. Start Getting Value From It.</h2>
+      <div class="section-label reveal cta-label">
+        <span class="section-label-line" style="background:var(--redorange)"></span>
+        Book a Free Workday Health Check
+      </div>
+      <h2 class="cta-heading reveal delay-1">Ready for complete Workday confidence?</h2>
 
-      <p class="cta-body reveal delay-2">Workday shouldn't feel harder than the problems it was supposed to solve.</p>
-      <p class="cta-body reveal delay-2">Whether you need optimisation, support, integration expertise or a trusted partner, we're here to help.</p>
+      <p class="cta-body reveal delay-2">Stop settling for operational bottlenecks and generic advice. Get senior-led delivery, commercial flexibility and practical support your business deserves.</p>
     </div>
 
     <!-- Right: contact form -->

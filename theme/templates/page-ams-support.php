@@ -15,8 +15,8 @@ get_header();
 $v = isset( $_GET['v'] ) ? max( 1, min( 3, (int) $_GET['v'] ) ) : 0;
 
 // ── ACF fields (with AMS-specific fallbacks) ─────────────────
-$eyebrow     = zf( 'svc_eyebrow',      '02 — Stay operational' );
-$description = zf( 'svc_description',  "Post go-live, Workday doesn't run itself. Releases land twice a year. Tickets arrive without warning. Without a named team watching your tenant, value quietly erodes." );
+$eyebrow     = zf( 'svc_eyebrow',      'Workday AMS & Support Services' );
+$description = zf( 'svc_description',  "Your Workday implementation is live, but if your team is drowning in support tickets, you are not getting the ROI you paid for. We handle the heavy lifting so your team can move from reactive firefighting to proactive optimisation." );
 $color       = zf( 'svc_color',        '#3B9EDB' );
 $outcomes_raw= zf( 'svc_outcomes',     '' );
 $pain_raw    = zf( 'svc_pain_points',  '' );
@@ -53,7 +53,7 @@ $scope_cards = [
     [
         'icon'    => '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
         'title'   => 'Release Management',
-        'desc'    => "Workday's two annual releases managed end to end — so your team is never caught off-guard by untested changes.",
+        'desc'    => "Workday's two annual releases managed end to end - so your team is never caught off-guard by untested changes.",
         'bullets' => [ 'Regression testing', 'Feature impact review', 'Release readiness sign-off', 'Adoption planning' ],
         'counter' => '01 / 04',
     ],
@@ -85,7 +85,7 @@ $rhythm_phases = [
     [
         'icon'   => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>',
         'label'  => 'Onboarding',
-        'period' => 'Weeks 1 – 2',
+        'period' => 'Weeks 1 - 2',
         'items'  => [ 'Tenant handover', 'Knowledge transfer', 'SLA agreed' ],
     ],
     [
@@ -107,6 +107,92 @@ $rhythm_phases = [
         'items'  => [ 'Performance review', 'Roadmap planning', 'Contract renewal' ],
     ],
 ];
+
+$ams_framework = [
+    [
+        'num' => '01',
+        'kicker' => 'Stop Chasing Issues',
+        'title' => 'Stabilise',
+        'body' => 'We immediately reduce your operational risk by untangling fragile integrations, fixing stuck Business Processes (BPs), and clearing the overwhelming ticket backlog that is draining your internal team.',
+    ],
+    [
+        'num' => '02',
+        'kicker' => 'Eliminate the Technical Debt',
+        'title' => 'Optimise',
+        'body' => 'We reverse configuration drift by securing your tangled security domains, simplifying complex calculated fields to speed up reporting, and removing the system friction that causes low user adoption.',
+    ],
+    [
+        'num' => '03',
+        'kicker' => 'Drive the ROI',
+        'title' => 'Evolve',
+        'body' => "We shift your system from reactive maintenance to proactive growth. By safely managing Workday's biannual releases and rolling out new modules, we ensure the platform scales smoothly with your business without disrupting existing processes.",
+    ],
+];
+
+$ams_case_studies = [
+    [
+        'title' => 'Continuous Security & Workflow Optimisation',
+        'body' => 'Delivered agile functional support across complex multi-tenant environments, optimising security configurations and automating business processes. Replaced cumbersome custom setups with rule-based security to ensure ongoing data compliance.',
+    ],
+    [
+        'title' => '100% Business Continuity During Leadership Transition',
+        'body' => 'Managed the Workday production support team during a critical leadership absence. Ensured seamless execution of high-stakes year-end compensation and performance cycles while maintaining full team velocity and closing pending technical debt.',
+    ],
+];
+
+$ams_failure_points = [
+    [ 'title' => 'The Ticket Backlog Trap', 'body' => 'If your Business Processes (BPs) are over-engineered with too much conditional logic, approval routings get stuck in endless loops. Internal teams get overwhelmed with daily fixes, causing strategic improvements to stall.' ],
+    [ 'title' => 'Stagnant ROI & System Bloat', 'body' => 'Building reports by endlessly stacking complex Calculated Fields degrades system performance and causes reports to time out. Executives lose trust in the data, and you miss out on new capabilities.' ],
+    [ 'title' => 'User Rebellion & Shadow IT', 'body' => 'When custom Workday Studio integrations or EIBs break due to downstream vendor updates, critical data gaps appear. Frustrated employees give up on the system and return to manual spreadsheets.' ],
+    [ 'title' => 'Governance & Security Risks', 'body' => 'Making quick, undocumented patches directly in production creates Configuration Drift. Your Security Groups become a tangled maze, triggering compliance risks and making bi-annual updates dangerous to test.' ],
+];
+
+$ams_faqs = [
+    [ 'q' => 'What is AMS?', 'a' => 'Application Management Services (AMS) is how we ensure your system keeps working operationally, strategically, and efficiently, without the cost of an oversized in-house team. We provide the exact flexibility you need, applying a proven framework to continually optimise your tenant.' ],
+    [ 'q' => 'What does a Workday AMS partner do?', 'a' => 'An AMS partner provides ongoing technical and strategic support, handling everything from daily break-fix tickets to bi-annual release testing, change management, and long-term system Optimisation.' ],
+    [ 'q' => 'We just went live. Do we really need AMS right now?', 'a' => 'Yes. The period immediately following go-live (Hypercare) is when users struggle the most, and technical debt begins to accumulate rapidly. Immediate, structured support ensures smooth adoption and system stability.' ],
+    [ 'q' => 'What causes Workday support models to fail?', 'a' => 'Common causes include treating support purely as an IT helpdesk ticketing system, failing to strategically manage bi-annual Workday releases, and ignoring continuous user training.' ],
+    [ 'q' => 'Can you help us fix a system that was poorly implemented?', 'a' => 'Absolutely. Our Optimisation services are explicitly designed to untangle complex, broken configurations and align the system back to your real-world business processes.' ],
+    [ 'q' => 'Is it difficult to transition to a new AMS provider?', 'a' => 'Not at all. We utilise a structured onboarding process to audit your current tenant, document existing configurations, and seamlessly take over support without operational disruption.' ],
+];
+
+$ams_dial_items = [
+    [
+        'label' => 'Application Management (AMS)',
+        'title' => 'Application Management (AMS)',
+        'body'  => 'We provide proactive day-to-day Workday support, resolving issues, monitoring system health, and recommending continuous improvements to keep your tenant performing at its best.',
+    ],
+    [
+        'label' => 'System Health Check & Advisory',
+        'title' => 'System Health Check & Advisory',
+        'body'  => 'We conduct a deep-dive assessment of your setup to uncover inefficiencies and underutilised capabilities. You receive a practical, clear roadmap for immediate system optimisation.',
+    ],
+    [
+        'label' => 'Continuous Optimisation & Enhancements',
+        'title' => 'Continuous Optimisation & Enhancements',
+        'body'  => 'As your business evolves, so should your Workday. We continuously refine business processes, configure new capabilities, and implement enhancements that maximise value.',
+    ],
+    [
+        'label' => 'Adoption & Governance',
+        'title' => 'Adoption & Governance',
+        'body'  => 'We help establish governance, improve user adoption, and ensure Workday is used consistently and effectively across your organisation.',
+    ],
+    [
+        'label' => 'Release Management',
+        'title' => 'Release Management',
+        'body'  => "We proactively manage Workday's bi-annual updates from testing through deployment. We guarantee your team safely adopts powerful new features without disrupting existing daily processes.",
+    ],
+    [
+        'label' => 'Talent Management',
+        'title' => 'Talent Management',
+        'body'  => 'We provide certified Workday professionals on demand to fill your critical resource gaps. Whether you need short-term project support or a long-term engagement, we scale with you.',
+    ],
+    [
+        'label' => 'Reporting & Insights',
+        'title' => 'Reporting & Insights',
+        'body'  => 'We enhance your reporting capabilities to translate complex data into clear, actionable dashboards. This gives your leadership the deep insights required to make faster, smarter decisions.',
+    ],
+];
 ?>
 
 <!-- Reading progress bar -->
@@ -116,214 +202,150 @@ $rhythm_phases = [
 
 
 <?php if ( $v === 0 ) : ?>
-<!-- ════════════════════════════════════════════════════════════
-     DEFAULT — Full rich layout, form at end
-════════════════════════════════════════════════════════════ -->
+<!-- Default AMS design. This block is the proposed service-page system. -->
+<div class="ams-next-root">
 
-<!-- HERO: content left + typical shape right ──────────────── -->
-<section class="svc-ams-hero">
-  <div class="svc-hero-blobs" aria-hidden="true">
-    <div class="svc-hero-blob svc-hero-blob--1" data-parallax="0.14" style="background:<?php echo esc_attr( $color ); ?>12"></div>
-    <div class="svc-hero-blob svc-hero-blob--2" data-parallax="0.07"></div>
-  </div>
-  <div class="container">
-    <div class="svc-ams-hero-split">
-
-      <!-- Left: headline + description + CTAs -->
-      <div class="svc-ams-hero-left hero-relative">
-        <div class="svc-hero-eyebrow reveal">
-          <span class="status-dot"></span>
-          <span class="svc-num">02</span>
-          <span style="opacity:.35">/</span>
-          <?php echo esc_html( $eyebrow ); ?>
-        </div>
-
-        <h1 class="svc-hero-title reveal delay-1"><?php echo esc_html( $title ); ?></h1>
-
-        <p class="svc-ams-tagline reveal delay-2"><?php echo esc_html( $description ); ?></p>
-
-        <div class="svc-ams-ctas reveal delay-3">
-          <a href="#ams-form" class="btn-primary">
-            Book a Health Check <?php echo z_arrow( 14 ); ?>
-          </a>
-          <a href="#ams-scope" class="btn-ghost">
-            See what's covered <?php echo z_arrow( 14 ); ?>
-          </a>
-        </div>
-
-        <p class="svc-ams-note reveal delay-4">
-          <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true"><circle cx="3" cy="3" r="3" fill="#10b981"/></svg>
-          Booking Q3 engagements &nbsp;&middot;&nbsp; Typical reply within one working day
-        </p>
-      </div>
-
-      <!-- Right: typical shape panel -->
-      <div class="svc-typical-shape reveal delay-2">
-        <div class="svc-shape-header">Typical Shape</div>
-        <div class="svc-shape-row">
-          <span class="svc-shape-key">Duration</span>
-          <span class="svc-shape-val">Rolling, 12-month minimum</span>
-        </div>
-        <div class="svc-shape-row">
-          <span class="svc-shape-key">Team</span>
-          <span class="svc-shape-val">Named partner&nbsp;+ dedicated consultant</span>
-        </div>
-        <div class="svc-shape-row">
-          <span class="svc-shape-key">SLA</span>
-          <span class="svc-shape-val">4-hour response, next business day resolution</span>
-        </div>
-        <div class="svc-shape-row">
-          <span class="svc-shape-key">Cadence</span>
-          <span class="svc-shape-val">Monthly check-in, quarterly optimisation sprint</span>
+  <section class="ams-next-hero">
+    <div class="container ams-next-hero-grid">
+      <div class="ams-next-hero-copy">
+        <p class="ams-next-eyebrow reveal">Workday AMS &amp; Support Services</p>
+        <h1 class="reveal delay-1">Beyond Support. <span>Continuous Workday Improvement.</span></h1>
+        <p class="ams-next-hero-intro reveal delay-2">Your Workday implementation is live, but if your team is drowning in support tickets, you aren't getting the ROI you paid for. We handle the heavy lifting of your Workday support, so your team can move from reactive firefighting to proactive optimisation.</p>
+        <div class="ams-next-actions reveal delay-3">
+          <a href="#ams-form" class="ams-next-button ams-next-button--primary">Book a Free Health Check <?php echo z_arrow( 14 ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ams-next-button ams-next-button--secondary">Talk to a Workday Support Expert <?php echo z_arrow( 14 ); ?></a>
         </div>
       </div>
-
+      <figure class="ams-next-hero-media ams-next-hero-media--photo reveal delay-2">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/sol-02-ams-support.webp' ); ?>" width="1400" height="933" alt="Support consultants monitoring enterprise systems" fetchpriority="high">
+      </figure>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- SCOPE: 2×2 deliverable cards ──────────────────────────── -->
-<section id="ams-scope" class="svc-scope-section">
-  <div class="container">
-
-    <div class="svc-scope-intro">
-      <div>
-        <div class="section-label reveal" style="color:<?php echo esc_attr( $color ); ?>">
-          <span class="section-label-line" style="background:<?php echo esc_attr( $color ); ?>"></span>
-          01 &middot; Scope
-        </div>
-        <h2 class="svc-scope-heading reveal delay-1">What&rsquo;s covered,<br>end to end.</h2>
-      </div>
-      <p class="svc-scope-sub reveal delay-1">A real AMS engagement, not a ticket queue. Every area of your Workday tenant covered by a team that is named on your contract.</p>
-    </div>
-
-    <div class="svc-scope-grid">
-      <?php foreach ( $scope_cards as $i => $card ) : ?>
-        <div class="svc-scope-card reveal" style="transition-delay:<?php echo $i * 80; ?>ms">
-          <div class="svc-scope-card-top">
-            <div class="svc-scope-icon"><?php echo $card['icon']; // phpcs:ignore ?></div>
-            <span class="svc-scope-counter"><?php echo esc_html( $card['counter'] ); ?></span>
-          </div>
-          <h3 class="svc-scope-title"><?php echo esc_html( $card['title'] ); ?></h3>
-          <p class="svc-scope-desc"><?php echo esc_html( $card['desc'] ); ?></p>
-          <div class="svc-scope-sep"></div>
-          <div class="svc-scope-bullets">
-            <?php foreach ( $card['bullets'] as $b ) : ?>
-              <span class="svc-scope-bullet"><?php echo esc_html( $b ); ?></span>
-            <?php endforeach; ?>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- STATS BAND ─────────────────────────────────────────────── -->
-<section class="svc-stats-band" aria-label="AMS outcomes at a glance">
-  <div class="container">
-    <div class="svc-stats-row">
-      <div class="svc-stat reveal">
-        <div class="svc-stat-top">
-          <span class="svc-stat-num" data-count="700">700</span><span class="svc-stat-suffix">%</span>
-        </div>
-        <span class="svc-stat-label">Faster ticket resolution</span>
-        <span class="svc-stat-source">AQA Education</span>
-      </div>
-      <div class="svc-stat-div"></div>
-      <div class="svc-stat reveal delay-1">
-        <div class="svc-stat-top">
-          <span class="svc-stat-num" data-count="90">90</span><span class="svc-stat-suffix"> days</span>
-        </div>
-        <span class="svc-stat-label">Backlog cleared</span>
-        <span class="svc-stat-source">AQA Education</span>
-      </div>
-      <div class="svc-stat-div"></div>
-      <div class="svc-stat reveal delay-2">
-        <div class="svc-stat-top">
-          <span class="svc-stat-num" data-count="95">95</span><span class="svc-stat-suffix">%</span>
-        </div>
-        <span class="svc-stat-label">Platform adoption</span>
-        <span class="svc-stat-source">AQA Education</span>
+  <section class="ams-next-logos" aria-label="Selected Zeneesha clients">
+    <div class="container">
+      <div class="ams-next-logo-row">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logos/kion.png' ); ?>" alt="KION Group" loading="lazy">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logos/warner.svg' ); ?>" alt="Warner Music Group" loading="lazy">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logos/aqa.svg' ); ?>" alt="AQA" loading="lazy">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logos/quadient.png' ); ?>" alt="Quadient" loading="lazy">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logos/slaughter.png' ); ?>" alt="Slaughter and May" loading="lazy">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- RHYTHM: horizontal timeline infographic ────────────────── -->
-<section class="svc-rhythm-section">
-  <div class="container">
-
-    <div class="svc-rhythm-intro">
-      <div class="section-label reveal" style="color:<?php echo esc_attr( $color ); ?>">
-        <span class="section-label-line" style="background:<?php echo esc_attr( $color ); ?>"></span>
-        02 &middot; Rhythm
+  <section class="ams-next-problem">
+    <div class="container">
+      <div class="ams-next-problem-heading reveal">
+        <h2>Why Standard Workday AMS Fails to Fix Root Causes</h2>
+        <p>Most Workday environments don't struggle because of the software. They struggle because standard support models focus purely on closing tickets, ignoring the deep technical debt building under the hood.</p>
+        <p>When you treat support as just "break-fix", technical debt creates real business damage:</p>
       </div>
-      <h2 class="svc-rhythm-heading reveal delay-1">Your support rhythm.</h2>
-      <p class="svc-rhythm-sub reveal delay-2">Not reactive firefighting. A structured cadence that keeps your Workday tenant stable, current, and improving — month after month.</p>
+      <div class="ams-next-problem-grid">
+        <figure class="ams-next-problem-media reveal delay-1">
+          <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/workday-laptop-hover.png' ); ?>" width="6251" height="4501" alt="Workday workflow issue visual shown on a laptop" loading="lazy">
+        </figure>
+        <div class="ams-next-problem-list">
+          <?php foreach ( $ams_failure_points as $i => $point ) : ?>
+            <article class="ams-next-problem-item reveal" style="transition-delay:<?php echo esc_attr( $i * 90 ); ?>ms">
+              <span><?php printf( '%02d', $i + 1 ); ?></span>
+              <div>
+                <h3><?php echo esc_html( $point['title'] ); ?></h3>
+                <p><?php echo esc_html( $point['body'] ); ?></p>
+              </div>
+            </article>
+          <?php endforeach; ?>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="svc-rhythm-wrap reveal delay-1">
-      <div class="svc-rhythm-line" aria-hidden="true"></div>
-      <div class="svc-rhythm-track">
-        <?php foreach ( $rhythm_phases as $ph ) : ?>
-          <div class="svc-rhythm-phase">
-            <div class="svc-rhythm-dot">
-              <?php echo $ph['icon']; // phpcs:ignore ?>
-            </div>
-            <div class="svc-rhythm-label"><?php echo esc_html( $ph['label'] ); ?></div>
-            <div class="svc-rhythm-period"><?php echo esc_html( $ph['period'] ); ?></div>
-            <ul class="svc-rhythm-items">
-              <?php foreach ( $ph['items'] as $item ) : ?>
-                <li class="svc-rhythm-item"><?php echo wp_kses_post( $item ); ?></li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
+  <section id="ams-model" class="ams-next-model" data-ams-dial>
+    <div class="container">
+      <script type="application/json" data-ams-dial-json><?php echo wp_json_encode( $ams_dial_items ); ?></script>
+      <div class="ams-next-model-heading reveal">
+        <h2>How We Keep Workday Moving Forward</h2>
+        <p>Here is how we deliver ongoing support to grow your Workday value:</p>
+      </div>
+      <div class="ams-next-model-grid">
+        <div class="ams-next-model-nav reveal delay-1" role="group" aria-label="AMS service areas">
+          <?php foreach ( $ams_dial_items as $i => $item ) : ?>
+            <button type="button" data-ams-dial-node data-index="<?php echo esc_attr( $i ); ?>" aria-pressed="<?php echo 0 === $i ? 'true' : 'false'; ?>">
+              <span><?php printf( '%02d', $i + 1 ); ?></span>
+              <?php echo esc_html( $item['label'] ); ?>
+            </button>
+          <?php endforeach; ?>
+        </div>
+        <div class="ams-next-model-panel reveal delay-2" aria-live="polite">
+          <span data-ams-dial-count>01 / 07</span>
+          <h3 data-ams-dial-title><?php echo esc_html( $ams_dial_items[0]['title'] ); ?></h3>
+          <p data-ams-dial-body><?php echo esc_html( $ams_dial_items[0]['body'] ); ?></p>
+        </div>
+      </div>
+      <div class="ams-next-section-actions reveal">
+        <a href="#ams-form" class="ams-next-button ams-next-button--primary">Book a Free Health Check <?php echo z_arrow( 14 ); ?></a>
+        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ams-next-button ams-next-button--secondary">Talk to a Workday Support Expert <?php echo z_arrow( 14 ); ?></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ams-framework" class="ams-next-framework">
+    <div class="container">
+      <div class="ams-next-framework-heading reveal">
+        <h2>The Zeneesha AMS Framework</h2>
+        <p>Application Management Services (AMS) is how we ensure your system keeps working operationally and strategically. We don't just treat the symptoms; we engineer permanent solutions using a clear framework:</p>
+      </div>
+      <div class="ams-next-framework-grid">
+        <?php foreach ( $ams_framework as $i => $item ) : ?>
+          <article class="ams-next-framework-card ams-next-framework-card--<?php echo esc_attr( $i + 1 ); ?> reveal" style="transition-delay:<?php echo esc_attr( $i * 90 ); ?>ms">
+            <span><?php echo esc_html( $item['num'] ); ?></span>
+            <p><?php echo esc_html( $item['kicker'] ); ?></p>
+            <h3><?php echo esc_html( $item['title'] ); ?></h3>
+            <div><?php echo esc_html( $item['body'] ); ?></div>
+          </article>
         <?php endforeach; ?>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-
-<!-- CLIENT OUTCOME ─────────────────────────────────────────── -->
-<?php if ( $cs_metric || $cs_client || $cs_result ) : ?>
-<section class="svc-v2-cs-section" style="background:var(--cream2)">
-  <div class="container">
-    <div class="svc-v2-cs-panel reveal" style="border-top-color:<?php echo esc_attr( $color ); ?>">
-      <div>
-        <div class="section-label" style="color:<?php echo esc_attr( $color ); ?>;margin-bottom:1.5rem">
-          <span class="section-label-line" style="background:<?php echo esc_attr( $color ); ?>"></span>
-          03 &middot; Outcome
+  <section class="ams-next-proof">
+    <div class="container">
+      <div class="ams-next-proof-grid">
+        <div class="ams-next-proof-lead reveal">
+          <p>Case Study</p>
+          <h2>Real Outcomes. Real Impact.</h2>
+          <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="ams-next-button ams-next-button--secondary">Talk to a Workday Support Expert <?php echo z_arrow( 14 ); ?></a>
         </div>
-        <?php if ( $cs_client ) : ?><div class="cs-client-badge"><?php echo esc_html( $cs_client ); ?></div><?php endif; ?>
-        <?php if ( $cs_metric ) : ?><div class="svc-v2-big-metric reveal delay-1" style="color:<?php echo esc_attr( $color ); ?>"><?php echo esc_html( $cs_metric ); ?></div><?php endif; ?>
-        <?php if ( $cs_result ) : ?><p class="svc-v2-cs-body reveal delay-2"><?php echo esc_html( $cs_result ); ?></p><?php endif; ?>
-      </div>
-      <?php if ( $outcomes ) : ?>
-      <div>
-        <div class="section-label reveal" style="margin-bottom:1.25rem">
-          <span class="section-label-line" style="background:var(--slate2)"></span>
-          What changes
-        </div>
-        <ul class="svc-outcomes-list">
-          <?php foreach ( $outcomes as $o ) : ?>
-            <li class="svc-outcome-item reveal">
-              <span class="svc-outcome-dot" style="background:<?php echo esc_attr( $color ); ?>"><?php echo z_check( 10 ); ?></span>
-              <span><?php echo esc_html( $o ); ?></span>
-            </li>
+        <div class="ams-next-proof-stories">
+          <?php foreach ( $ams_case_studies as $i => $case ) : ?>
+            <article class="reveal" style="transition-delay:<?php echo esc_attr( $i * 90 ); ?>ms">
+              <span><?php printf( '%02d', $i + 1 ); ?></span>
+              <h3><?php echo esc_html( $case['title'] ); ?></h3>
+              <p><?php echo esc_html( $case['body'] ); ?></p>
+            </article>
           <?php endforeach; ?>
-        </ul>
+        </div>
       </div>
-      <?php endif; ?>
     </div>
-  </div>
-</section>
-<?php endif; ?>
+  </section>
+
+  <section class="ams-next-faq">
+    <div class="container ams-next-faq-grid">
+      <div class="ams-next-faq-heading reveal">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="ams-next-faq-list">
+        <?php foreach ( $ams_faqs as $i => $faq ) : ?>
+          <details class="ams-next-faq-item reveal" style="transition-delay:<?php echo esc_attr( $i * 70 ); ?>ms" <?php echo 0 === $i ? 'open' : ''; ?>>
+            <summary><?php echo esc_html( $faq['q'] ); ?></summary>
+            <p><?php echo esc_html( $faq['a'] ); ?></p>
+          </details>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 
 <?php elseif ( $v === 1 ) : ?>
@@ -573,114 +595,16 @@ $rhythm_phases = [
 <?php endif; ?>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     LIFECYCLE STRIP — shared, preserves ?v= across pages
-════════════════════════════════════════════════════════════ -->
-<section class="svc-lifecycle">
-  <div class="container">
-    <div class="svc-lifecycle-inner">
-      <div class="section-label reveal" style="justify-content:center;color:var(--redorange);margin-bottom:.75rem">
-        <span class="section-label-line" style="background:var(--redorange)"></span>
-        The Bigger Picture
-        <span class="section-label-line" style="background:var(--redorange)"></span>
-      </div>
-      <p class="svc-lifecycle-text reveal delay-1">
-        Each Zeneesha service builds on the last.
-        Implementation feeds clean data into AMS &amp; Support.
-        AMS &amp; Support stabilises the platform for Maximise.
-        Maximise unlocks the full return on your Workday investment.
-      </p>
-      <div class="svc-lifecycle-nodes reveal delay-2">
-        <?php
-        $nodes = [
-          [ 'num' => '01', 'label' => 'Implementation', 'color' => '#1E3A8A', 'slug' => 'implementation' ],
-          [ 'num' => '02', 'label' => 'AMS &amp; Support',  'color' => '#3B9EDB', 'slug' => 'ams-support' ],
-          [ 'num' => '03', 'label' => 'Maximise',           'color' => '#F57C1F', 'slug' => 'maximise' ],
-        ];
-        foreach ( $nodes as $n ) :
-          $is_current = ( $slug === $n['slug'] );
-        ?>
-          <a href="<?php echo esc_url( home_url( '/' . $n['slug'] . '/' ) ); ?><?php echo $v > 0 ? '?v=' . $v : ''; ?>"
-             class="svc-lifecycle-node<?php echo $is_current ? ' is-current' : ''; ?>"
-             style="--node-color:<?php echo esc_attr( $n['color'] ); ?>">
-            <span class="svc-node-circle" style="background:<?php echo esc_attr( $n['color'] ); ?>"><?php echo esc_html( $n['num'] ); ?></span>
-            <span class="svc-node-label"><?php echo wp_kses_post( $n['label'] ); ?></span>
-          </a>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     CTA FORM BAND — default (0), v2, v3 only
-     (v1 has form embedded in fold 2 above)
-════════════════════════════════════════════════════════════ -->
 <?php if ( $v !== 1 ) : ?>
-<section id="ams-form" class="section-cta">
-
-  <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
-    <div class="cta-blob-1"></div>
-    <div class="cta-blob-2"></div>
-  </div>
-
-  <div class="cta-inner" id="talk">
-    <div>
-      <div class="section-label reveal cta-label">
-        <span class="section-label-line" style="background:var(--redorange)"></span>
-        Complimentary Health Check
-      </div>
-      <h2 class="cta-heading reveal delay-1">
-        Your Complimentary Workday Health Check.
-        <span> No Obligation.</span>
-      </h2>
-      <p class="cta-body reveal delay-2">
-        In 60 minutes we&rsquo;ll review your Workday setup and give you a clear picture of where value is being lost, and how to recover it.
-      </p>
-      <div class="cta-note reveal delay-3">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-        No cost &middot; No obligation &middot; Typical reply within one working day
-      </div>
-    </div>
-
-    <div class="reveal delay-3">
-      <div class="cta-form-wrap">
-        <div class="cta-form-label">Send a message</div>
-        <form id="cta-contact-form" novalidate>
-          <div class="form-row">
-            <div>
-              <label class="field-label" for="contact_name">Name <span>*</span></label>
-              <input class="form-input" type="text" id="contact_name" name="contact_name" placeholder="Your full name" required autocomplete="name">
-            </div>
-            <div>
-              <label class="field-label" for="contact_phone">Phone</label>
-              <input class="form-input" type="tel" id="contact_phone" name="contact_phone" placeholder="+44 ..." autocomplete="tel">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="field-label" for="contact_email">Email <span>*</span></label>
-            <input class="form-input" type="email" id="contact_email" name="contact_email" placeholder="you@company.com" required autocomplete="email">
-          </div>
-          <div class="form-group">
-            <label class="field-label" for="contact_message">Message</label>
-            <textarea class="form-input form-textarea" id="contact_message" name="contact_message" rows="4" placeholder="Tell us about your Workday environment..."></textarea>
-          </div>
-          <div class="form-group">
-            <div class="cta-with-note">
-              <button type="submit" class="form-submit">
-                Book My Complimentary Health Check <?php echo z_arrow( 14 ); ?>
-              </button>
-              <p class="cta-note-tag">Actionable insights. Zero sales pitch.</p>
-            </div>
-          </div>
-          <div id="form-message" class="form-msg" role="alert"></div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-</section>
+<?php
+$cta_section_id = 'ams-form';
+$cta_inner_id   = 'talk';
+$cta_eyebrow    = 'Workday Tenant Health Check';
+$cta_heading    = 'Stop Struggling With Workday. Start Getting Value From It.';
+$cta_body       = "If Workday isn't working the way it should, we'll show you why. Our Free Workday Tenant Health Check identifies issues, prioritises improvements, and gives you a clear path to a better-performing Workday.";
+$cta_submit     = 'Book Your Free Health Check';
+require __DIR__ . '/partials/form-cta.php';
+?>
 <?php endif; ?>
 
 

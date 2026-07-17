@@ -8,7 +8,7 @@
  * ACF field group: key=group_topic, location: page_template == templates/page-topic.php
  * Fields:
  *   topic_eyebrow      (text)    — short category label, e.g. "Workday AMS"
- *   topic_headline     (text)    — H1, e.g. "What is Workday AMS Support?"
+ *   topic_headline     (text)    — H1, e.g. "Workday AMS & Continuous Improvement"
  *   topic_answer       (textarea)— 2–3 sentence definitive answer (AEO lede)
  *   topic_intro        (textarea)— longer intro paragraph(s)
  *   topic_sections     (repeater)— section_heading (text), section_body (textarea)
@@ -26,16 +26,34 @@
 
 get_header();
 
+require_once __DIR__ . '/topic-content.php';
+
+// Runtime topic content lives in PHP for the six managed topic pages.
+$topic_slug     = get_post_field( 'post_name', get_the_ID() );
+$topic_defaults = zeneesha_topic_content( $topic_slug );
+
 // ── ACF fields ──────────────────────────────────────────────────────────────
-$eyebrow      = zf( 'topic_eyebrow',      'Workday' );
-$headline     = zf( 'topic_headline',     get_the_title() );
-$answer       = zf( 'topic_answer',       '' );
-$intro        = zf( 'topic_intro',        '' );
-$sections     = get_field( 'topic_sections' ) ?: [];
-$faq_raw      = get_field( 'topic_faq' )     ?: [];
-$related_svc  = zf( 'topic_related_svc',  'ams-support' );
-$related_label= zf( 'topic_related_label','See our Workday services' );
-$accent       = zf( 'topic_color',        '#1E3A8A' );
+$eyebrow       = $topic_defaults['eyebrow']       ?? zf( 'topic_eyebrow',      'Workday' );
+$headline      = $topic_defaults['headline']      ?? zf( 'topic_headline',     get_the_title() );
+$answer        = $topic_defaults['answer']        ?? zf( 'topic_answer',       '' );
+$intro         = $topic_defaults['intro']         ?? zf( 'topic_intro',        '' );
+$facts         = $topic_defaults['facts']         ?? [];
+$sections      = $topic_defaults['sections']      ?? ( get_field( 'topic_sections' ) ?: [] );
+$faq_raw       = $topic_defaults['faq']           ?? ( get_field( 'topic_faq' ) ?: [] );
+$related_svc   = $topic_defaults['related_svc']   ?? zf( 'topic_related_svc',  'ams-support' );
+$related_label = $topic_defaults['related_label'] ?? zf( 'topic_related_label','See our Workday services' );
+$accent        = $topic_defaults['color']         ?? zf( 'topic_color',        '#1E3A8A' );
+
+// Older topic records were published with SEO descriptions but without ACF
+// article fields. Reuse that client-authored description rather than showing
+// an empty hero and content column.
+if ( ! $answer ) {
+    $answer = (string) get_post_meta( get_the_ID(), '_yoast_wpseo_metadesc', true );
+    $answer = str_replace( [ ' — ', ' – ' ], ': ', $answer );
+    $answer = str_replace( [ '—', '–' ], '-', $answer );
+}
+
+$has_topic_content = (bool) ( trim( $intro ) || ! empty( $facts ) || ! empty( $sections ) );
 
 // Stats (optional — only shown if at least stat_1_num is set)
 $stats = [];
@@ -54,7 +72,7 @@ $related_url = home_url( '/' . ltrim( $related_svc, '/' ) . '/' );
 $breadcrumbs = [
     [ 'name' => 'Home',      'url' => home_url('/') ],
     [ 'name' => 'Resources', 'url' => home_url('/resources/') ],
-    [ 'name' => get_the_title(), 'url' => get_permalink() ],
+    [ 'name' => $headline, 'url' => get_permalink() ],
 ];
 ?>
 
@@ -129,30 +147,8 @@ $breadcrumbs = [
 
 <main id="main" tabindex="-1">
 
-
 <!-- ════════════════════════════════════════════════════════════
-     1. BREADCRUMB
-════════════════════════════════════════════════════════════ -->
-<nav class="topic-breadcrumb" aria-label="Breadcrumb">
-  <div class="container">
-    <ol class="topic-breadcrumb-list">
-      <?php foreach ( $breadcrumbs as $pos => $bc ) : ?>
-        <li>
-          <?php if ( $pos < count( $breadcrumbs ) - 1 ) : ?>
-            <a href="<?php echo esc_url( $bc['url'] ); ?>"><?php echo esc_html( $bc['name'] ); ?></a>
-            <span aria-hidden="true">/</span>
-          <?php else : ?>
-            <span aria-current="page"><?php echo esc_html( $bc['name'] ); ?></span>
-          <?php endif; ?>
-        </li>
-      <?php endforeach; ?>
-    </ol>
-  </div>
-</nav>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     2. HERO — definitive H1 + AEO lede
+     1. HERO — definitive H1 + AEO lede
 ════════════════════════════════════════════════════════════ -->
 <section class="topic-hero" style="--topic-accent:<?php echo esc_attr( $accent ); ?>">
   <div class="svc-hero-blobs" aria-hidden="true">
@@ -207,7 +203,7 @@ $breadcrumbs = [
 ════════════════════════════════════════════════════════════ -->
 <section class="topic-body-section">
   <div class="container">
-    <div class="topic-body-grid">
+    <div class="topic-body-grid<?php echo $has_topic_content ? '' : ' topic-body-grid--sidebar-only'; ?>">
 
       <!-- Main content column -->
       <div class="topic-content-col">
@@ -215,6 +211,20 @@ $breadcrumbs = [
         <?php if ( $intro ) : ?>
           <div class="topic-intro reveal">
             <?php echo nl2br( esc_html( $intro ) ); ?>
+          </div>
+        <?php endif; ?>
+
+        <?php if ( ! empty( $facts ) ) : ?>
+          <div class="topic-facts-card reveal delay-1" aria-label="At a glance facts">
+            <div class="topic-facts-label">At a glance</div>
+            <dl class="topic-facts-list">
+              <?php foreach ( $facts as $fact ) : ?>
+                <div class="topic-fact-row">
+                  <dt><?php echo esc_html( $fact['label'] ?? '' ); ?></dt>
+                  <dd><?php echo esc_html( $fact['value'] ?? '' ); ?></dd>
+                </div>
+              <?php endforeach; ?>
+            </dl>
           </div>
         <?php endif; ?>
 
@@ -255,7 +265,7 @@ $breadcrumbs = [
           </div>
           <div class="topic-cred-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="<?php echo esc_attr( $accent ); ?>" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-            UK HQ &mdash; EMEA delivery
+            UK HQ, EMEA delivery
           </div>
         </div>
       </aside>
@@ -282,8 +292,8 @@ $breadcrumbs = [
 
     <div class="contact-faq-list topic-faq-list">
       <?php foreach ( $faq_raw as $i => $item ) : ?>
-        <div class="faq-item reveal" style="transition-delay:<?php echo esc_attr( $i * 60 ); ?>ms">
-          <button class="faq-btn" aria-expanded="false" aria-controls="tfaq-<?php echo esc_attr( $i ); ?>">
+        <div class="faq-item reveal<?php echo 0 === $i ? ' open' : ''; ?>" style="transition-delay:<?php echo esc_attr( $i * 60 ); ?>ms">
+          <button class="faq-btn" aria-expanded="<?php echo 0 === $i ? 'true' : 'false'; ?>" aria-controls="tfaq-<?php echo esc_attr( $i ); ?>">
             <span><?php echo esc_html( $item['faq_q'] ); ?></span>
             <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
@@ -311,37 +321,49 @@ $breadcrumbs = [
     <h2 class="topic-related-heading reveal delay-1">Related topics</h2>
     <div class="topic-related-grid">
       <?php
-      // Get other topic pages (same template, exclude current)
-      $topic_pages = get_posts( [
-          'post_type'      => 'page',
-          'posts_per_page' => 4,
-          'post__not_in'   => [ get_the_ID() ],
-          'meta_key'       => '_wp_page_template',
-          'meta_value'     => 'templates/page-topic.php',
-          'orderby'        => 'rand',
-      ] );
-      foreach ( $topic_pages as $tp ) :
-          $tp_eyebrow = get_field( 'topic_eyebrow', $tp->ID ) ?: 'Workday';
-          $tp_answer  = get_field( 'topic_answer',  $tp->ID ) ?: '';
-          $tp_accent  = get_field( 'topic_color',   $tp->ID ) ?: '#1E3A8A';
+      $related_items = [];
+      if ( function_exists( 'zeneesha_managed_topic_slugs' ) ) {
+          foreach ( zeneesha_managed_topic_slugs() as $slug ) {
+              if ( $slug === $topic_slug ) {
+                  continue;
+              }
+              $item_defaults = zeneesha_topic_content( $slug );
+              if ( empty( $item_defaults ) ) {
+                  continue;
+              }
+              $page = get_page_by_path( $slug );
+              $related_items[] = [
+                  'url'     => $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' ),
+                  'eyebrow' => $item_defaults['eyebrow'] ?? 'Workday',
+                  'title'   => $item_defaults['headline'] ?? $item_defaults['title'] ?? $slug,
+                  'excerpt' => $item_defaults['answer'] ?? '',
+                  'color'   => $item_defaults['color'] ?? '#1E3A8A',
+              ];
+              if ( count( $related_items ) >= 4 ) {
+                  break;
+              }
+          }
+      }
+
+      foreach ( $related_items as $item ) :
       ?>
-        <a href="<?php echo esc_url( get_permalink( $tp->ID ) ); ?>" class="topic-related-card reveal">
-          <div class="topic-related-card-eyebrow" style="color:<?php echo esc_attr( $tp_accent ); ?>"><?php echo esc_html( $tp_eyebrow ); ?></div>
-          <h3 class="topic-related-card-title"><?php echo esc_html( get_the_title( $tp->ID ) ); ?></h3>
-          <?php if ( $tp_answer ) : ?>
-            <p class="topic-related-card-excerpt"><?php echo esc_html( wp_trim_words( $tp_answer, 18 ) ); ?></p>
+        <a href="<?php echo esc_url( $item['url'] ); ?>" class="topic-related-card reveal">
+          <div class="topic-related-card-eyebrow" style="color:<?php echo esc_attr( $item['color'] ); ?>"><?php echo esc_html( $item['eyebrow'] ); ?></div>
+          <h3 class="topic-related-card-title"><?php echo esc_html( $item['title'] ); ?></h3>
+          <?php if ( $item['excerpt'] ) : ?>
+            <p class="topic-related-card-excerpt"><?php echo esc_html( wp_trim_words( $item['excerpt'], 18 ) ); ?></p>
           <?php endif; ?>
           <span class="topic-related-card-arrow"><?php echo z_arrow( 13 ); ?></span>
         </a>
       <?php endforeach; ?>
-      <?php if ( empty( $topic_pages ) ) : ?>
+      <?php if ( empty( $related_items ) ) : ?>
         <!-- Fallback static links if no topic pages exist yet -->
         <?php
         $fallback_topics = [
-            [ 'url' => home_url('/workday-hcm-uk/'),           'eyebrow' => 'HCM', 'title' => 'Workday HCM in the UK',                  'color' => '#1E3A8A' ],
-            [ 'url' => home_url('/workday-ams/'),              'eyebrow' => 'AMS', 'title' => 'What is Workday AMS Support?',           'color' => '#3B9EDB' ],
-            [ 'url' => home_url('/workday-data-migration/'),   'eyebrow' => 'Data', 'title' => 'Workday Data Migration Guide',          'color' => '#F57C1F' ],
-            [ 'url' => home_url('/workday-mid-market/'),       'eyebrow' => 'Mid-market', 'title' => 'Workday for Mid-Market',          'color' => '#E8472C' ],
+            [ 'url' => home_url('/workday-ams/'),                       'eyebrow' => 'AMS', 'title' => 'Workday AMS & Continuous Improvement',        'color' => '#3B9EDB' ],
+            [ 'url' => home_url('/workday-data-migration/'),            'eyebrow' => 'Data', 'title' => 'Secure Workday Data Migration',             'color' => '#F57C1F' ],
+            [ 'url' => home_url('/workday-mid-market/'),                'eyebrow' => 'Mid-market', 'title' => 'Workday Support for Mid-Market Organisations', 'color' => '#E8472C' ],
+            [ 'url' => home_url('/workday-release-management-r1-r2/'),  'eyebrow' => 'Release', 'title' => 'Workday Release Management (R1 & R2)',   'color' => '#1E3A8A' ],
         ];
         foreach ( $fallback_topics as $ft ) : ?>
           <a href="<?php echo esc_url( $ft['url'] ); ?>" class="topic-related-card reveal">
@@ -372,7 +394,7 @@ $breadcrumbs = [
       </div>
       <h2 class="cta-heading reveal delay-1">Ready to get more from Workday?<span> Let&rsquo;s talk.</span></h2>
       <p class="cta-body reveal delay-2">
-        We offer a complimentary 60-minute Workday Health Check. No cost, no obligation — just an honest assessment of where value is being lost and how to recover it.
+        We offer a complimentary 60-minute Workday Health Check. No cost, no obligation. You receive an honest assessment of where value is being lost and how to recover it.
       </p>
       <div class="cta-note reveal delay-3">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>

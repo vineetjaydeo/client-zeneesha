@@ -1,4 +1,11 @@
-<?php get_header(); ?>
+<?php
+if ( function_exists( 'zeneesha_is_v3_mount' ) && zeneesha_is_v3_mount() ) {
+    include get_template_directory() . '/templates/page-home-v3.php';
+    return;
+}
+
+get_header();
+?>
 <main>
 
 <!-- ══════════════════════════════════════════════════════

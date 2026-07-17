@@ -55,7 +55,7 @@ if ( function_exists( 'get_field' ) ) {
 <!-- Reading progress bar -->
 <div id="progress" class="reading-progress" aria-hidden="true"></div>
 
-<main id="main" tabindex="-1">
+<main id="main" class="ams-next-root utility-next-root careers-next-root" tabindex="-1">
 
 
 <!-- ════════════════════════════════════════════════════════════

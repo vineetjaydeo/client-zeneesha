@@ -42,15 +42,33 @@
   var mobileMenu = document.getElementById('mobile-menu');
   var mobileBottomCta = document.querySelector('.mobile-bottom-cta');
   if (burger && mobileMenu) {
+    var mobileServiceToggle = mobileMenu.querySelector('.mobile-nav-toggle');
+    var mobileServiceGroup = mobileMenu.querySelector('.mobile-nav-group');
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      if (mobileServiceToggle && mobileServiceGroup) {
+        mobileServiceGroup.classList.remove('open');
+        mobileServiceToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
     burger.addEventListener('click', function () {
       var open = mobileMenu.classList.toggle('open');
       burger.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    if (mobileServiceToggle && mobileServiceGroup) {
+      mobileServiceToggle.addEventListener('click', function () {
+        var open = mobileServiceGroup.classList.toggle('open');
+        mobileServiceToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
     mobileMenu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
-        mobileMenu.classList.remove('open');
-        burger.classList.remove('open');
+        closeMobileMenu();
       });
     });
   }
@@ -141,12 +159,10 @@
     var slider = workdayCalc.querySelector('[data-calc-slider]');
     var employeeCount = workdayCalc.querySelector('[data-calc-employee-count]');
     var totalCost = workdayCalc.querySelector('[data-calc-total-cost]');
-    var lowAdoption = workdayCalc.querySelector('[data-calc-low-adoption]');
-    var hrInefficiency = workdayCalc.querySelector('[data-calc-hr-inefficiency]');
-    var reportingDelays = workdayCalc.querySelector('[data-calc-reporting-delays]');
-    var governanceFailures = workdayCalc.querySelector('[data-calc-governance-failures]');
-    var ticketBacklog = workdayCalc.querySelector('[data-calc-ticket-backlog]');
-    var managerSelfService = workdayCalc.querySelector('[data-calc-manager-self-service]');
+    var implementationDebt = workdayCalc.querySelector('[data-calc-implementation-debt]');
+    var reactiveSupport = workdayCalc.querySelector('[data-calc-reactive-support]');
+    var dataLatency = workdayCalc.querySelector('[data-calc-data-latency]');
+    var aiLicenseValue = workdayCalc.querySelector('[data-calc-ai-license-value]');
     var calcFocus = workdayCalc.querySelector('[data-calc-focus]');
 
     var currencyFormatter = new Intl.NumberFormat('en-GB', {
@@ -170,14 +186,13 @@
       var governanceFailureCost = 200000 * Math.pow(employees / 3000, 0.85);
       var ticketBacklogCost = hrisStaff * 70000 * 0.30;
       var managerSelfServiceCost = managers * 15 * 12 / 60 * 50;
+      var total = lowAdoptionCost + hrInefficiencyCost + reportingDelayCost + governanceFailureCost + ticketBacklogCost + managerSelfServiceCost;
       return {
-        lowAdoptionCost: lowAdoptionCost,
-        hrInefficiencyCost: hrInefficiencyCost,
-        reportingDelayCost: reportingDelayCost,
-        governanceFailureCost: governanceFailureCost,
-        ticketBacklogCost: ticketBacklogCost,
-        managerSelfServiceCost: managerSelfServiceCost,
-        total: lowAdoptionCost + hrInefficiencyCost + reportingDelayCost + governanceFailureCost + ticketBacklogCost + managerSelfServiceCost
+        implementationDebtCost: total * 0.30,
+        reactiveSupportCost: total * 0.40,
+        dataLatencyCost: total * 0.15,
+        aiLicenseValueCost: total * 0.15,
+        total: total
       };
     }
 
@@ -188,14 +203,12 @@
       var progress = idx / (employeeValues.length - 1) * 100;
 
       workdayCalc.style.setProperty('--calc-progress', progress + '%');
-      employeeCount.textContent = numberFormatter.format(employees);
+      employeeCount.textContent = employees >= 10000 ? '10,000+' : numberFormatter.format(employees);
       totalCost.textContent = formatCurrency(costs.total);
-      lowAdoption.textContent = formatCurrency(costs.lowAdoptionCost);
-      hrInefficiency.textContent = formatCurrency(costs.hrInefficiencyCost);
-      reportingDelays.textContent = formatCurrency(costs.reportingDelayCost);
-      governanceFailures.textContent = formatCurrency(costs.governanceFailureCost);
-      ticketBacklog.textContent = formatCurrency(costs.ticketBacklogCost);
-      managerSelfService.textContent = formatCurrency(costs.managerSelfServiceCost);
+      implementationDebt.textContent = formatCurrency(costs.implementationDebtCost);
+      reactiveSupport.textContent = formatCurrency(costs.reactiveSupportCost);
+      dataLatency.textContent = formatCurrency(costs.dataLatencyCost);
+      aiLicenseValue.textContent = formatCurrency(costs.aiLicenseValueCost);
     }
 
     if (slider) {
@@ -210,13 +223,281 @@
     }
   }
 
+  /* ── Home service tabs ─────────────────────────────────────── */
+  document.querySelectorAll('[data-service-tabs]').forEach(function (tabsRoot) {
+    var tabs = Array.prototype.slice.call(tabsRoot.querySelectorAll('[data-service-tab]'));
+    var panels = Array.prototype.slice.call(tabsRoot.querySelectorAll('[data-service-panel]'));
+    var prev = tabsRoot.querySelector('[data-service-tab-prev]');
+    var next = tabsRoot.querySelector('[data-service-tab-next]');
+    if (!tabs.length || !panels.length) return;
+
+    var activeIndex = 0;
+
+    function setActive(index, shouldScroll) {
+      activeIndex = Math.max(0, Math.min(index, tabs.length - 1));
+      tabs.forEach(function (tab, i) {
+        var active = i === activeIndex;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        tab.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      panels.forEach(function (panel, i) {
+        panel.classList.toggle('is-active', i === activeIndex);
+      });
+      if (prev) prev.disabled = activeIndex === 0;
+      if (next) next.disabled = activeIndex === tabs.length - 1;
+      if (shouldScroll && tabs[activeIndex]) {
+        tabs[activeIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    var canHoverTabs = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { setActive(i, true); });
+      if (canHoverTabs) {
+        tab.addEventListener('mouseenter', function () { setActive(i, false); });
+      }
+      tab.addEventListener('keydown', function (event) {
+        var nextIndex = i;
+        if (event.key === 'ArrowRight') nextIndex = (i + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') nextIndex = (i - 1 + tabs.length) % tabs.length;
+        else return;
+        event.preventDefault();
+        tabs[nextIndex].focus();
+        setActive(nextIndex, true);
+      });
+    });
+    if (prev) prev.addEventListener('click', function () { setActive(activeIndex - 1, true); });
+    if (next) next.addEventListener('click', function () { setActive(activeIndex + 1, true); });
+    setActive(0, false);
+  });
+
+  /* ── Looping carousels ─────────────────────────────────────── */
+  document.querySelectorAll('[data-loop-carousel]').forEach(function (carousel) {
+    var track = carousel.querySelector('[data-loop-track]');
+    var prev = carousel.querySelector('[data-loop-prev]');
+    var next = carousel.querySelector('[data-loop-next]');
+    var dotsEl = carousel.querySelector('[data-loop-dots]');
+    var cardClass = carousel.getAttribute('data-loop-card-class');
+    var dotClass = carousel.getAttribute('data-loop-dot-class') || 'home-carousel-dot';
+    if (!track || !prev || !next || !dotsEl || !cardClass) return;
+
+    var originalCards = Array.prototype.slice.call(track.querySelectorAll('.' + cardClass));
+    var count = originalCards.length;
+    if (count < 2) return;
+
+    function makeClone(card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(function (focusable) {
+        focusable.setAttribute('tabindex', '-1');
+      });
+      return clone;
+    }
+
+    originalCards.slice().reverse().forEach(function (card) {
+      track.insertBefore(makeClone(card), track.firstChild);
+    });
+    originalCards.forEach(function (card) {
+      track.appendChild(makeClone(card));
+    });
+
+    var offset = count;
+    var timer = null;
+    var snapping = false;
+    var autoStopped = false;
+
+    for (var i = 0; i < count; i += 1) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = dotClass + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.setAttribute('data-loop-dot', String(i));
+      dotsEl.appendChild(dot);
+    }
+
+    function getStep() {
+      var card = track.querySelectorAll('.' + cardClass)[count];
+      if (!card) return 400;
+      var gap = parseFloat(window.getComputedStyle(track).columnGap) || 0;
+      return card.offsetWidth + gap;
+    }
+
+    function updateDots() {
+      var realIndex = ((offset - count) % count + count) % count;
+      dotsEl.querySelectorAll('[data-loop-dot]').forEach(function (dot, i) {
+        dot.classList.toggle('active', i === realIndex);
+      });
+    }
+
+    function setTranslate(animated) {
+      if (!animated) track.style.transition = 'none';
+      track.style.transform = 'translateX(-' + (offset * getStep()) + 'px)';
+      if (!animated) {
+        track.offsetHeight;
+        track.style.transition = '';
+      }
+    }
+
+    function goTo(nextOffset) {
+      offset = nextOffset;
+      setTranslate(true);
+      updateDots();
+    }
+
+    function startAuto() {
+      if (autoStopped) return;
+      clearInterval(timer);
+      timer = setInterval(function () { goTo(offset + 1); }, 5200);
+    }
+
+    function stopAuto() {
+      autoStopped = true;
+      clearInterval(timer);
+    }
+
+    track.addEventListener('transitionend', function () {
+      if (snapping) return;
+      if (offset >= count * 2) {
+        snapping = true;
+        offset -= count;
+        setTranslate(false);
+        snapping = false;
+      } else if (offset < count) {
+        snapping = true;
+        offset += count;
+        setTranslate(false);
+        snapping = false;
+      }
+      updateDots();
+    });
+
+    prev.addEventListener('click', function () { goTo(offset - 1); stopAuto(); });
+    next.addEventListener('click', function () { goTo(offset + 1); stopAuto(); });
+    dotsEl.addEventListener('click', function (event) {
+      var dot = event.target.closest('[data-loop-dot]');
+      if (!dot) return;
+      goTo(count + parseInt(dot.getAttribute('data-loop-dot'), 10));
+      stopAuto();
+    });
+    window.addEventListener('resize', function () { setTranslate(false); }, { passive: true });
+
+    setTranslate(false);
+    startAuto();
+  });
+
+  /* ── AMS interactive dial ─────────────────────────────────── */
+  document.querySelectorAll('[data-ams-dial]').forEach(function (dial) {
+    var jsonEl = dial.querySelector('[data-ams-dial-json]');
+    var items = [];
+
+    if (jsonEl) {
+      try {
+        items = JSON.parse(jsonEl.textContent || '[]');
+      } catch (err) {
+        items = [];
+      }
+    }
+
+    var wheel = dial.querySelector('[data-ams-dial-wheel]');
+    var nodes = Array.prototype.slice.call(dial.querySelectorAll('[data-ams-dial-node]'));
+    var pills = Array.prototype.slice.call(dial.querySelectorAll('[data-ams-dial-pill]'));
+    var count = dial.querySelector('[data-ams-dial-count]');
+    var title = dial.querySelector('[data-ams-dial-title]');
+    var body = dial.querySelector('[data-ams-dial-body]');
+    var core = dial.querySelector('.svc-ams-dial-core');
+    var activeIndex = 0;
+    var currentAngle = null;
+
+    function shortestAngle(from, to) {
+      if (from === null) return to;
+      var delta = ((to - from + 540) % 360) - 180;
+      return from + delta;
+    }
+
+    function updateDialHand(index, instant) {
+      if (!wheel || !core || !nodes[index]) return;
+
+      var wheelRect = wheel.getBoundingClientRect();
+      var coreRect = core.getBoundingClientRect();
+      var nodeRect = nodes[index].getBoundingClientRect();
+      var originX = coreRect.left + coreRect.width / 2 - wheelRect.left;
+      var originY = coreRect.top + coreRect.height / 2 - wheelRect.top;
+      var targetX = nodeRect.left + nodeRect.width / 2 - wheelRect.left;
+      var targetY = nodeRect.top + nodeRect.height / 2 - wheelRect.top;
+      var dx = targetX - originX;
+      var dy = targetY - originY;
+      var targetAngle = Math.atan2(dy, dx) * 180 / Math.PI;
+      var targetLength = Math.sqrt(dx * dx + dy * dy);
+
+      currentAngle = instant ? targetAngle : shortestAngle(currentAngle, targetAngle);
+      wheel.classList.toggle('is-instant', !!instant);
+      wheel.style.setProperty('--ams-dial-angle', currentAngle + 'deg');
+      wheel.style.setProperty('--ams-dial-length', targetLength + 'px');
+      wheel.style.setProperty('--ams-dial-origin-x', originX + 'px');
+      wheel.style.setProperty('--ams-dial-origin-y', originY + 'px');
+      if (instant) {
+        requestAnimationFrame(function () {
+          wheel.classList.remove('is-instant');
+        });
+      }
+    }
+
+    function setActive(index) {
+      var activeItem = items[index];
+      if (!activeItem) return;
+      activeIndex = index;
+
+      nodes.forEach(function (node, i) {
+        var isActive = i === index;
+        node.classList.toggle('is-active', isActive);
+        node.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      pills.forEach(function (pill, i) {
+        var isActive = i === index;
+        pill.classList.toggle('is-active', isActive);
+        pill.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      if (count) count.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(items.length).padStart(2, '0');
+      if (title) title.textContent = activeItem.title || activeItem.label || '';
+      if (body) body.textContent = activeItem.body || '';
+      if (wheel) {
+        wheel.setAttribute('data-active-index', String(index));
+        requestAnimationFrame(function () {
+          updateDialHand(index, currentAngle === null);
+        });
+      }
+    }
+
+    nodes.concat(pills).forEach(function (control) {
+      var index = parseInt(control.getAttribute('data-index'), 10);
+      control.addEventListener('mouseenter', function () { setActive(index); });
+      control.addEventListener('focus', function () { setActive(index); });
+      control.addEventListener('click', function () { setActive(index); });
+    });
+
+    setActive(0);
+    window.addEventListener('resize', function () {
+      updateDialHand(activeIndex, true);
+    }, { passive: true });
+  });
+
   /* ── FAQ Accordion ─────────────────────────────────────────── */
   document.querySelectorAll('.faq-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var item = btn.closest('.faq-item');
       var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(function (el) { el.classList.remove('open'); });
-      if (!isOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item').forEach(function (el) {
+        el.classList.remove('open');
+        var elBtn = el.querySelector('.faq-btn');
+        if (elBtn) elBtn.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 
@@ -252,6 +533,7 @@
       e.preventDefault();
       var btn = contactForm.querySelector('.form-submit');
       var msgEl = document.getElementById('form-message');
+      var originalButtonHtml = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = 'Sending…';
 
@@ -277,7 +559,7 @@
         })
         .finally(function () {
           btn.disabled = false;
-          btn.textContent = 'Book My Complimentary Health Check';
+          btn.innerHTML = originalButtonHtml;
         });
     });
   }

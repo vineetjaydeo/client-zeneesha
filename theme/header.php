@@ -27,12 +27,12 @@
           <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="nav-dropdown" role="menu">
-          <a href="<?php echo esc_url( home_url( '/implementation/' ) ); ?>" class="nav-dropdown-item" role="menuitem">
+          <a href="<?php echo esc_url( home_url( '/deployment/' ) ); ?>" class="nav-dropdown-item" role="menuitem">
             <div class="nav-dropdown-icon" style="background:rgba(30,58,138,.08);color:#1E3A8A">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
             <div>
-              <div class="nav-dropdown-title">Implementation</div>
+              <div class="nav-dropdown-title">Deployment</div>
               <div class="nav-dropdown-desc">Build the right foundation from day one</div>
             </div>
           </a>
@@ -52,6 +52,24 @@
             <div>
               <div class="nav-dropdown-title">Maximise</div>
               <div class="nav-dropdown-desc">Turn your Workday from operational to exceptional</div>
+            </div>
+          </a>
+          <a href="<?php echo esc_url( home_url( '/advisory/' ) ); ?>" class="nav-dropdown-item" role="menuitem">
+            <div class="nav-dropdown-icon" style="background:rgba(232,71,44,.08);color:#E8472C">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-3 3 2 5-7"/></svg>
+            </div>
+            <div>
+              <div class="nav-dropdown-title">Advisory</div>
+              <div class="nav-dropdown-desc">Strategy before configuration</div>
+            </div>
+          </a>
+          <a href="<?php echo esc_url( home_url( '/ai-enablement/' ) ); ?>" class="nav-dropdown-item" role="menuitem">
+            <div class="nav-dropdown-icon" style="background:rgba(245,124,31,.08);color:#F57C1F">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <div class="nav-dropdown-title">AI Enablement</div>
+              <div class="nav-dropdown-desc">Make Workday AI-ready</div>
             </div>
           </a>
           <div class="nav-dropdown-divider"></div>
@@ -74,8 +92,8 @@
 
     <!-- Right cluster -->
     <div class="nav-right">
-      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-nav">
-        Book a Call <?php echo z_arrow( 13 ); ?>
+      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-nav btn-nav-health">
+        Health Check <?php echo z_arrow( 13 ); ?>
       </a>
       <!-- Mobile burger -->
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -90,10 +108,17 @@
     <nav>
       <!-- Services group -->
       <div class="mobile-nav-group">
-        <div class="mobile-nav-group-label">Services</div>
-        <a href="<?php echo esc_url( home_url( '/implementation/' ) ); ?>">Implementation</a>
-        <a href="<?php echo esc_url( home_url( '/ams-support/' ) ); ?>">AMS &amp; Support</a>
-        <a href="<?php echo esc_url( home_url( '/maximise/' ) ); ?>">Maximise</a>
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-services-menu">
+          Services
+          <svg class="mobile-nav-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="mobile-nav-submenu" id="mobile-services-menu">
+          <a href="<?php echo esc_url( home_url( '/deployment/' ) ); ?>">Deployment</a>
+          <a href="<?php echo esc_url( home_url( '/ams-support/' ) ); ?>">AMS &amp; Support</a>
+          <a href="<?php echo esc_url( home_url( '/maximise/' ) ); ?>">Maximise</a>
+          <a href="<?php echo esc_url( home_url( '/advisory/' ) ); ?>">Advisory</a>
+          <a href="<?php echo esc_url( home_url( '/ai-enablement/' ) ); ?>">AI Enablement</a>
+        </div>
       </div>
       <div class="mobile-nav-divider"></div>
       <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a>
@@ -101,7 +126,7 @@
       <a href="<?php echo esc_url( home_url( '/careers/' ) ); ?>">Careers</a>
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
       <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn-mobile-cta">
-        Book a Call <?php echo z_arrow( 14 ); ?>
+        Health Check <?php echo z_arrow( 14 ); ?>
       </a>
     </nav>
   </div>
@@ -109,5 +134,5 @@
 
 <!-- Mobile sticky bottom CTA -->
 <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="mobile-bottom-cta" aria-label="Book a consultation">
-  Book a Call <?php echo z_arrow( 13 ); ?>
+  Health Check <?php echo z_arrow( 13 ); ?>
 </a>

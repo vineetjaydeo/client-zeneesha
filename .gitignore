@@ -5,3 +5,6 @@ node_modules/
 theme/assets/vid/
 HANDOFF.md
 _preview/
+__pycache__/
+tmp/*
+!tmp/deploy_deps/

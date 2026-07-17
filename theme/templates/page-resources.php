@@ -1,31 +1,11 @@
 <?php
 /**
  * Template Name: Resources Page
- *
- * ACF-driven resources and insights hub for Zeneesha.
- * ACF fields: resources_headline (text), resources_tagline (text),
- *             resources_featured_title (text), resources_featured_excerpt (textarea),
- *             resources_featured_author (text), resources_featured_date (text),
- *             resources_featured_url (url),
- *             resources_articles (repeater): title, category, excerpt, url, date, author
- *             resources_newsletter_heading (text)
+ * ACF-driven insights hub with client-owned article imagery.
  */
 
 get_header();
 
-// ── ACF fields ──────────────────────────────────────────────────────────────
-$headline            = zf( 'resources_headline', 'Thinking Clearly About Workday.' );
-$tagline             = zf( 'resources_tagline',  'Practical insights from practitioners. No filler, no fluff — just what actually helps.' );
-$newsletter_heading  = zf( 'resources_newsletter_heading', 'Stay Ahead of the Workday Curve' );
-
-// ── Featured article ───────────────────────────────────────────────────────
-$featured_title   = zf( 'resources_featured_title',   '' );
-$featured_excerpt = zf( 'resources_featured_excerpt', '' );
-$featured_author  = zf( 'resources_featured_author',  '' );
-$featured_date    = zf( 'resources_featured_date',    '' );
-$featured_url     = zf( 'resources_featured_url',     '' );
-
-// ── Articles (ACF repeater with fallback hardcoded articles) ──────────────
 $acf_articles = [];
 if ( function_exists( 'get_field' ) ) {
     $acf_articles = get_field( 'resources_articles' ) ?: [];
@@ -33,244 +13,97 @@ if ( function_exists( 'get_field' ) ) {
 
 $fallback_articles = [
     [
-        'title'    => 'Zeneesha is now officially a Workday AMS Partner',
+        'title' => 'Zeneesha is now officially a Workday AMS Partner',
         'category' => 'Partnership',
-        'excerpt'  => 'From vision to validation — how Zeneesha earned its place as a certified Workday AMS Partner, and what this means for clients navigating post-go-live support.',
-        'url'      => 'https://www.zeneesha.com/from-vision-to-validation-zeneesha-is-now-officially-a-workday-ams-partner/',
-        'date'     => 'September 2025',
-        'author'   => 'Zeneesha Team',
+        'url' => 'https://www.zeneesha.com/from-vision-to-validation-zeneesha-is-now-officially-a-workday-ams-partner/',
+        'date' => 'September 2025',
+        'image' => 'workday-ams-partner.png',
     ],
     [
-        'title'    => 'Navigating the Complexities of Workday Data Migration: A Step-by-Step Guide',
+        'title' => 'Navigating the Complexities of Workday Data Migration: A Step-by-Step Guide',
         'category' => 'Data Migration',
-        'excerpt'  => 'Data migration remains one of the highest-risk phases of any Workday programme. This guide walks through the key stages, common failure points, and how to protect data integrity throughout.',
-        'url'      => 'https://www.zeneesha.com/navigating-the-complexities-of-workday-data-migration-a-step-by-step-guide/',
-        'date'     => 'January 2025',
-        'author'   => 'Zeneesha Team',
+        'url' => 'https://www.zeneesha.com/navigating-the-complexities-of-workday-data-migration-a-step-by-step-guide/',
+        'date' => 'January 2025',
+        'image' => 'data-migration.png',
     ],
     [
-        'title'    => 'Workday AMS in the Age of AI: Enhancing Efficiency and Innovation',
+        'title' => 'Workday AMS in the Age of AI: Enhancing Efficiency and Innovation',
         'category' => 'AMS',
-        'excerpt'  => 'AI is reshaping what\'s possible in Workday AMS. From intelligent ticket routing to predictive maintenance, we explore how AI-enhanced support is changing the economics of post-go-live care.',
-        'url'      => 'https://www.zeneesha.com/workday-ams-in-the-age-of-ai-enhancing-efficiency-and-innovation/',
-        'date'     => 'January 2025',
-        'author'   => 'Zeneesha Team',
+        'url' => 'https://www.zeneesha.com/workday-ams-in-the-age-of-ai-enhancing-efficiency-and-innovation/',
+        'date' => 'January 2025',
+        'image' => 'workday-ams-ai.png',
     ],
 ];
 
-$articles = ! empty( $acf_articles ) ? $acf_articles : $fallback_articles;
-
-// ── Topic links ────────────────────────────────────────────────────────────
+$articles = $acf_articles ?: $fallback_articles;
 $topics = [
-    [ 'label' => 'Workday HCM',        'slug' => 'workday-hcm' ],
-    [ 'label' => 'Workday AMS',        'slug' => 'workday-ams' ],
-    [ 'label' => 'Data Migration',     'slug' => 'data-migration' ],
-    [ 'label' => 'Mid-Market',         'slug' => 'workday-mid-market' ],
-    [ 'label' => 'Finance Training',   'slug' => 'workday-finance-training' ],
-    [ 'label' => 'Workday AI',         'slug' => 'workday-ai' ],
+    [ 'label' => 'AMS & Continuous Improvement', 'slug' => 'workday-ams' ],
+    [ 'label' => 'Secure Data Migration', 'slug' => 'workday-data-migration' ],
+    [ 'label' => 'Mid-Market Support', 'slug' => 'workday-mid-market' ],
+    [ 'label' => 'Release Management', 'slug' => 'workday-release-management-r1-r2' ],
+    [ 'label' => 'Post-Go-Live Deployment', 'slug' => 'post-go-live-deployment' ],
+    [ 'label' => 'The Future of Workday with AI', 'slug' => 'workday-ai' ],
 ];
 ?>
 
-<!-- Reading progress bar -->
-<div id="progress" class="reading-progress" aria-hidden="true"></div>
+<main id="main" class="ams-next-root utility-next-root resources-next-root" tabindex="-1">
 
-<main id="main" tabindex="-1">
-
-
-<!-- ════════════════════════════════════════════════════════════
-     1. HERO
-════════════════════════════════════════════════════════════ -->
-<section class="svc-ams-hero resources-hero">
-  <div class="svc-hero-blobs" aria-hidden="true">
-    <div class="svc-hero-blob svc-hero-blob--1" style="background:rgba(30,58,138,.07)"></div>
-    <div class="svc-hero-blob svc-hero-blob--2"></div>
-  </div>
-  <div class="container">
-    <div class="resources-hero-inner">
-
-      <div class="section-label reveal">
-        <span class="section-label-line" style="background:var(--navy)"></span>
-        Resources &amp; Insights
+  <section class="utility-next-hero resources-next-hero">
+    <div class="container utility-next-hero-grid resources-next-hero-grid">
+      <div class="utility-next-hero-copy">
+        <p class="ams-next-eyebrow reveal">Resources & Insights</p>
+        <h1 class="reveal delay-1">Workday Deployment, AMS & <span>AI Insights</span></h1>
+        <p class="utility-next-hero-intro reveal delay-2">From The Zeneesha Workday Lifecycle Playbook</p>
+        <a href="#latest-insights" class="ams-next-button ams-next-button--primary reveal delay-3">Read Insights <?php echo z_arrow( 14 ); ?></a>
       </div>
-
-      <h1 class="svc-hero-title reveal delay-1"><?php echo esc_html( $headline ); ?></h1>
-
-      <p class="svc-ams-tagline resources-tagline reveal delay-2">
-        <?php echo esc_html( $tagline ); ?>
-      </p>
-
+      <a href="<?php echo esc_url( $articles[0]['url'] ?? '#' ); ?>" class="resources-next-featured reveal delay-2" target="_blank" rel="noopener noreferrer">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/resources/' . ( $articles[0]['image'] ?? 'workday-ams-partner.png' ) ); ?>" width="1200" height="627" alt="<?php echo esc_attr( $articles[0]['title'] ?? 'Zeneesha Workday insight' ); ?>" fetchpriority="high">
+      </a>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- ════════════════════════════════════════════════════════════
-     2. FEATURED ARTICLE (only if ACF field is set)
-════════════════════════════════════════════════════════════ -->
-<?php if ( $featured_title ) : ?>
-<section class="resources-featured-section">
-  <div class="container">
-
-    <div class="section-label reveal">
-      <span class="section-label-line" style="background:var(--navy)"></span>
-      Featured
-    </div>
-
-    <a href="<?php echo esc_url( $featured_url ?: '#' ); ?>" class="resources-featured-card reveal delay-1" <?php echo $featured_url ? '' : 'aria-disabled="true"'; ?>>
-      <div class="resources-featured-inner">
-        <div class="resources-featured-body">
-          <h2 class="resources-featured-title"><?php echo esc_html( $featured_title ); ?></h2>
-          <?php if ( $featured_excerpt ) : ?>
-            <p class="resources-featured-excerpt"><?php echo esc_html( $featured_excerpt ); ?></p>
-          <?php endif; ?>
-          <div class="resources-featured-meta">
-            <?php if ( $featured_author ) : ?>
-              <span class="resources-meta-author"><?php echo esc_html( $featured_author ); ?></span>
-            <?php endif; ?>
-            <?php if ( $featured_date ) : ?>
-              <span class="resources-meta-sep" aria-hidden="true">&middot;</span>
-              <span class="resources-meta-date"><?php echo esc_html( $featured_date ); ?></span>
-            <?php endif; ?>
-          </div>
-        </div>
-        <div class="resources-featured-cta">
-          Read more <?php echo z_arrow( 14 ); ?>
-        </div>
-      </div>
-    </a>
-
-  </div>
-</section>
-<?php endif; ?>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     3. ARTICLES GRID
-════════════════════════════════════════════════════════════ -->
-<section class="resources-articles-section">
-  <div class="container">
-
-    <div class="resources-articles-intro">
-      <div class="section-label reveal">
-        <span class="section-label-line" style="background:var(--navy)"></span>
-        Latest Articles
-      </div>
-      <h2 class="resources-articles-heading reveal delay-1">Latest Articles</h2>
-    </div>
-
-    <div class="resources-grid">
-      <?php foreach ( $articles as $i => $article ) :
-        $d     = ( $i % 3 ) * 80;
-        $title    = isset( $article['title'] )    ? $article['title']    : '';
-        $category = isset( $article['category'] ) ? $article['category'] : '';
-        $excerpt  = isset( $article['excerpt'] )  ? $article['excerpt']  : '';
-        $url      = isset( $article['url'] )      ? $article['url']      : '#';
-        $date     = isset( $article['date'] )     ? $article['date']     : '';
-        $author   = isset( $article['author'] )   ? $article['author']   : '';
-      ?>
-        <article class="resource-card reveal" style="transition-delay:<?php echo esc_attr( $d ); ?>ms">
-          <div class="resource-card-top">
-            <?php if ( $category ) : ?>
-              <span class="resource-card-category"><?php echo esc_html( $category ); ?></span>
-            <?php endif; ?>
-          </div>
-          <h3 class="resource-card-title"><?php echo esc_html( $title ); ?></h3>
-          <?php if ( $excerpt ) : ?>
-            <p class="resource-card-excerpt"><?php echo esc_html( $excerpt ); ?></p>
-          <?php endif; ?>
-          <div class="resource-card-footer">
-            <div class="resource-card-meta">
-              <?php if ( $author ) : ?>
-                <span><?php echo esc_html( $author ); ?></span>
-              <?php endif; ?>
-              <?php if ( $date ) : ?>
-                <span class="resource-card-date"><?php echo esc_html( $date ); ?></span>
-              <?php endif; ?>
+  <section id="latest-insights" class="resources-next-articles">
+    <div class="container">
+      <div class="utility-next-heading reveal"><h2>Latest Articles</h2></div>
+      <div class="resources-next-grid">
+        <?php foreach ( $articles as $i => $article ) :
+          $title = $article['title'] ?? '';
+          $category = $article['category'] ?? '';
+          $url = $article['url'] ?? '#';
+          $date = $article['date'] ?? '';
+          $image = $article['image'] ?? $fallback_articles[ $i % count( $fallback_articles ) ]['image'];
+        ?>
+          <article class="resources-next-card reveal" style="transition-delay:<?php echo esc_attr( $i * 90 ); ?>ms">
+            <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" class="resources-next-card-image"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/resources/' . $image ); ?>" width="1920" height="1080" alt="<?php echo esc_attr( $title ); ?>" loading="lazy"></a>
+            <div class="resources-next-card-body">
+              <div class="resources-next-card-meta"><span><?php echo esc_html( $category ); ?></span><span><?php echo esc_html( $date ); ?></span></div>
+              <h3><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $title ); ?></a></h3>
+              <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" class="resources-next-card-link">Read article <?php echo z_arrow( 12 ); ?></a>
             </div>
-            <a href="<?php echo esc_url( $url ); ?>" class="resource-card-link" target="_blank" rel="noopener noreferrer">
-              Read article <?php echo z_arrow( 13 ); ?>
-            </a>
-          </div>
-        </article>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     4. TOPIC LINKS
-════════════════════════════════════════════════════════════ -->
-<section class="resources-topics-section">
-  <div class="container">
-
-    <div class="section-label reveal" style="justify-content:center">
-      <span class="section-label-line" style="background:var(--navy)"></span>
-      Explore by Topic
-      <span class="section-label-line" style="background:var(--navy)"></span>
-    </div>
-    <h2 class="resources-topics-heading reveal delay-1">Explore by Topic</h2>
-
-    <div class="resources-topics-pills reveal delay-2">
-      <?php foreach ( $topics as $topic ) : ?>
-        <a href="<?php echo esc_url( home_url( '/' . $topic['slug'] . '/' ) ); ?>" class="resources-topic-pill">
-          <?php echo esc_html( $topic['label'] ); ?>
-        </a>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════════════════════
-     5. NEWSLETTER BAND — dark navy background
-════════════════════════════════════════════════════════════ -->
-<section class="resources-newsletter-section">
-  <div class="container">
-    <div class="resources-newsletter-inner">
-
-      <div class="resources-newsletter-copy">
-        <div class="section-label reveal" style="color:rgba(255,255,255,.55)">
-          <span class="section-label-line" style="background:rgba(255,255,255,.35)"></span>
-          Newsletter
-        </div>
-        <h2 class="resources-newsletter-heading reveal delay-1">
-          <?php echo esc_html( $newsletter_heading ); ?>
-        </h2>
-        <p class="resources-newsletter-sub reveal delay-2">
-          Occasional emails when we publish something worth reading. No cadence quota. Unsubscribe any time.
-        </p>
+          </article>
+        <?php endforeach; ?>
       </div>
-
-      <div class="resources-newsletter-form reveal delay-2">
-        <form class="newsletter-form" action="mailto:hello@zeneesha.co.uk" method="post" enctype="text/plain">
-          <div class="newsletter-form-row">
-            <input
-              class="form-input newsletter-input"
-              type="email"
-              name="email"
-              placeholder="your@email.com"
-              required
-              autocomplete="email"
-              aria-label="Your email address"
-            >
-            <button type="submit" class="newsletter-submit">
-              Subscribe <?php echo z_arrow( 14 ); ?>
-            </button>
-          </div>
-          <p class="newsletter-privacy">
-            We respect your privacy. No spam, ever.
-            See our <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>.
-          </p>
-        </form>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
+  <section class="resources-next-topics">
+    <div class="container">
+      <div class="utility-next-heading reveal"><h2>Explore by Topic</h2></div>
+      <div class="resources-next-topic-grid reveal delay-1">
+        <?php foreach ( $topics as $topic ) : ?><a href="<?php echo esc_url( home_url( '/' . $topic['slug'] . '/' ) ); ?>"><?php echo esc_html( $topic['label'] ); ?> <?php echo z_arrow( 12 ); ?></a><?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+
+  <?php
+  $cta_section_id = 'resources-contact';
+  $cta_inner_id   = '';
+  $cta_eyebrow    = 'Book a Free Workday Health Check';
+  $cta_heading    = 'Ready to build absolute confidence in your Workday investment?';
+  $cta_body       = 'Stop settling for operational bottlenecks and generic advice. Get the senior-led delivery, commercial flexibility, and practical support your business deserves.';
+  $cta_submit     = 'Book a Free Workday Health Check';
+  require __DIR__ . '/partials/form-cta.php';
+  ?>
 
 </main>
 

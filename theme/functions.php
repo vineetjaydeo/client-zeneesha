@@ -51,6 +51,78 @@ function zeneesha_clean_head() {
 }
 add_action( 'after_setup_theme', 'zeneesha_clean_head' );
 
+require_once get_template_directory() . '/templates/topic-content.php';
+
+function zeneesha_current_topic_defaults() {
+    if ( ! is_page() || ! function_exists( 'zeneesha_topic_content' ) ) {
+        return [];
+    }
+
+    $page_id = get_queried_object_id();
+    if ( ! $page_id ) {
+        return [];
+    }
+
+    $slug = get_post_field( 'post_name', $page_id );
+    if ( ! $slug ) {
+        return [];
+    }
+
+    $topic = zeneesha_topic_content( $slug );
+    if ( empty( $topic ) ) {
+        return [];
+    }
+
+    $topic['slug'] = $slug;
+    return $topic;
+}
+
+function zeneesha_topic_meta_description( $topic ) {
+    if ( ! empty( $topic['meta_description'] ) ) {
+        return $topic['meta_description'];
+    }
+
+    return wp_trim_words( wp_strip_all_tags( $topic['answer'] ?? $topic['intro'] ?? '' ), 28, '' );
+}
+
+add_filter( 'document_title_parts', function ( $parts ) {
+    $topic = zeneesha_current_topic_defaults();
+    if ( ! empty( $topic ) ) {
+        $parts['title'] = $topic['headline'];
+    }
+    return $parts;
+} );
+
+add_filter( 'wpseo_title', function ( $title ) {
+    $topic = zeneesha_current_topic_defaults();
+    return empty( $topic ) ? $title : $topic['headline'] . ' | Zeneesha';
+} );
+
+add_filter( 'wpseo_metadesc', function ( $description ) {
+    $topic = zeneesha_current_topic_defaults();
+    return empty( $topic ) ? $description : zeneesha_topic_meta_description( $topic );
+} );
+
+add_filter( 'wpseo_canonical', function ( $canonical ) {
+    $topic = zeneesha_current_topic_defaults();
+    return empty( $topic ) ? $canonical : home_url( '/' . $topic['slug'] . '/' );
+} );
+
+add_filter( 'wpseo_opengraph_title', function ( $title ) {
+    $topic = zeneesha_current_topic_defaults();
+    return empty( $topic ) ? $title : $topic['headline'] . ' | Zeneesha';
+} );
+
+add_filter( 'wpseo_opengraph_desc', function ( $description ) {
+    $topic = zeneesha_current_topic_defaults();
+    return empty( $topic ) ? $description : zeneesha_topic_meta_description( $topic );
+} );
+
+add_filter( 'wpseo_opengraph_url', function ( $url ) {
+    $topic = zeneesha_current_topic_defaults();
+    return empty( $topic ) ? $url : home_url( '/' . $topic['slug'] . '/' );
+} );
+
 // Disable XML-RPC
 add_filter( 'xmlrpc_enabled', '__return_false' );
 // Disable admin bar on frontend
@@ -58,7 +130,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 // ── Enqueue Assets ─────────────────────────────────────────────
 function zeneesha_enqueue_assets() {
-    $v   = '2.1.67';
+    $v   = '2.1.196';
     $uri = get_template_directory_uri();
 
     // Main CSS — preload / deferred
@@ -75,6 +147,23 @@ function zeneesha_enqueue_assets() {
     ] );
 }
 add_action( 'wp_enqueue_scripts', 'zeneesha_enqueue_assets' );
+
+// ── V3 preview mount ─────────────────────────────────────────
+function zeneesha_is_v3_mount() {
+    return isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#^/zeneesha-v(?:3|4)(?:/|$)#', $_SERVER['REQUEST_URI'] );
+}
+
+add_filter( 'pre_option_show_on_front', function ( $pre ) {
+    return zeneesha_is_v3_mount() ? 'page' : $pre;
+} );
+
+add_filter( 'pre_option_page_on_front', function ( $pre ) {
+    if ( ! zeneesha_is_v3_mount() ) {
+        return $pre;
+    }
+    $page = get_page_by_path( 'home-v3' );
+    return $page ? (string) $page->ID : $pre;
+} );
 
 // Defer zeneesha-main script tag
 add_filter( 'script_loader_tag', function ( $tag, $handle ) {
@@ -213,6 +302,7 @@ add_action( 'wp_ajax_nopriv_zeneesha_careers', 'zeneesha_handle_careers' );
 add_filter( 'theme_page_templates', function ( $t ) {
     $t['templates/page-service.php']     = 'Service Page';
     $t['templates/page-ams-support.php'] = 'AMS & Support Page';
+    $t['templates/page-home-v3.php']     = 'Homepage V3';
     $t['templates/page-about.php']       = 'About Page';
     $t['templates/page-contact.php']     = 'Contact Page';
     $t['templates/page-careers.php']     = 'Careers Page';
@@ -235,6 +325,14 @@ add_action( 'acf/init', function () {
             [ 'key'=>'field_hero_h2',       'label'=>'Hero — Line 2 (large)',    'name'=>'hero_h2',       'type'=>'text',     'default_value'=>'' ],
             [ 'key'=>'field_hero_body',     'label'=>'Hero — Body text',         'name'=>'hero_body',     'type'=>'textarea', 'default_value'=>'Optimise, support and evolve Workday so it delivers the value it promised.', 'rows'=>3 ],
             [ 'key'=>'field_hero_cta',      'label'=>'Hero — Primary CTA text',  'name'=>'hero_cta',      'type'=>'text',     'default_value'=>'Book Your Free Workday Health Check' ],
+            [ 'key'=>'field_home_v3_hero_kicker', 'label'=>'Home V3 — Hero kicker', 'name'=>'home_v3_hero_kicker', 'type'=>'text', 'default_value'=>'Workday Advisory, AMS & AI Enablement' ],
+            [ 'key'=>'field_home_v3_hero_title', 'label'=>'Home V3 — Hero title', 'name'=>'home_v3_hero_title', 'type'=>'text', 'default_value'=>'Maximise Every Workday Investment' ],
+            [ 'key'=>'field_home_v3_hero_body', 'label'=>'Home V3 — Hero body', 'name'=>'home_v3_hero_body', 'type'=>'textarea', 'rows'=>4, 'default_value'=>'Enterprise-grade expertise for HCM and Finance, delivered faster and without the complexity or cost of a Tier 1 firm. From strategy to deployment and recovery, we help you maximise your Workday investment.' ],
+            [ 'key'=>'field_home_v3_secondary_cta', 'label'=>'Home V3 — Secondary CTA text', 'name'=>'home_v3_secondary_cta', 'type'=>'text', 'default_value'=>'Talk to a Workday Expert' ],
+            [ 'key'=>'field_home_v3_challenges_heading', 'label'=>'Home V3 — Challenges heading', 'name'=>'home_v3_challenges_heading', 'type'=>'text', 'default_value'=>"Workday is powerful. But right now, it probably just feels frustrating." ],
+            [ 'key'=>'field_home_v3_challenges_intro', 'label'=>'Home V3 — Challenges intro', 'name'=>'home_v3_challenges_intro', 'type'=>'textarea', 'rows'=>3, 'default_value'=>'Digital transformation opens the door to incredible possibilities, and turning that potential into lasting value is where the real work begins.' ],
+            [ 'key'=>'field_home_v3_calculator_heading', 'label'=>'Home V3 — Calculator heading', 'name'=>'home_v3_calculator_heading', 'type'=>'text', 'default_value'=>'The hidden cost of your Workday value gap.' ],
+            [ 'key'=>'field_home_v3_calculator_body', 'label'=>'Home V3 — Calculator body', 'name'=>'home_v3_calculator_body', 'type'=>'textarea', 'rows'=>3, 'default_value'=>'Use the slider to estimate the hidden cost of inefficient workflows, poor adoption and underused capabilities based on your headcount.' ],
             [ 'key'=>'field_trust_heading', 'label'=>'Trust — Heading',          'name'=>'trust_heading', 'type'=>'text',     'default_value'=>'Trusted by organisations running Workday around the world.' ],
             [ 'key'=>'field_trust_sub',     'label'=>'Trust — Subtext',          'name'=>'trust_sub',     'type'=>'text',     'default_value'=>'We help you bring clarity to your most critical business decisions.' ],
             [ 'key'=>'field_ai_h1',         'label'=>'AI — Heading',             'name'=>'ai_h1',         'type'=>'text',     'default_value'=>'Still Talking About AI' ],
@@ -244,7 +342,10 @@ add_action( 'acf/init', function () {
             [ 'key'=>'field_cta_heading',   'label'=>'CTA Band — Heading',       'name'=>'cta_heading',   'type'=>'text',     'default_value'=>'Your Complimentary Workday Health Check.' ],
             [ 'key'=>'field_cta_body',      'label'=>'CTA Band — Body',          'name'=>'cta_body',      'type'=>'textarea', 'default_value'=>"In 60 minutes, we'll review your Workday setup and give you a clear picture of where value is being lost, and how to recover it.", 'rows'=>3 ],
         ],
-        'location' => [ [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'front-page.php' ] ] ],
+        'location' => [
+            [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'front-page.php' ] ],
+            [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-home-v3.php' ] ],
+        ],
         'position' => 'normal',
         'style'    => 'default',
     ] );
@@ -263,10 +364,17 @@ add_action( 'acf/init', function () {
             [ 'key'=>'field_svc_cs_metric',      'label'=>'Client outcome — metric',                  'name'=>'svc_cs_metric',     'type'=>'text' ],
             [ 'key'=>'field_svc_cs_client',      'label'=>'Client outcome — client name',             'name'=>'svc_cs_client',     'type'=>'text' ],
             [ 'key'=>'field_svc_cs_result',      'label'=>'Client outcome — result text',             'name'=>'svc_cs_result',     'type'=>'textarea', 'rows'=>2 ],
+            [ 'key'=>'field_svc_page_title',      'label'=>'Page title override',                      'name'=>'svc_page_title',    'type'=>'text' ],
+            [ 'key'=>'field_svc_framework_intro', 'label'=>'Framework intro',                          'name'=>'svc_framework_intro','type'=>'textarea', 'rows'=>3 ],
+            [ 'key'=>'field_svc_case_studies',    'label'=>'Case studies (Metric | Company | Result)', 'name'=>'svc_case_studies',  'type'=>'textarea', 'rows'=>5 ],
+            [ 'key'=>'field_svc_faqs',            'label'=>'FAQs (Question | Answer)',                 'name'=>'svc_faqs',          'type'=>'textarea', 'rows'=>8 ],
             [ 'key'=>'field_svc_pain_points',    'label'=>'V1 — Pain points (one per line)',          'name'=>'svc_pain_points',   'type'=>'textarea', 'rows'=>5 ],
-            [ 'key'=>'field_svc_process_steps',  'label'=>'V3 — Process steps (Title | Desc)',        'name'=>'svc_process_steps', 'type'=>'textarea', 'rows'=>6 ],
+            [ 'key'=>'field_svc_process_steps',  'label'=>'Framework steps (Title | Desc)',           'name'=>'svc_process_steps', 'type'=>'textarea', 'rows'=>6 ],
         ],
-        'location' => [ [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-service.php' ] ] ],
+        'location' => [
+            [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-service.php' ] ],
+            [ [ 'param'=>'page_template', 'operator'=>'==', 'value'=>'templates/page-ams-support.php' ] ],
+        ],
         'position' => 'normal',
         'style'    => 'default',
     ] );
@@ -420,7 +528,7 @@ add_action( 'acf/init', function () {
         'title'  => 'Topic Page Content',
         'fields' => [
             [ 'key'=>'field_topic_eyebrow',       'label'=>'Eyebrow / category label', 'name'=>'topic_eyebrow',       'type'=>'text', 'default_value'=>'Workday', 'instructions'=>'Short category label, e.g. "Workday AMS"' ],
-            [ 'key'=>'field_topic_headline',      'label'=>'H1 Headline',              'name'=>'topic_headline',      'type'=>'text', 'instructions'=>'The definitive question or topic heading, e.g. "What is Workday AMS Support?"' ],
+            [ 'key'=>'field_topic_headline',      'label'=>'H1 Headline',              'name'=>'topic_headline',      'type'=>'text', 'instructions'=>'The definitive topic heading, e.g. "Workday AMS & Continuous Improvement"' ],
             [ 'key'=>'field_topic_answer',        'label'=>'Definitive answer (AEO lede)', 'name'=>'topic_answer',    'type'=>'textarea', 'rows'=>4, 'instructions'=>'2-3 sentences answering the headline question directly. This is what engines may feature as a snippet.' ],
             [ 'key'=>'field_topic_intro',         'label'=>'Introduction (longer)',    'name'=>'topic_intro',         'type'=>'textarea', 'rows'=>6 ],
             [ 'key'=>'field_topic_color',         'label'=>'Accent colour (hex)',      'name'=>'topic_color',         'type'=>'text', 'default_value'=>'#1E3A8A' ],

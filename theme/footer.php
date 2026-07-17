@@ -5,7 +5,7 @@
     <!-- Brand column -->
     <div class="footer-brand">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Zeneesha home">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/zeneesha-logo-light.png" alt="Zeneesha" height="44" style="height:44px;width:auto">
+        <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/zeneesha-logo.png' ); ?>" alt="Zeneesha" height="44" class="footer-logo">
       </a>
       <p>An independent Workday practice focused entirely on post-go-live value.</p>
       <div class="footer-contact-details">
@@ -39,9 +39,11 @@
     <div class="footer-col">
       <div class="footer-col-title">Services</div>
       <ul>
-        <li><a href="<?php echo esc_url( home_url( '/implementation/' ) ); ?>">Implementation</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/deployment/' ) ); ?>">Deployment</a></li>
         <li><a href="<?php echo esc_url( home_url( '/ams-support/' ) ); ?>">AMS &amp; Support</a></li>
         <li><a href="<?php echo esc_url( home_url( '/maximise/' ) ); ?>">Maximise</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/advisory/' ) ); ?>">Advisory</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/ai-enablement/' ) ); ?>">AI Enablement</a></li>
         <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Free Health Check</a></li>
       </ul>
     </div>
@@ -50,12 +52,12 @@
     <div class="footer-col">
       <div class="footer-col-title">Topics</div>
       <ul>
-        <li><a href="<?php echo esc_url( home_url( '/workday-hcm-uk/' ) ); ?>">Workday HCM UK</a></li>
-        <li><a href="<?php echo esc_url( home_url( '/workday-ams/' ) ); ?>">Workday AMS</a></li>
-        <li><a href="<?php echo esc_url( home_url( '/workday-data-migration/' ) ); ?>">Data Migration</a></li>
-        <li><a href="<?php echo esc_url( home_url( '/workday-mid-market/' ) ); ?>">Workday Mid-Market</a></li>
-        <li><a href="<?php echo esc_url( home_url( '/workday-finance-training/' ) ); ?>">Finance Training</a></li>
-        <li><a href="<?php echo esc_url( home_url( '/workday-ai/' ) ); ?>">Workday AI</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/workday-ams/' ) ); ?>">AMS &amp; Improvement</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/workday-data-migration/' ) ); ?>">Secure Data Migration</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/workday-mid-market/' ) ); ?>">Mid-Market Support</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/workday-release-management-r1-r2/' ) ); ?>">Release Management</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/post-go-live-deployment/' ) ); ?>">Post-Go-Live</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/workday-ai/' ) ); ?>">Workday AI Future</a></li>
         <li><a href="<?php echo esc_url( home_url( '/resources/' ) ); ?>">All Resources</a></li>
       </ul>
     </div>
@@ -63,7 +65,7 @@
     <!-- Contact column -->
     <div class="footer-col">
       <div class="footer-col-title">Contact</div>
-      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" style="display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:300;color:rgba(255,255,255,.85)">
+      <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="footer-contact-link">
         Book a Consultation <?php echo z_arrow( 12 ); ?>
       </a>
       <div class="footer-hours">
