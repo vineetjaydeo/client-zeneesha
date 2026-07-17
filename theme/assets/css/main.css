@@ -258,7 +258,7 @@ h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{font-style:normal}
 .section-calculator.py-28{padding-top:3.5rem;padding-bottom:3.5rem}
 .calculator-grid{display:grid;grid-template-columns:minmax(0,4.5fr) minmax(420px,6.5fr);gap:3rem;align-items:center}
 .calculator-copy{position:sticky;top:5rem}
-.calculator-copy .section-heading{max-width:560px;font-size:clamp(30px,3.2vw,44px)}
+.calculator-copy .section-heading{max-width:560px;font-size:var(--fs-section-title)}
 .calculator-copy .section-sub{max-width:560px;margin-top:1rem;font-size:17px;line-height:1.55}
 .calculator-copy-note{font-size:16px;line-height:1.55;color:var(--slate2);max-width:520px;margin-top:.85rem}
 .calculator-cta{
@@ -1774,7 +1774,7 @@ label.field-label span{color:var(--redorange)}
 .page-template-page-home-v3 .form-submit{width:100%;cursor:pointer}
 @media(min-width:1024px){
   .page-template-page-home-v3 .section-faq .faq-accordion{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.5rem;max-width:none}
-  .page-template-page-home-v3 .section-faq .faq-question{font-size:16px;letter-spacing:-.012em;line-height:1.25;white-space:nowrap}
+  .page-template-page-home-v3 .section-faq .faq-question{font-size:clamp(13px,1.05vw,16px);letter-spacing:-.012em;line-height:1.25;white-space:nowrap}
   .page-template-page-home-v3 .section-faq .faq-btn{align-items:center;gap:.8rem;padding:1.18rem 0}
   .page-template-page-home-v3 .service-tab-cta:hover,
   .page-template-page-home-v3 .service-tab-cta:focus-visible{transform:translateY(calc(-50% - 2px))}

@@ -733,7 +733,7 @@ get_header(); ?>
         <?php
         $faqs = [
           [
-            'q' => 'Why pay for a Workday partner too?',
+            'q' => 'We\'re already paying a fortune for Workday. Why would we need a partner?',
             'a' => [
               "Because buying a gym membership doesn't automatically make you fit.",
               "Workday is a powerful platform, but most organisations don't have a team of Workday specialists sitting around waiting for problems to appear.",
@@ -742,7 +742,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'How do we know Workday needs optimising?',
+            'q' => 'How do I know if my Workday environment needs optimising?',
             'a' => [
               "If you're asking the question, there's a decent chance it does.",
               'Some common signs include:',
@@ -760,7 +760,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => "What's in the Workday Health Check?",
+            'q' => "What's included in the Workday Health Check?",
             'a' => [
               'Think of it as an MOT for your Workday environment.',
               "We'll review areas such as:",
@@ -778,7 +778,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'Can you help with one small issue?',
+            'q' => 'We only need help with one small issue. Is that something you do?',
             'a' => [
               "Absolutely. We don't insist on turning every conversation into a six-month programme.",
               "Whether it's a small integration, a reporting challenge, a security review or a wider optimisation project, we're happy to help.",
@@ -786,7 +786,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'What size organisations do you support?',
+            'q' => 'What size organisations do you work with?',
             'a' => [
               "If you're running Workday, we're interested in talking.",
               "We've supported organisations ranging from focused projects worth a few thousand pounds through to global programmes and long-term Workday support engagements.",
@@ -795,14 +795,14 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'Do you work outside the UK?',
+            'q' => 'Do you only work in the UK?',
             'a' => [
               "No. Workday doesn't stop at borders and neither do we.",
               'We support organisations globally across multiple industries, delivering projects, optimisation services and AMS support wherever Workday is being used.',
             ],
           ],
           [
-            'q' => 'How is Zeneesha different?',
+            'q' => 'What makes Zeneesha different from other Workday consultancies?',
             'a' => [
               "We'd rather find the iceberg before you hit it.",
               "Many Workday projects become frustrating because hidden complexity isn't identified until halfway through delivery.",
@@ -813,7 +813,7 @@ get_header(); ?>
             ],
           ],
           [
-            'q' => 'Can you help after Workday go-live?',
+            'q' => 'Can you help if our Workday implementation is already live?',
             'a' => [
               "Honestly, that's where many of our conversations start.",
               "Most organisations don't need help implementing Workday forever.",

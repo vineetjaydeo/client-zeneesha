@@ -56,6 +56,14 @@
      22.32px). A second compact tier (~15-17px) exists and needs its own token.
      Re-capture with h3/h4 before migrating card titles. */
   --fs-card-title:  22px;
+  /* Third tier: display-scale card titles. Lifted VERBATIM from main.css:3135
+     (.partnership-next-benefit h3) so pointing that h3 here is render-neutral —
+     43.2px at 1440px, unmoved. --fs-card-title (22px) would cut it -49.1% into
+     a card that is min-height:280px / justify-content:flex-end, leaving voids;
+     that is a redesign of a live page, not a migration. D2 constrains section
+     titles, not card titles. The compact ~15-17px tier noted above is still
+     unresolved and still needs its own token. */
+  --fs-card-title-display: clamp(29px,3vw,44px);
   --fs-eyebrow:     12px;
 
   /* ── Line height ── */
@@ -425,8 +433,14 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 /* Canonical section title (D2). Value + line-height are lifted verbatim from
    `.home-section-intro .section-heading` (main.css), the modal rule; font-weight
    600 comes from the `.section-heading` base. Currently used by nothing —
-   defining it changes no render. */
-.section-title{font-size:var(--fs-section-title);font-weight:600;line-height:var(--lh-tight);color:var(--navy)}
+   defining it changes no render.
+   letter-spacing consumes --ls-tight, which was defined by the token commit but
+   left with 0 consumers. Without it, migrating a legacy title (the utility
+   family ships -.035em) reverts tracking to `normal` — a visible loosening at
+   58px on top of the D2 size drop. -.02em is the spec's locked value: still
+   looser than legacy, far closer than normal. Titles are the only tight tier;
+   --ls-eyebrow is already consumed by .section-label below. */
+.section-title{font-size:var(--fs-section-title);font-weight:600;line-height:var(--lh-tight);letter-spacing:var(--ls-tight);color:var(--navy)}
 /* Modifier — must stay AFTER .section-title to win the (0,1,0) tie. */
 .section-title--lg{font-size:var(--fs-section-title-lg)}
 
