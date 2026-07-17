@@ -8,3 +8,4 @@ _preview/
 __pycache__/
 tmp/*
 !tmp/deploy_deps/
+CLAUDE.local.md
