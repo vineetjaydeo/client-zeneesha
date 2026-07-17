@@ -1,6 +1,15 @@
 /* ─── Zeneesha V5 — Critical CSS (inlined above-fold) ─── */
 
+/* ═══════════════════════════════════════════════════════════════
+   TOKENS — the single source of truth.
+   These live here, not in main.css: critical.css is inlined into
+   <head> (functions.php:178, wp_head priority 5) and must resolve
+   before main.css prints (priority 8). A token defined in main.css
+   is undefined during critical render — that is why --fs-hero-*
+   was stillborn.
+   ═══════════════════════════════════════════════════════════════ */
 :root {
+  /* ── Palette ── */
   --navy:     #1E3A8A;
   --redorange:#E8472C;
   --orange:   #F57C1F;
@@ -10,9 +19,62 @@
   --slate2:   #475569;
   --white:    #ffffff;
   --navy-ink: #0D1E4A;
+  /* --dark: restored alias of --navy-ink. It is used 12x in main.css and was
+     never defined on this branch, so those rules silently fell back to
+     `inherit`. Provenance: commit b7cc981 declared `--dark: #0D1E4A;` directly
+     beneath --navy-ink on the parallel lineage this main.css was carried from. */
+  --dark:     #0D1E4A;
+
+  /* ── RGB channels — for rgba() alpha composition.
+     rgba(30,58,138,...) is hardcoded 236x across ~20 alpha values because
+     there was no alpha token. Use rgba(var(--navy-rgb),.5) instead. ── */
+  --navy-rgb:   30,58,138;
+  --slate2-rgb: 71,85,105;
+  --white-rgb:  255,255,255;
+
+  /* ── Layout ── */
   --container:1440px;
+  --nav-height:96px;
+  --nav-height-scrolled:72px;
+
+  /* ── Type scale ── */
   --fs-hero-small: clamp(26px,3.4vw,50px);
   --fs-hero-large: clamp(40px,5.8vw,86px);
+  /* Canonical section title (D2). Verbatim the value of
+     `.home-section-intro .section-heading` (main.css) — the modal size,
+     already winning on 5 of 9 home-v3 sections. */
+  --fs-section-title:    clamp(38px,4.2vw,58px);
+  /* Reserved display size (D2) — Case Studies, QA'd at 850px composition. */
+  --fs-section-title-lg: clamp(44px,5vw,70px);
+  --fs-section-sub: 18px;
+  --fs-body:        18px;
+  --fs-body-sm:     16px;
+  /* PROVISIONAL — not derived from tmp/baseline/computed.json, which captured
+     only h2/eyebrow/description and contains ZERO card titles. 22px is the
+     centre of the feature-card cluster resolved statically at 1440px
+     (.why-card h3 21px / .svc-failure-card h3 22px / .home-insight-card h3
+     22.32px). A second compact tier (~15-17px) exists and needs its own token.
+     Re-capture with h3/h4 before migrating card titles. */
+  --fs-card-title:  22px;
+  --fs-eyebrow:     12px;
+
+  /* ── Line height ── */
+  --lh-tight:   1.08;
+  --lh-snug:    1.3;
+  --lh-normal:  1.65;
+  --lh-relaxed: 1.8;
+
+  /* ── Letter spacing ── */
+  --ls-tight:   -.02em;
+  --ls-eyebrow: .22em;
+
+  /* ── Measure ── */
+  --measure-sub:   760px;
+  --measure-prose: 68ch;
+
+  /* ── Spacing ── */
+  --space-section:    5.25rem;
+  --space-section-sm: 3.5rem;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -66,7 +128,7 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 .booking-status{
   display:flex;align-items:center;gap:8px;
   font-size:13px;letter-spacing:.04em;color:rgba(30,58,138,.55);
-  font-family:'Jost',monospace;
+  font-family:'Jost',sans-serif;
 }
 .status-dot{width:7px;height:7px;border-radius:50%;background:#10b981;flex-shrink:0}
 .btn-nav{
@@ -154,7 +216,7 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 .hero-left{align-self:center}
 .hero-eyebrow{
   display:flex;align-items:center;gap:10px;
-  font-size:12px;font-family:'Jost',monospace;
+  font-size:12px;font-family:'Jost',sans-serif;
   letter-spacing:.22em;text-transform:uppercase;color:var(--slate2);
   margin-bottom:2rem;
 }
@@ -240,7 +302,7 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 .btn-ghost:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 .hero-note{
   display:flex;align-items:center;gap:8px;
-  font-size:13px;font-family:'Jost',monospace;
+  font-size:13px;font-family:'Jost',sans-serif;
   letter-spacing:.06em;color:rgba(71,85,105,.7);
 }
 /* Hero right visual */
@@ -305,8 +367,8 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 @keyframes health-ping{0%{transform:scale(.94);opacity:.75}70%,100%{transform:scale(1.18);opacity:0}}
 .hero-visual-card .hero-action-secondary{position:absolute;left:1.1rem;right:1.1rem;bottom:-1.15rem;background:rgba(255,255,255,.96);box-shadow:0 20px 48px -28px rgba(30,58,138,.42);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .ticker-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem}
-.ticker-label{display:flex;align-items:center;gap:8px;font-family:'Jost',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate2)}
-.ticker-label-right{font-family:'Jost',monospace;font-size:11px;color:rgba(30,58,138,.4);letter-spacing:.1em}
+.ticker-label{display:flex;align-items:center;gap:8px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate2)}
+.ticker-label-right{font-family:'Jost',sans-serif;font-size:11px;color:rgba(30,58,138,.4);letter-spacing:.1em}
 .hero-ticker-container{overflow:hidden;position:relative;will-change:contents}
 .ticker-wrap{position:relative;will-change:transform}
 .ticker-card{
@@ -323,12 +385,12 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 .ticker-tag-text{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate2)}
 .ticker-title{font-size:18px;line-height:1.25;font-weight:400;color:var(--navy)}
 .ticker-desc{font-size:18px;line-height:1.5;font-weight:400;color:var(--slate2)}
-.ticker-footer{font-family:'Jost',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(71,85,105,.5)}
+.ticker-footer{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(71,85,105,.5)}
 /* Hero bottom bar */
 .hero-bottom-bar{position:relative;border-top:1px solid rgba(30,58,138,.1);background:rgba(255,253,245,.7);backdrop-filter:blur(4px)}
 .hero-bottom-inner{
   height:52px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;
-  font-family:'Jost',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate2);
+  font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate2);
 }
 .hero-bottom-inner>*:nth-child(2){text-align:center}
 .hero-bottom-inner>*:last-child{text-align:right}
@@ -341,8 +403,69 @@ button{cursor:pointer;background:none;border:none;font-family:inherit}
 @keyframes float-anim{0%,100%{transform:translate(0,0)}50%{transform:translate(8px,-12px)}}
 .hero-relative{position:relative;z-index:1}
 
-/* Section label pattern */
-.section-label{display:flex;align-items:center;gap:10px;font-family:'Jost',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:1.25rem}
+/* ═══════════════════════════════════════════════════════════════
+   PRIMITIVES — semantic classes consuming ONLY tokens.
+   They live here, beside the tokens, because .section-label was
+   already here and because .section-title / .section-sub sit in the
+   first viewport at desktop on most pages (the hero ends ~600-700px
+   of a 900px viewport). A primitive that resolves only when main.css
+   lands reflows above the fold — the same failure that killed
+   --fs-hero-*. One layer, one file.
+
+   ⚠ CASCADE HAZARD FOR THE MIGRATION TASK ⚠
+   These are all (0,1,0) and critical.css is INLINED EARLIER than
+   main.css. So on any element carrying BOTH a primitive and a legacy
+   class of equal specificity (e.g. `class="section-heading section-title"`),
+   the LEGACY main.css rule WINS on source order and the primitive is
+   silently inert. Migration must SWAP the legacy class, never add
+   alongside it. Verified: main.css:153 .section-heading (0,1,0) would
+   beat .section-title (0,1,0) exactly this way.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Canonical section title (D2). Value + line-height are lifted verbatim from
+   `.home-section-intro .section-heading` (main.css), the modal rule; font-weight
+   600 comes from the `.section-heading` base. Currently used by nothing —
+   defining it changes no render. */
+.section-title{font-size:var(--fs-section-title);font-weight:600;line-height:var(--lh-tight);color:var(--navy)}
+/* Modifier — must stay AFTER .section-title to win the (0,1,0) tie. */
+.section-title--lg{font-size:var(--fs-section-title-lg)}
+
+/* Section standfirst. Moved here from main.css:155 (deleted) so it is not
+   shadowed by its own legacy copy on the (0,1,0) tie.
+   Render-neutral, verified per-element: all 5 live `.section-sub` elements
+   (page-home-v3.php 191/235/302/429/668) already take line-height AND max-width
+   from a (0,2,0) contextual rule — `.home-section-intro .section-sub` for four,
+   `.calculator-copy .section-sub` for the calculator one — so the base's
+   line-height (was 1.7) and the new max-width never reach any of them. The only
+   properties the base actually contributes to live render are font-weight:400
+   (all 5) and color (element 235 only); both are preserved verbatim here. */
+.section-sub{font-size:var(--fs-section-sub);font-weight:400;line-height:var(--lh-normal);color:var(--slate2);max-width:var(--measure-sub)}
+
+/* Long-form body copy. Moved here from main.css:595-599 (deleted) so it is not
+   shadowed by its own legacy copy. Zero markup consumers repo-wide, so the
+   value changes (720px→68ch, 1.8→var(--lh-relaxed)) are render-neutral.
+   NOTE: the old `.prose h2{font-size:clamp(28px,3vw,40px)}` is intentionally
+   dropped — that size matches no token, and adding a third title size would
+   contradict D2. Prose headings need a token decision at migration. */
+.prose{max-width:var(--measure-prose);font-size:var(--fs-body);font-weight:400;line-height:var(--lh-relaxed);color:var(--slate2)}
+.prose p{margin-bottom:1.5rem}
+.prose ul{padding-left:1.5rem;margin-bottom:1.5rem}
+.prose li{margin-bottom:.625rem}
+
+/* Card heading. No markup or CSS consumers today — zero-risk to define.
+   See --fs-card-title: the value is provisional, not baseline-derived. */
+.card-title{font-size:var(--fs-card-title);font-weight:600;line-height:var(--lh-snug);color:var(--navy)}
+
+/* Section label / eyebrow.
+   The primitive now absorbs `color`, which it never declared — it relied on a
+   hand-added .text-redorange utility plus contextual overrides, leaving 8
+   elements with no color source at all.
+   var(--navy) is chosen because it is EXACTLY what those 8 already inherit, so
+   absorbing the color moves nothing. The 5 contextual overrides (0,2,0) still
+   win on specificity; .text-redorange / .cta-label (0,1,0, main.css) still win
+   on source order because critical.css is inlined earlier. This color MUST NOT
+   be moved into main.css below .text-redorange or it would silently kill it. */
+.section-label{display:flex;align-items:center;gap:10px;font-family:'Jost',sans-serif;font-size:var(--fs-eyebrow);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;margin-bottom:1.25rem;color:var(--navy)}
 .section-label-line{flex-shrink:0;width:24px;height:1px}
 
 /* ── Mobile hero overrides ── */

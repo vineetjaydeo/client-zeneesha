@@ -130,7 +130,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 
 // ── Enqueue Assets ─────────────────────────────────────────────
 function zeneesha_enqueue_assets() {
-    $v   = '2.2.0';
+    $v   = '2.3.0';
     $uri = get_template_directory_uri();
 
     // Main CSS — preload / deferred
@@ -183,7 +183,7 @@ add_action( 'wp_head', function () {
 add_action( 'wp_head', function () {
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
-    echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap">' . "\n";
+    echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap">' . "\n";
 }, 2 );
 
 // ── Organization Schema (sitewide) ────────────────────────────
